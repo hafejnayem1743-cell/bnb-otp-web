@@ -33,7 +33,7 @@
 --shadow:0 8px 28px rgba(0,0,0,.25);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:auto}
+html{scroll-behavior:smooth}
 body{
 margin:0;
 background:var(--bg);
@@ -237,8 +237,7 @@ text-align:center;
 color:var(--muted);
 grid-column:1/-1;
 }
-
-#countryPage{display:none} #countryPage.show{display:block} #detail{display:none}
+#detail{display:none}
 #detail.show{display:block}
 #home.hide{display:none}
 .detail-top{
@@ -425,362 +424,6 @@ main{padding-top:10px}
 .update{margin-left:auto}
 .number-actions{grid-template-columns:1fr 1fr}
 }
-
-/* ===== BNB PREMIUM MOTION UI ===== */
-@keyframes pageIn{
-  from{opacity:0;transform:translateY(14px) scale(.985)}
-  to{opacity:1;transform:none}
-}
-@keyframes cardIn{
-  from{opacity:0;transform:translateY(18px)}
-  to{opacity:1;transform:none}
-}
-@keyframes softPulse{
-  0%,100%{box-shadow:var(--shadow)}
-  50%{box-shadow:0 10px 32px rgba(37,99,235,.12)}
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-body{transition:background .25s ease,color .25s ease}
-header,footer,.btn,.country-card,.number-card,.number-box,
-.message,.auto,.search input,.back,.update,.primary,.secondary{
-  transition:
-    background .25s ease,
-    color .25s ease,
-    border-color .25s ease,
-    box-shadow .25s ease,
-    transform .2s ease,
-    opacity .2s ease;
-}
-
-.hero{animation:pageIn .55s ease both}
-.country-card{animation:cardIn .45s ease both}
-.number-card{animation:cardIn .45s ease both}
-.message{animation:cardIn .4s ease both}
-
-.country-card:nth-child(2){animation-delay:.035s}
-.country-card:nth-child(3){animation-delay:.07s}
-.country-card:nth-child(4){animation-delay:.105s}
-.country-card:nth-child(5){animation-delay:.14s}
-.country-card:nth-child(6){animation-delay:.175s}
-.country-card:nth-child(7){animation-delay:.21s}
-.country-card:nth-child(8){animation-delay:.245s}
-
-.country-card:hover{
-  transform:translateY(-5px) scale(1.012);
-  border-color:var(--blue);
-  box-shadow:0 14px 32px rgba(37,99,235,.12);
-}
-.country-card:active,
-.number-card:active{
-  transform:scale(.985);
-}
-
-.primary:hover,.copy-big:hover,.copy-otp:hover{
-  transform:translateY(-1px);
-  box-shadow:0 8px 20px rgba(37,99,235,.2);
-}
-.primary:active,.copy-big:active,.copy-otp:active,
-.secondary:active,.btn:active,.back:active,.update:active{
-  transform:scale(.97);
-}
-
-#home,#countryPage,#detail{
-  animation:pageIn .38s ease both;
-}
-
-.country-page-head{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin:8px 0 20px;
-  padding:15px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:var(--card);
-  box-shadow:var(--shadow);
-}
-
-.country-page-icon{
-  width:58px;
-  height:58px;
-  flex:0 0 58px;
-  display:grid;
-  place-items:center;
-  border-radius:16px;
-  background:var(--soft);
-  font-size:31px;
-}
-
-.country-page-info{min-width:0;flex:1}
-.country-page-name{
-  font-size:21px;
-  font-weight:950;
-  letter-spacing:-.5px;
-}
-.country-page-dial{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:4px;
-}
-
-.country-page-actions{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-}
-
-.country-back{
-  border:1px solid var(--line);
-  background:var(--soft);
-  color:var(--text);
-  border-radius:10px;
-  padding:9px 12px;
-  font-weight:850;
-}
-
-.country-page-empty{
-  padding:45px 18px;
-  text-align:center;
-  border:1px dashed var(--line);
-  border-radius:18px;
-  color:var(--muted);
-  background:var(--card);
-}
-
-.loading{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  min-height:100px;
-  color:var(--muted);
-}
-.loading:before{
-  content:"";
-  width:18px;
-  height:18px;
-  border:2px solid var(--line);
-  border-top-color:var(--blue);
-  border-radius:50%;
-  animation:spin .7s linear infinite;
-}
-
-@media(max-width:620px){
-  .country-page-head{
-    align-items:flex-start;
-    flex-wrap:wrap;
-  }
-  .country-page-info{
-    padding-top:3px;
-  }
-  .country-page-actions{
-    width:100%;
-  }
-  .country-page-actions button{
-    flex:1;
-  }
-}
-
-/* ===== PREMIUM PAGE NAVIGATION ===== */
-
-#countryPage{display:none}
-#countryPage.show{display:block}
-#countryPage{display:none} #countryPage.show{display:block} #detail{display:none}
-#detail.show{display:block}
-#home.hide{display:none}
-
-.page-backbar{
-  display:flex;
-  align-items:center;
-  min-height:48px;
-  margin:0 0 10px;
-  animation:pageEnter .35s ease both;
-}
-
-.unique-back{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  min-height:40px;
-  padding:8px 15px 8px 9px;
-  border:1px solid var(--line);
-  border-radius:13px;
-  background:var(--card);
-  color:var(--text);
-  font-weight:850;
-  box-shadow:var(--shadow);
-  transition:
-    transform .2s ease,
-    border-color .2s ease,
-    background .2s ease,
-    box-shadow .2s ease;
-}
-
-.unique-back:hover{
-  transform:translateX(-3px);
-  border-color:var(--blue);
-  box-shadow:0 8px 24px rgba(37,99,235,.13);
-}
-
-.unique-back:active{
-  transform:translateX(-1px) scale(.96);
-}
-
-.back-arrow{
-  width:27px;
-  height:27px;
-  display:grid;
-  place-items:center;
-  border-radius:9px;
-  background:var(--soft);
-  color:var(--blue);
-  font-size:25px;
-  line-height:1;
-}
-
-.country-page-head{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  padding:16px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:var(--card);
-  box-shadow:var(--shadow);
-  animation:pageEnter .4s ease both;
-}
-
-.country-page-icon{
-  width:56px;
-  height:56px;
-  flex:0 0 56px;
-  display:grid;
-  place-items:center;
-  border-radius:16px;
-  background:var(--soft);
-  font-size:30px;
-}
-
-.country-page-info{
-  min-width:0;
-  flex:1;
-}
-
-.country-page-name{
-  font-size:21px;
-  font-weight:950;
-  letter-spacing:-.5px;
-}
-
-.country-page-dial{
-  margin-top:4px;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.country-page-head .update{
-  flex-shrink:0;
-}
-
-@keyframes pageEnter{
-  from{
-    opacity:0;
-    transform:translateY(12px) scale(.99);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-@keyframes cardEnter{
-  from{
-    opacity:0;
-    transform:translateY(15px);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-.country-card{
-  animation:cardEnter .35s ease both;
-}
-
-.country-card:hover{
-  transform:translateY(-4px);
-  border-color:var(--blue);
-  box-shadow:0 13px 30px rgba(37,99,235,.13);
-}
-
-.number-card{
-  animation:cardEnter .35s ease both;
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    border-color .2s ease;
-}
-
-.number-card:hover{
-  transform:translateY(-3px);
-  border-color:var(--blue);
-  box-shadow:0 12px 28px rgba(37,99,235,.11);
-}
-
-.primary,.secondary,.copy-big,.copy-otp,.copy-message,.update,.btn{
-  transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    background .18s ease,
-    border-color .18s ease;
-}
-
-.primary:hover,
-.copy-big:hover,
-.copy-otp:hover{
-  transform:translateY(-1px);
-  box-shadow:0 7px 18px rgba(37,99,235,.2);
-}
-
-.primary:active,
-.secondary:active,
-.copy-big:active,
-.copy-otp:active,
-.copy-message:active,
-.update:active{
-  transform:scale(.96);
-}
-
-.message{
-  animation:cardEnter .3s ease both;
-}
-
-@media(max-width:620px){
-  .country-page-head{
-    flex-wrap:wrap;
-  }
-
-  .country-page-head .update{
-    width:100%;
-  }
-
-  .country-page-icon{
-    width:50px;
-    height:50px;
-    flex-basis:50px;
-  }
-
-  .country-page-name{
-    font-size:19px;
-  }
-
-  .unique-back{
-    min-height:42px;
-    padding-right:14px;
-  }
-}
 </style>
 </head>
 
@@ -828,25 +471,11 @@ oninput="renderCountries()">
 <div id="numbers" class="number-grid"></div>
 
 </section>
-<section id="countryPage" class="page-view" style="display:none">
-  <div class="detail-top">
-    <button class="back unique-back" onclick="goBack()">← Back</button>
-    <div id="countryPageTitle" class="detail-title"></div>
-    <button class="update" onclick="renderCountryPage()">↻ Update</button>
-  </div>
-  <div class="page-head">
-    <div>
-      <h2 id="countryPageName">Country</h2>
-      <p id="countryPageMeta">Available testing numbers</p>
-    </div>
-  </div>
-  <div id="countryNumbers" class="number-grid"></div>
-</section>
 
 <section id="detail">
 
 <div class="detail-top">
-<button class="back" onclick="goBack()">← Back</button>
+<button class="back" onclick="goHome()">← Back</button>
 <div id="detailTitle" class="detail-title"></div>
 <button class="update" id="updateBtn" onclick="manualUpdate()">↻ Update</button>
 </div>
@@ -999,7 +628,6 @@ numbers=result[1].numbers||result[1]||[];
 
 renderCountries();
 renderNumbers();
-  await restoreRoute();
 }catch(error){
 $("countries").innerHTML=
 '<div class="empty">Countries could not be loaded.</div>';
@@ -1101,197 +729,35 @@ Open Inbox
 '<div class="empty">No numbers available.</div>';
 }
 
-);
+function selectCountry(id){
+selectedCountry=Number(id);
+renderNumbers();
+
+$("numbers").scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
 }
 
+async function openNumber(id){
+try{
+const response=await api("/numbers/"+id);
 
-function selectCountry(id,push=true){
-  id=Number(id);
-  selectedCountry=id;
-  const country=countries.find(c=>Number(c.id)===id);
-  if(!country)return;
+activeNumber=response.number||response;
 
-  $("home").classList.add("hide");
-  $("countryPage").style.display="block";
-  $("countryPage").classList.add("show");
+$("home").classList.add("hide");
+$("detail").classList.add("show");
 
-  $("countryPageTitle").textContent=(country.flag||"🌍")+" "+(country.name||"Country");
-  $("countryPageName").textContent=(country.flag||"🌍")+" "+(country.name||"Country");
-  $("countryPageMeta").textContent=
-    numbersForCountry(id).length+" available testing number"+(numbersForCountry(id).length===1?"":"s");
+$("detailTitle").textContent=activeNumber.number||"";
+$("bigNumber").textContent=activeNumber.number||"";
 
-  renderCountryPage();
+history.replaceState(null,"","#number-"+id);
 
-  if(push) history.pushState({view:"country",id:id},"","#country-"+id);
-  window.scrollTo(0,0);
-}
+await loadInbox();
 
-function renderCountryNumbers(){
-  const list=numbersForCountry(selectedCountry);
+startAutoRefresh();
 
-  $("countryNumberCount").textContent=
-    list.length+" "+(list.length===1?"number":"numbers");
-
-  $("countryNumbers").innerHTML=list.length
-    ? list.map((n,i)=>`
-      <article class="number-card" style="animation-delay:${Math.min(i,8)*.035}s">
-        <div class="number-head">
-          <div class="number">${esc(n.number)}</div>
-          <span class="status ${n.status==="received"?"received":""}">
-            ${esc(n.status||"waiting")}
-          </span>
-        </div>
-
-        <div class="number-label">
-          ${esc(n.label||"Public testing number")}
-        </div>
-
-        <div class="number-actions">
-          <button class="secondary"
-            onclick='copyText(${JSON.stringify(String(n.number))},this)'>
-            Copy Number
-          </button>
-
-          <button class="primary"
-            onclick="openNumber(${Number(n.id)})">
-            Open Inbox
-          </button>
-        </div>
-      </article>
-    `).join("")
-    : '<div class="empty">No numbers available for this country.</div>';
-}
-
-async function refreshCountryPage(){
-  const button=$("countryUpdateBtn");
-
-  button.disabled=true;
-  button.classList.add("busy");
-  button.textContent="↻ Updating...";
-
-  try{
-    const response=await api("/numbers");
-    numbers=response.numbers||response||[];
-    renderCountryNumbers();
-    button.textContent="✓ Updated";
-  }catch(error){
-    button.textContent="Update failed";
-  }
-
-  setTimeout(()=>{
-    button.disabled=false;
-    button.classList.remove("busy");
-    button.textContent="↻ Update";
-  },900);
-}
-
-function goBack(){
-  const hash=location.hash||"";
-
-  if(hash.startsWith("#number-")){
-    stopAutoRefresh();
-    activeNumber=null;
-
-    $("detail").classList.remove("show");
-
-    if(selectedCountry!==null){
-      $("home").classList.add("hide");
-      $("countryPage").classList.add("show");
-
-      renderCountryNumbers();
-
-      history.replaceState(
-        {view:"country",id:selectedCountry},
-        "",
-        "#country-"+selectedCountry
-      );
-
-      window.scrollTo(0,0);
-    }else{
-      goHome();
-    }
-
-    return;
-  }
-
-  if(hash.startsWith("#country-")){
-    goHome();
-    return;
-  }
-
-  goHome();
-}
-
-function renderCountryPage(){
-  if(selectedCountry===null)return;
-  const country=countries.find(c=>Number(c.id)===Number(selectedCountry));
-  if(!country)return;
-
-  const list=numbersForCountry(selectedCountry);
-  $("countryNumbers").innerHTML=list.length
-    ? list.map(n=>`<article class="number-card" onclick="openNumber(${Number(n.id)})">
-        <div class="number-main">
-          <span class="status-dot"></span>
-          <strong>${escapeHtml(n.number||"")}</strong>
-        </div>
-        <div class="number-meta">
-          <span>${escapeHtml(n.label||"Testing number")}</span>
-          <span>${escapeHtml(n.status||"waiting")}</span>
-        </div>
-        <button class="copy-number" onclick="event.stopPropagation();copyText(${JSON.stringify(n.number||"")})">Copy</button>
-      </article>`).join("")
-    : `<div class="empty-state">No testing numbers are currently available for this country.</div>`;
-}
-
-function goBack(){
-  if(activeNumber && selectedCountry!==null){
-    activeNumber=null;
-    stopAutoRefresh();
-    $("detail").classList.remove("show");
-    $("detail").style.display="none";
-    $("countryPage").style.display="block";
-    $("countryPage").classList.add("show");
-    history.pushState({view:"country",id:Number(selectedCountry)},"","#country-"+Number(selectedCountry));
-    renderCountryPage();
-    window.scrollTo(0,0);
-    return;
-  }
-  goHome();
-}
-
-async function openNumber(id,push=true){
-  try{
-    const response=await api("/numbers/"+id);
-    activeNumber=response.number||response;
-
-    const cid=activeNumber.country_id!=null
-      ? Number(activeNumber.country_id)
-      : selectedCountry;
-
-    if(cid!==null && cid!==undefined) selectedCountry=Number(cid);
-
-    $("home").classList.add("hide");
-    $("countryPage").classList.remove("show");
-    $("countryPage").style.display="none";
-    $("detail").classList.add("show");
-    $("detail").style.display="block";
-
-    $("detailTitle").textContent=activeNumber.number||"";
-    $("bigNumber").textContent=activeNumber.number||"";
-
-    if(push) history.pushState(
-      {view:"number",id:Number(id),countryId:selectedCountry},
-      "",
-      "#number-"+Number(id)
-    );
-
-    await loadInbox();
-    startAutoRefresh();
-    window.scrollTo(0,0);
-  }catch(error){
-    console.error(error);
-    alert("Unable to open inbox.");
-  }
+window.scrollTo({top:0,behavior:"smooth"});
 }catch(error){
 alert("Unable to open inbox.");
 }
@@ -1392,20 +858,22 @@ button.textContent="↻ Update";
 }
 
 function goHome(){
-  stopAutoRefresh();
-  activeNumber=null;
-  selectedCountry=null;
+stopAutoRefresh();
 
-  $("detail").classList.remove("show");
-  $("detail").style.display="none";
-  $("countryPage").classList.remove("show");
-  $("countryPage").style.display="none";
-  $("home").classList.remove("hide");
+activeNumber=null;
+selectedCountry=null;
 
-  history.pushState({view:"home"},"","#");
-  renderCountries();
-  renderNumbers();
-  window.scrollTo(0,0);
+$("detail").classList.remove("show");
+$("home").classList.remove("hide");
+
+history.replaceState(null,"","#");
+
+renderCountries();
+renderNumbers();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
 });
 }
 
@@ -1430,46 +898,6 @@ document.documentElement.dataset.theme="dark";
 $("themeBtn").textContent="☀️";
 }
 })();
-
-
-window.addEventListener("popstate",()=>{
-  const hash=location.hash||"";
-
-  if(hash.startsWith("#country-")){
-    const id=Number(hash.replace("#country-",""));
-    if(id) selectCountry(id);
-    return;
-  }
-
-  if(hash.startsWith("#number-")){
-    const id=Number(hash.replace("#number-",""));
-    if(id) openNumber(id);
-    return;
-  }
-
-  goHome();
-});
-
-async function restoreRoute(){
-  const hash=location.hash||"#";
-  if(hash.startsWith("#country-")){
-    const id=Number(hash.slice(9));
-    if(countries.some(c=>Number(c.id)===id)) selectCountry(id,false);
-    else goHome();
-  }else if(hash.startsWith("#number-")){
-    const id=Number(hash.slice(8));
-    if(numbers.some(n=>Number(n.id)===id)) await openNumber(id,false);
-    else goHome();
-  }else{
-    $("home").classList.remove("hide");
-    $("countryPage").style.display="none";
-    $("detail").style.display="none";
-  }
-}
-
-window.addEventListener("popstate",async()=>{
-  await restoreRoute();
-});
 
 loadData();
 </script>
