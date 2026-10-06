@@ -1,0 +1,10 @@
+{
+  "name":"BNB OTP Web",
+  "short_name":"BNB OTP",
+  "description":"Controlled SMS and OTP testing platform.",
+  "start_url":"/",
+  "display":"standalone",
+  "background_color":"#ffffff",
+  "theme_color":"#ffffff",
+  "lang":"en"
+}
