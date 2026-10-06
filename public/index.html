@@ -1,232 +1,522 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>BNB OTP Web</title>
-<meta name="description" content="BNB OTP Web controlled testing inbox">
+<meta name="theme-color" content="#ffffff">
 <style>
 :root{
---bg:#fff;--surface:#fff;--soft:#f7f8fa;--text:#111827;--muted:#6b7280;
---border:#e5e7eb;--primary:#2563eb;--primary2:#1d4ed8;--success:#16a34a;
---shadow:0 6px 24px rgba(15,23,42,.06);--radius:18px
+--bg:#fff;
+--card:#fff;
+--soft:#f6f7f9;
+--text:#111827;
+--muted:#6b7280;
+--line:#e5e7eb;
+--blue:#2563eb;
+--blue2:#1d4ed8;
+--green:#16a34a;
+--red:#dc2626;
+--shadow:0 5px 20px rgba(0,0,0,.055);
 }
 [data-theme="dark"]{
---bg:#0b0d10;--surface:#11151a;--soft:#181d24;--text:#f3f4f6;
---muted:#9ca3af;--border:#28303a;--primary:#60a5fa;--primary2:#3b82f6;
---success:#4ade80;--shadow:0 8px 28px rgba(0,0,0,.25)
+--bg:#0b0d10;
+--card:#11151a;
+--soft:#181d24;
+--text:#f3f4f6;
+--muted:#9ca3af;
+--line:#29313b;
+--blue:#60a5fa;
+--blue2:#3b82f6;
+--green:#4ade80;
+--red:#f87171;
+--shadow:0 8px 28px rgba(0,0,0,.25);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-margin:0;background:var(--bg);color:var(--text);
-font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+-webkit-font-smoothing:antialiased;
 }
 button,input{font:inherit}
 button{cursor:pointer}
-.wrap{max-width:1120px;margin:auto;padding:0 18px}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,100%);margin:auto;padding:0 16px}
 header{
-position:sticky;top:0;z-index:20;
-background:color-mix(in srgb,var(--bg) 94%,transparent);
-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)
+position:sticky;
+top:0;
+z-index:100;
+background:var(--bg);
+border-bottom:1px solid var(--line);
 }
-.nav{height:64px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:20px;font-weight:900;letter-spacing:-.5px}
-.logo span{color:var(--primary)}
-.nav-right{display:flex;gap:8px}
-.icon{
-border:1px solid var(--border);background:var(--surface);
-color:var(--text);border-radius:12px;padding:9px 12px
+.nav{
+height:62px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
 }
-main{padding:24px 0 60px}
-.hero{text-align:center;padding:30px 0 20px}
+.brand{
+font-size:20px;
+font-weight:900;
+letter-spacing:-.6px;
+}
+.brand span{color:var(--blue)}
+.nav-actions{display:flex;gap:7px}
+.btn{
+border:1px solid var(--line);
+background:var(--card);
+color:var(--text);
+border-radius:10px;
+padding:9px 12px;
+font-weight:700;
+}
+.btn:hover{border-color:var(--blue)}
+main{padding:20px 0 60px}
+.hero{
+text-align:center;
+padding:28px 0 18px;
+}
 .hero h1{
-font-size:clamp(32px,7vw,50px);line-height:1.05;
-margin:0 0 12px;letter-spacing:-1.7px
+margin:0 0 10px;
+font-size:clamp(30px,6vw,48px);
+line-height:1.05;
+letter-spacing:-1.8px;
 }
 .hero p{
-max-width:680px;margin:auto;color:var(--muted);
-font-size:15px;line-height:1.65
+margin:auto;
+max-width:700px;
+color:var(--muted);
+font-size:14px;
+line-height:1.65;
 }
 .search{
-max-width:680px;margin:22px auto 0
+max-width:680px;
+margin:20px auto 0;
+position:relative;
 }
 .search input{
-width:100%;padding:14px 16px;border-radius:14px;
-border:1px solid var(--border);background:var(--surface);
-color:var(--text);outline:none
+width:100%;
+height:48px;
+border:1px solid var(--line);
+background:var(--card);
+color:var(--text);
+border-radius:13px;
+padding:0 15px;
+outline:0;
 }
-.search input:focus{border-color:var(--primary)}
-.section{
-display:flex;justify-content:space-between;align-items:center;
-gap:10px;margin:25px 0 13px
+.search input:focus{border-color:var(--blue)}
+.section-title{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin:26px 0 12px;
 }
-.section h2{margin:0;font-size:20px}
-.muted{color:var(--muted);font-size:13px}
-.grid{
-display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px
+.section-title h2{
+margin:0;
+font-size:19px;
+letter-spacing:-.3px;
 }
-.card{
-background:var(--surface);border:1px solid var(--border);
-border-radius:var(--radius);box-shadow:var(--shadow)
+.count{
+color:var(--muted);
+font-size:12px;
 }
-.country{
-padding:16px;text-align:left;transition:.15s;width:100%;
-color:var(--text)
+.country-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
 }
-.country:hover,.number:hover{
-transform:translateY(-2px);border-color:var(--primary)
+.country-card{
+width:100%;
+border:1px solid var(--line);
+background:var(--card);
+color:var(--text);
+border-radius:15px;
+padding:14px;
+text-align:left;
+box-shadow:var(--shadow);
+transition:.15s;
 }
-.country-top{display:flex;align-items:center;gap:10px}
-.flag{font-size:28px}
-.country-name{font-weight:800}
-.dial{color:var(--muted);font-size:13px;margin-top:4px}
+.country-card:hover{
+transform:translateY(-2px);
+border-color:var(--blue);
+}
+.country-row{
+display:flex;
+align-items:center;
+gap:10px;
+}
+.flag{
+font-size:28px;
+width:35px;
+text-align:center;
+}
+.country-name{
+font-weight:800;
+font-size:14px;
+}
+.country-dial{
+font-size:12px;
+color:var(--muted);
+margin-top:3px;
+}
+.country-numbers{
+font-size:11px;
+color:var(--blue);
+margin-top:8px;
+}
 .number-grid{
-display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:11px;
 }
-.number{padding:17px;transition:.15s}
-.number-top{
-display:flex;align-items:center;justify-content:space-between;gap:8px
+.number-card{
+border:1px solid var(--line);
+background:var(--card);
+border-radius:16px;
+padding:15px;
+box-shadow:var(--shadow);
 }
-.phone{font-size:17px;font-weight:850;word-break:break-all}
-.badge{
-font-size:11px;border-radius:999px;padding:5px 8px;
-background:var(--soft);color:var(--muted);white-space:nowrap
+.number-head{
+display:flex;
+align-items:flex-start;
+justify-content:space-between;
+gap:8px;
 }
-.badge.good{color:var(--success)}
-.meta{margin-top:10px;color:var(--muted);font-size:13px}
-.open{
-margin-top:14px;width:100%;border:0;border-radius:12px;
-padding:11px;background:var(--primary);color:#fff;font-weight:800
+.number{
+font-size:17px;
+font-weight:900;
+letter-spacing:.1px;
+word-break:break-all;
 }
-.open:hover{background:var(--primary2)}
+.status{
+font-size:10px;
+padding:4px 7px;
+border-radius:999px;
+background:var(--soft);
+color:var(--muted);
+white-space:nowrap;
+}
+.status.received{color:var(--green)}
+.number-label{
+font-size:12px;
+color:var(--muted);
+margin-top:7px;
+}
+.number-actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:7px;
+margin-top:13px;
+}
+.primary,.secondary{
+border-radius:10px;
+padding:10px 8px;
+font-weight:800;
+border:1px solid var(--line);
+}
+.primary{
+background:var(--blue);
+border-color:var(--blue);
+color:#fff;
+}
+.primary:hover{background:var(--blue2)}
+.secondary{
+background:var(--soft);
+color:var(--text);
+}
 .empty{
-padding:34px;text-align:center;color:var(--muted);
-border:1px dashed var(--border);border-radius:var(--radius)
+padding:34px 18px;
+border:1px dashed var(--line);
+border-radius:15px;
+text-align:center;
+color:var(--muted);
+grid-column:1/-1;
 }
-.hidden{display:none!important}
-.detail-head{
-display:flex;align-items:center;gap:10px;margin:10px 0 18px
+#detail{display:none}
+#detail.show{display:block}
+#home.hide{display:none}
+.detail-top{
+display:flex;
+align-items:center;
+gap:8px;
+margin:7px 0 18px;
 }
-.back,.refresh{
-border:1px solid var(--border);background:var(--surface);
-color:var(--text);border-radius:12px;padding:9px 12px
+.detail-title{
+flex:1;
+min-width:0;
+font-size:22px;
+font-weight:900;
+word-break:break-all;
 }
-.detail-head h1{
-margin:0;font-size:24px;word-break:break-all;flex:1
+.back{
+border:1px solid var(--line);
+background:var(--card);
+color:var(--text);
+border-radius:10px;
+padding:9px 12px;
+font-weight:750;
 }
-.phone-box{padding:20px;margin-bottom:15px}
-.label{font-size:11px;color:var(--muted);margin-bottom:7px}
+.update{
+border:1px solid var(--line);
+background:var(--card);
+color:var(--text);
+border-radius:10px;
+padding:9px 12px;
+font-weight:800;
+}
+.update.busy{opacity:.6}
+.number-box{
+border:1px solid var(--line);
+background:var(--card);
+border-radius:18px;
+padding:20px;
+box-shadow:var(--shadow);
+}
+.small-label{
+font-size:10px;
+color:var(--muted);
+font-weight:800;
+letter-spacing:.8px;
+}
 .big-number{
-font-size:clamp(25px,7vw,38px);font-weight:950;
-letter-spacing:.4px;word-break:break-all
+font-size:clamp(25px,6vw,39px);
+font-weight:950;
+margin:7px 0 15px;
+word-break:break-all;
 }
-.otp-list{display:grid;gap:12px}
-.otp{padding:18px}
-.otp-row{
-display:flex;align-items:center;justify-content:space-between;gap:12px
+.copy-big{
+width:100%;
+border:0;
+background:var(--blue);
+color:#fff;
+border-radius:11px;
+padding:12px;
+font-weight:850;
 }
-.code{font-size:29px;font-weight:950;letter-spacing:4px}
-.copy{
-border:1px solid var(--border);background:var(--soft);
-color:var(--text);padding:9px 12px;border-radius:10px;font-weight:750
+.copy-big:hover{background:var(--blue2)}
+.notice{
+margin-top:12px;
+padding:12px 14px;
+background:var(--soft);
+border-radius:12px;
+color:var(--muted);
+font-size:12px;
+line-height:1.55;
+}
+.messages{
+display:grid;
+gap:11px;
 }
 .message{
-margin-top:12px;color:var(--muted);font-size:14px;
-line-height:1.55;white-space:pre-wrap
+border:1px solid var(--line);
+background:var(--card);
+border-radius:16px;
+padding:16px;
+box-shadow:var(--shadow);
 }
-.otp-meta{margin-top:12px;color:var(--muted);font-size:12px}
+.message-top{
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:center;
+}
+.message-title{
+font-size:12px;
+font-weight:800;
+color:var(--muted);
+}
+.copy-message{
+border:1px solid var(--line);
+background:var(--soft);
+color:var(--text);
+border-radius:9px;
+padding:7px 9px;
+font-size:11px;
+font-weight:800;
+}
+.message-text{
+font-size:15px;
+line-height:1.55;
+margin:11px 0;
+white-space:pre-wrap;
+overflow-wrap:anywhere;
+}
+.otp-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+padding:10px 12px;
+background:var(--soft);
+border-radius:11px;
+}
+.otp-code{
+font-size:25px;
+font-weight:950;
+letter-spacing:3px;
+word-break:break-all;
+}
+.copy-otp{
+border:0;
+background:var(--blue);
+color:#fff;
+border-radius:9px;
+padding:8px 10px;
+font-weight:850;
+}
+.message-meta{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:11px;
+font-size:11px;
+color:var(--muted);
+}
+.auto{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin:13px 0;
+padding:11px 13px;
+border:1px solid var(--line);
+background:var(--card);
+border-radius:12px;
+font-size:12px;
+color:var(--muted);
+}
+.auto-left{display:flex;align-items:center;gap:7px}
+.dot{
+width:8px;
+height:8px;
+border-radius:50%;
+background:var(--green);
+box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 12%,transparent);
+}
 footer{
-border-top:1px solid var(--border);padding:25px 0;
-color:var(--muted);font-size:12px;text-align:center
+border-top:1px solid var(--line);
+padding:24px 0;
+text-align:center;
+font-size:11px;
+color:var(--muted);
 }
 @media(max-width:900px){
-.grid{grid-template-columns:repeat(3,1fr)}
+.country-grid{grid-template-columns:repeat(3,1fr)}
 .number-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:620px){
-.wrap{padding:0 14px}
-.nav{height:58px}
-.logo{font-size:18px}
+.container{padding:0 13px}
+.nav{height:57px}
+.brand{font-size:18px}
 main{padding-top:10px}
-.hero{padding:24px 0 12px}
-.hero h1{font-size:34px}
-.grid{grid-template-columns:repeat(2,1fr);gap:9px}
-.country{padding:13px}
+.hero{padding:22px 0 12px}
+.hero h1{font-size:33px}
+.country-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+.country-card{padding:12px}
 .number-grid{grid-template-columns:1fr}
-.detail-head{flex-wrap:wrap}
-.detail-head h1{order:3;flex-basis:100%}
-.refresh{margin-left:auto}
-.code{font-size:24px}
+.detail-top{flex-wrap:wrap}
+.detail-title{order:3;flex-basis:100%;font-size:21px}
+.update{margin-left:auto}
+.number-actions{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 
 <body>
+
 <header>
-<div class="wrap nav">
-<a class="logo" href="#" onclick="home();return false">BNB <span>OTP Web</span></a>
-<div class="nav-right">
-<button class="icon" id="theme" onclick="toggleTheme()">🌙</button>
+<div class="container nav">
+<a class="brand" href="#" onclick="goHome();return false">BNB <span>OTP Web</span></a>
+<div class="nav-actions">
+<button class="btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
 </div>
 </div>
 </header>
 
-<main class="wrap">
+<main class="container">
 
 <section id="home">
+
 <div class="hero">
 <h1>Receive SMS Online</h1>
 <p>
-Browse available testing numbers, open an inbox and view controlled
-test SMS/OTP messages instantly.
+Choose a country, select an available testing number and open its
+public inbox. Messages update automatically while the page is open.
 </p>
 
 <div class="search">
-<input id="search" placeholder="Search country or dial code..." oninput="renderCountries()">
+<input id="search" autocomplete="off"
+placeholder="Search country, code or dial code..."
+oninput="renderCountries()">
 </div>
 </div>
 
-<div class="section">
+<div class="section-title">
 <h2>Countries</h2>
-<span id="countryCount" class="muted"></span>
+<span id="countryCount" class="count"></span>
 </div>
 
-<div id="countries" class="grid"></div>
+<div id="countries" class="country-grid"></div>
 
-<div class="section">
-<h2 id="numbersTitle">Available Numbers</h2>
-<span id="numberCount" class="muted"></span>
+<div class="section-title">
+<h2 id="numbersHeading">Available Numbers</h2>
+<span id="numberCount" class="count"></span>
 </div>
 
 <div id="numbers" class="number-grid"></div>
+
 </section>
 
-<section id="detail" class="hidden">
+<section id="detail">
 
-<div class="detail-head">
-<button class="back" onclick="home()">← Back</button>
-<h1 id="detailTitle"></h1>
-<button class="refresh" id="refresh" onclick="refreshInbox()">↻ Refresh</button>
+<div class="detail-top">
+<button class="back" onclick="goHome()">← Back</button>
+<div id="detailTitle" class="detail-title"></div>
+<button class="update" id="updateBtn" onclick="manualUpdate()">↻ Update</button>
 </div>
 
-<div class="card phone-box">
-<div class="label">PUBLIC TEST NUMBER</div>
+<div class="number-box">
+<div class="small-label">PHONE NUMBER</div>
 <div id="bigNumber" class="big-number"></div>
+
+<button class="copy-big" onclick="copyNumber()">
+Copy Number
+</button>
+
+<div class="notice">
+This is a public controlled-testing inbox. Do not use it for
+private, sensitive or important accounts.
+</div>
 </div>
 
-<div class="section">
-<h2>SMS / OTP Inbox</h2>
-<span id="otpCount" class="muted"></span>
+<div class="auto">
+<div class="auto-left">
+<span class="dot"></span>
+<span>Automatic updates enabled</span>
+</div>
+<span id="lastUpdate">Updating...</span>
 </div>
 
-<div id="otps" class="otp-list"></div>
+<div class="section-title">
+<h2>Latest Messages</h2>
+<span id="messageCount" class="count"></span>
+</div>
+
+<div id="messages" class="messages"></div>
+
 </section>
 
 </main>
 
 <footer>
-<div class="wrap">BNB OTP Web · Controlled testing environment</div>
+<div class="container">
+BNB OTP Web · Controlled testing environment
+</div>
 </footer>
 
 <script>
@@ -234,204 +524,383 @@ const API="https://bnb-otp-web.hafejnayem1743.workers.dev/api";
 
 let countries=[];
 let numbers=[];
-let activeCountry=null;
+let selectedCountry=null;
 let activeNumber=null;
+let refreshTimer=null;
 
 const $=id=>document.getElementById(id);
 
 async function api(path){
-const r=await fetch(API+path,{cache:"no-store"});
-if(!r.ok)throw new Error("HTTP "+r.status);
-return r.json();
+const response=await fetch(API+path,{
+cache:"no-store",
+headers:{Accept:"application/json"}
+});
+if(!response.ok)throw new Error("HTTP "+response.status);
+return response.json();
 }
 
-function esc(v){
-return String(v??"").replace(/[&<>"']/g,m=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-}[m]));
+function esc(value){
+return String(value??"").replace(/[&<>"']/g,char=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[char]));
 }
 
-function time(v){
-if(!v)return "";
-const d=new Date(Number(v)*1000);
-return isNaN(d)?String(v):d.toLocaleString();
+function countryFlag(country){
+if(country.flag)return country.flag;
+
+const code=String(country.code||"").toUpperCase();
+
+if(code.length===2){
+return String.fromCodePoint(
+...code.split("").map(c=>127397+c.charCodeAt(0))
+);
 }
 
-async function load(){
+return "🌐";
+}
+
+function copyText(text,button){
+if(navigator.clipboard&&window.isSecureContext){
+navigator.clipboard.writeText(String(text)).then(()=>{
+copied(button);
+});
+return;
+}
+
+const area=document.createElement("textarea");
+area.value=String(text);
+area.style.position="fixed";
+area.style.opacity="0";
+document.body.appendChild(area);
+area.focus();
+area.select();
+
 try{
-const [c,n]=await Promise.all([
+document.execCommand("copy");
+copied(button);
+}catch(e){}
+
+area.remove();
+}
+
+function copied(button){
+if(!button)return;
+const old=button.textContent;
+button.textContent="Copied ✓";
+setTimeout(()=>button.textContent=old,1300);
+}
+
+function copyNumber(){
+if(activeNumber)copyText(activeNumber.number,$(".copy-big"));
+}
+
+function copyOtp(code,button){
+copyText(code,button);
+}
+
+function copyMessage(message,button){
+copyText(message,button);
+}
+
+function formatTime(value){
+if(!value)return "Unknown time";
+const n=Number(value);
+const date=new Date(
+Number.isFinite(n)&&n<100000000000?n*1000:n
+);
+if(isNaN(date.getTime()))return String(value);
+return date.toLocaleString();
+}
+
+async function loadData(){
+try{
+const result=await Promise.all([
 api("/countries"),
 api("/numbers")
 ]);
 
-countries=c.countries||c||[];
-numbers=n.numbers||n||[];
+countries=result[0].countries||result[0]||[];
+numbers=result[1].numbers||result[1]||[];
 
 renderCountries();
 renderNumbers();
-}catch(e){
-$("countries").innerHTML='<div class="empty">Unable to load countries.</div>';
-$("numbers").innerHTML='<div class="empty">Unable to load numbers.</div>';
+}catch(error){
+$("countries").innerHTML=
+'<div class="empty">Countries could not be loaded.</div>';
+
+$("numbers").innerHTML=
+'<div class="empty">Numbers could not be loaded.</div>';
 }
+}
+
+function numberCountryId(number){
+if(number.country_id!==null&&number.country_id!==undefined){
+return Number(number.country_id);
+}
+
+const raw=String(number.number||"").replace(/\D/g,"");
+
+for(const country of countries){
+const dial=String(country.dial_code||"").replace(/\D/g,"");
+if(dial&&raw.startsWith(dial))return Number(country.id);
+}
+
+return null;
+}
+
+function numbersForCountry(id){
+return numbers.filter(n=>numberCountryId(n)===Number(id));
 }
 
 function renderCountries(){
-const q=$("search").value.trim().toLowerCase();
+const query=$("search").value.trim().toLowerCase();
 
 const list=countries.filter(c=>
-!q ||
-String(c.name||"").toLowerCase().includes(q) ||
-String(c.code||"").toLowerCase().includes(q) ||
-String(c.dial_code||"").toLowerCase().includes(q)
+!query||
+String(c.name||"").toLowerCase().includes(query)||
+String(c.code||"").toLowerCase().includes(query)||
+String(c.dial_code||"").toLowerCase().includes(query)
 );
 
 $("countryCount").textContent=list.length+" countries";
 
-$("countries").innerHTML=list.map(c=>`
-<button class="card country" onclick="country(${Number(c.id)})">
-<div class="country-top">
-<span class="flag">${esc(c.flag||"🌐")}</span>
+$("countries").innerHTML=list.map(c=>{
+const total=numbersForCountry(c.id).length;
+
+return `
+<button class="country-card" onclick="selectCountry(${Number(c.id)})">
+<div class="country-row">
+<div class="flag">${esc(countryFlag(c))}</div>
 <div>
 <div class="country-name">${esc(c.name)}</div>
-<div class="dial">${esc(c.dial_code||"")}</div>
+<div class="country-dial">${esc(c.dial_code||"")}</div>
 </div>
 </div>
-</button>
-`).join("")||'<div class="empty">No countries found.</div>';
+<div class="country-numbers">
+${total} ${total===1?"number":"numbers"} available
+</div>
+</button>`;
+}).join("")||
+'<div class="empty">No countries found.</div>';
 }
 
 function renderNumbers(){
 let list=numbers;
 
-if(activeCountry!==null){
-list=list.filter(n=>Number(n.country_id)===Number(activeCountry));
+if(selectedCountry!==null){
+list=numbersForCountry(selectedCountry);
 }
+
+$("numbersHeading").textContent=
+selectedCountry===null?"Available Numbers":"Numbers in Selected Country";
 
 $("numberCount").textContent=list.length+" numbers";
 
-$("numbersTitle").textContent=
-activeCountry===null?"Available Numbers":"Numbers in selected country";
-
 $("numbers").innerHTML=list.map(n=>`
-<article class="card number">
-<div class="number-top">
-<div class="phone">${esc(n.number)}</div>
-<span class="badge ${n.status==="received"?"good":""}">
+<article class="number-card">
+<div class="number-head">
+<div class="number">${esc(n.number)}</div>
+<span class="status ${n.status==="received"?"received":""}">
 ${esc(n.status||"waiting")}
 </span>
 </div>
 
-<div class="meta">
+<div class="number-label">
 ${esc(n.label||"Public testing number")}
 </div>
 
-<button class="open" onclick="openNumber(${Number(n.id)})">
-Open inbox
+<div class="number-actions">
+<button class="secondary"
+onclick="copyText('${esc(String(n.number).replace(/'/g,"&#039;"))}',this)">
+Copy Number
 </button>
+
+<button class="primary"
+onclick="openNumber(${Number(n.id)})">
+Open Inbox
+</button>
+</div>
 </article>
-`).join("")||'<div class="empty">No numbers available.</div>';
+`).join("")||
+'<div class="empty">No numbers available.</div>';
 }
 
-function country(id){
-activeCountry=id;
+function selectCountry(id){
+selectedCountry=Number(id);
 renderNumbers();
-$("numbers").scrollIntoView({behavior:"smooth"});
+
+$("numbers").scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
 }
 
 async function openNumber(id){
 try{
 const response=await api("/numbers/"+id);
+
 activeNumber=response.number||response;
 
-$("home").classList.add("hidden");
-$("detail").classList.remove("hidden");
+$("home").classList.add("hide");
+$("detail").classList.add("show");
 
 $("detailTitle").textContent=activeNumber.number||"";
 $("bigNumber").textContent=activeNumber.number||"";
 
 history.replaceState(null,"","#number-"+id);
 
-await renderOtps();
+await loadInbox();
+
+startAutoRefresh();
 
 window.scrollTo({top:0,behavior:"smooth"});
-}catch(e){
-alert("Unable to open this number.");
+}catch(error){
+alert("Unable to open inbox.");
 }
 }
 
-async function renderOtps(){
+async function loadInbox(){
 if(!activeNumber)return;
 
 try{
-const response=await api("/numbers/"+activeNumber.id+"/otps");
+const response=await api(
+"/numbers/"+activeNumber.id+"/otps"
+);
+
 const list=response.otps||response||[];
 
-$("otpCount").textContent=list.length+" messages";
+$("messageCount").textContent=
+list.length+" "+(list.length===1?"message":"messages");
 
-$("otps").innerHTML=list.length?
-list.map(o=>`
-<article class="card otp">
+$("messages").innerHTML=list.length?
+list.map(message=>{
+const code=String(message.code||"").trim();
+const body=String(
+message.message||"Controlled test OTP message"
+);
+
+return `
+<article class="message">
+
+<div class="message-top">
+<div class="message-title">Message</div>
+
+<button class="copy-message"
+onclick='copyMessage(${JSON.stringify(body)},this)'>
+Copy Message
+</button>
+</div>
+
+<div class="message-text">${esc(body)}</div>
+
+${code?`
 <div class="otp-row">
-<div class="code">${esc(o.code)}</div>
-<button class="copy" onclick="copyCode('${esc(o.code)}',this)">Copy</button>
+<div class="otp-code">${esc(code)}</div>
+<button class="copy-otp"
+onclick='copyOtp(${JSON.stringify(code)},this)'>
+Copy OTP
+</button>
+</div>
+`:""}
+
+<div class="message-meta">
+<span>Sender: ${esc(message.source||"CONTROLLED_TEST")}</span>
+<span>Time: ${esc(formatTime(message.created_at))}</span>
 </div>
 
-<div class="message">
-${esc(o.message||"Controlled test OTP message")}
-</div>
-
-<div class="otp-meta">
-${esc(o.source||"CONTROLLED_TEST")} · ${time(o.created_at)}
-</div>
-</article>
-`).join("")
+</article>`;
+}).join("")
 :
-'<div class="empty">No SMS/OTP messages yet.</div>';
+'<div class="empty">No messages yet.</div>';
 
-}catch(e){
-$("otps").innerHTML='<div class="empty">Unable to load inbox.</div>';
+$("lastUpdate").textContent=
+"Updated "+new Date().toLocaleTimeString();
+
+}catch(error){
+$("messages").innerHTML=
+'<div class="empty">Unable to update messages.</div>';
 }
 }
 
-async function refreshInbox(){
-const b=$("refresh");
-b.textContent="↻ Updating...";
-await renderOtps();
-b.textContent="↻ Refresh";
+function startAutoRefresh(){
+stopAutoRefresh();
+refreshTimer=setInterval(()=>{
+if(activeNumber)loadInbox();
+},10000);
 }
 
-function copyCode(code,b){
-navigator.clipboard?.writeText(code);
-const old=b.textContent;
-b.textContent="Copied";
-setTimeout(()=>b.textContent=old,1200);
+function stopAutoRefresh(){
+if(refreshTimer){
+clearInterval(refreshTimer);
+refreshTimer=null;
+}
 }
 
-function home(){
-activeCountry=null;
+async function manualUpdate(){
+const button=$("updateBtn");
+button.disabled=true;
+button.classList.add("busy");
+button.textContent="↻ Updating...";
+
+await loadInbox();
+
+button.textContent="✓ Updated";
+
+setTimeout(()=>{
+button.disabled=false;
+button.classList.remove("busy");
+button.textContent="↻ Update";
+},900);
+}
+
+function goHome(){
+stopAutoRefresh();
+
 activeNumber=null;
-$("detail").classList.add("hidden");
-$("home").classList.remove("hidden");
-renderNumbers();
+selectedCountry=null;
+
+$("detail").classList.remove("show");
+$("home").classList.remove("hide");
+
 history.replaceState(null,"","#");
-window.scrollTo({top:0,behavior:"smooth"});
+
+renderCountries();
+renderNumbers();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 }
 
 function toggleTheme(){
 const dark=document.documentElement.dataset.theme==="dark";
-document.documentElement.dataset.theme=dark?"":"dark";
-localStorage.setItem("bnb_theme",dark?"light":"dark");
-$("theme").textContent=dark?"🌙":"☀️";
+
+document.documentElement.dataset.theme=
+dark?"":"dark";
+
+localStorage.setItem(
+"bnb_theme",
+dark?"light":"dark"
+);
+
+$("themeBtn").textContent=
+dark?"🌙":"☀️";
 }
 
 (function(){
 if(localStorage.getItem("bnb_theme")==="dark"){
 document.documentElement.dataset.theme="dark";
-$("theme").textContent="☀️";
+$("themeBtn").textContent="☀️";
 }
 })();
 
-load();
+loadData();
 </script>
+
 </body>
 </html>
