@@ -1,10 +1,10 @@
 {
-  "name":"BNB OTP Web",
-  "short_name":"BNB OTP",
-  "description":"Free controlled OTP testing and online SMS test number platform.",
-  "start_url":"/",
-  "display":"standalone",
-  "background_color":"#ffffff",
-  "theme_color":"#ffffff",
-  "lang":"en"
+  "name": "BD NAYEM BOSS OTP Web",
+  "short_name": "BD NAYEM BOSS",
+  "description": "Free controlled OTP testing and online SMS test numbers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "lang": "en"
 }
