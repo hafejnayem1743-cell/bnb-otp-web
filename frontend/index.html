@@ -355,7 +355,7 @@ padding:10px 12px;
 background:var(--soft);
 border-radius:11px;
 }
-.otp-code{
+.otp-code{font-size:34px!important;font-weight:800;letter-spacing:2px;
 font-size:25px;
 font-weight:950;
 letter-spacing:3px;
@@ -472,10 +472,23 @@ oninput="renderCountries()">
 
 </section>
 
+<section id="countryPage" style="display:none">
+<div class="detail-top">
+<button class="back" onclick="goBack()">← Back</button>
+<div id="countryPageTitle" class="detail-title"></div>
+<button class="update" onclick="refreshCountry()">↻ Update</button>
+</div>
+<div class="section-title">
+<h2 id="countryPageName">Country</h2>
+<span id="countryPageMeta"></span>
+</div>
+<div id="countryNumbers" class="number-grid"></div>
+</section>
+
 <section id="detail">
 
 <div class="detail-top">
-<button class="back" onclick="goHome()">← Back</button>
+<button class="back" onclick="goBack()">← Back</button>
 <div id="detailTitle" class="detail-title"></div>
 <button class="update" id="updateBtn" onclick="manualUpdate()">↻ Update</button>
 </div>
@@ -608,12 +621,29 @@ copyText(message,button);
 
 function formatTime(value){
 if(!value)return "Unknown time";
+
 const n=Number(value);
-const date=new Date(
+const d=new Date(
 Number.isFinite(n)&&n<100000000000?n*1000:n
 );
-if(isNaN(date.getTime()))return String(value);
-return date.toLocaleString();
+
+if(isNaN(d.getTime()))return String(value);
+
+const sec=Math.max(0,Math.floor((Date.now()-d.getTime())/1000));
+
+if(sec<10)return "Just now";
+if(sec<60)return sec+" seconds ago";
+
+const min=Math.floor(sec/60);
+if(min<60)return min+" minute"+(min===1?"":"s")+" ago";
+
+const hour=Math.floor(min/60);
+if(hour<24)return hour+" hour"+(hour===1?"":"s")+" ago";
+
+const day=Math.floor(hour/24);
+if(day<7)return day+" day"+(day===1?"":"s")+" ago";
+
+return d.toLocaleString();
 }
 
 async function loadData(){
@@ -729,35 +759,129 @@ Open Inbox
 '<div class="empty">No numbers available.</div>';
 }
 
-function selectCountry(id){
+function selectCountry(id,push=true){
 selectedCountry=Number(id);
-renderNumbers();
 
-$("numbers").scrollIntoView({
-behavior:"smooth",
-block:"start"
+const country=countries.find(c=>Number(c.id)===selectedCountry);
+if(!country)return;
+
+$("home").classList.add("hide");
+$("detail").classList.remove("show");
+$("detail").style.display="none";
+
+$("countryPage").style.display="block";
+
+$("countryPageTitle").textContent=
+(country.flag||"🌍")+" "+country.name;
+
+$("countryPageName").textContent=
+(country.flag||"🌍")+" "+country.name;
+
+renderCountryPage();
+
+if(push){
+history.pushState(
+{view:"country",id:selectedCountry},
+"",
+"#country-"+selectedCountry
+);
+}
+
+window.scrollTo(0,0);
+}
+
+function renderCountryPage(){
+const list=numbersForCountry(selectedCountry);
+
+$("countryPageMeta").textContent=
+list.length+" "+(list.length===1?"number":"numbers")+" available";
+
+$("countryNumbers").innerHTML=list.length
+?list.map(n=>`
+<article class="number-card">
+<div class="number-head">
+<div class="number">${esc(n.number||"")}</div>
+<span class="status">${esc(n.status||"waiting")}</span>
+</div>
+<div class="number-label">${esc(n.label||"Testing number")}</div>
+<div class="number-actions">
+<button class="secondary"
+onclick='event.stopPropagation();copyText(${JSON.stringify(n.number||"")},this)'>
+Copy Number
+</button>
+<button class="primary"
+onclick="openNumber(${Number(n.id)})">
+Open Inbox
+</button>
+</div>
+</article>
+`).join("")
+:'<div class="empty">No numbers available for this country.</div>';
+}
+
+function refreshCountry(){
+renderCountryPage();
+}
+
+function goBack(){
+if(activeNumber && selectedCountry!==null){
+stopAutoRefresh();
+activeNumber=null;
+
+$("detail").classList.remove("show");
+$("detail").style.display="none";
+$("home").classList.add("hide");
+$("countryPage").style.display="block";
+
+renderCountryPage();
+
+history.pushState(
+{view:"country",id:selectedCountry},
+"",
+"#country-"+selectedCountry
+);
+
+window.scrollTo(0,0);
+}else{
+goHome();
+}
 });
 }
 
-async function openNumber(id){
+async function openNumber(id,push=true){
 try{
 const response=await api("/numbers/"+id);
-
 activeNumber=response.number||response;
 
+if(activeNumber.country_id!==null &&
+activeNumber.country_id!==undefined){
+selectedCountry=Number(activeNumber.country_id);
+}
+
 $("home").classList.add("hide");
+$("countryPage").style.display="none";
 $("detail").classList.add("show");
+$("detail").style.display="block";
 
 $("detailTitle").textContent=activeNumber.number||"";
 $("bigNumber").textContent=activeNumber.number||"";
 
-history.replaceState(null,"","#number-"+id);
+if(push){
+history.pushState(
+{view:"number",id:Number(id),countryId:selectedCountry},
+"",
+"#number-"+Number(id)
+);
+}
 
 await loadInbox();
-
 startAutoRefresh();
+window.scrollTo(0,0);
 
-window.scrollTo({top:0,behavior:"smooth"});
+}catch(error){
+console.error(error);
+alert("Unable to open inbox.");
+}
 }catch(error){
 alert("Unable to open inbox.");
 }
@@ -859,21 +983,22 @@ button.textContent="↻ Update";
 
 function goHome(){
 stopAutoRefresh();
-
 activeNumber=null;
 selectedCountry=null;
 
 $("detail").classList.remove("show");
+$("detail").style.display="none";
+
+$("countryPage").style.display="none";
+
 $("home").classList.remove("hide");
 
-history.replaceState(null,"","#");
+history.pushState({view:"home"},"","#");
 
 renderCountries();
 renderNumbers();
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
+window.scrollTo(0,0);
 });
 }
 
@@ -904,3 +1029,24 @@ loadData();
 
 </body>
 </html>
+
+
+window.addEventListener("popstate",async()=>{
+const h=location.hash||"#";
+
+if(h.startsWith("#country-")){
+const id=Number(h.slice(9));
+if(countries.some(c=>Number(c.id)===id))
+selectCountry(id,false);
+return;
+}
+
+if(h.startsWith("#number-")){
+const id=Number(h.slice(8));
+if(numbers.some(n=>Number(n.id)===id))
+await openNumber(id,false);
+return;
+}
+
+goHome();
+});
