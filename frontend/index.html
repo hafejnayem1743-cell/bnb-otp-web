@@ -1348,6 +1348,12 @@ button{
 }
 
 </style>
+<style id="bnb-final-layout-fix">
+html,body{min-height:100%;height:auto;overflow-x:hidden;overflow-y:auto}
+body{min-height:100vh}
+main,.app-main,.page,.page-shell,.content,.container{height:auto;min-height:0;overflow:visible}
+#home,#countryPage,#detail{min-height:100vh;height:auto;overflow:visible}
+</style>
 </head>
 
 <body>
@@ -1417,10 +1423,7 @@ oninput="renderCountries()">
 
 <div id="countries" class="country-grid"></div>
 
-<div class="section-title">
-<h2 id="numbersHeading">Available Numbers</h2>
-<span id="numberCount" class="count"></span>
-</div>
+
 
 <div id="numbers" class="number-grid"></div>
 
