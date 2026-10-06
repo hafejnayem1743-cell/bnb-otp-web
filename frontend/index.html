@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>BD NAYEM BOSS OTP Web — Free OTP Testing & Online SMS Test Numbers</title>
+<title>BNB OTP Web</title>
 <meta name="theme-color" content="#ffffff">
 <style>
 :root{
@@ -1348,22 +1348,6 @@ button{
 }
 
 </style>
-
-<style id="final-footer-fix">
-footer{
-  display:block!important;
-  visibility:visible!important;
-  opacity:1!important;
-  position:relative!important;
-  z-index:2!important;
-  margin-top:40px!important;
-  padding:28px 16px 34px!important;
-  text-align:center!important;
-}
-#home{
-  min-height:calc(100vh - 120px);
-}
-</style>
 </head>
 
 <body>
@@ -2008,36 +1992,7 @@ $("themeBtn").textContent="☀️";
 
   window.addEventListener("popstate",restoreRoute);
   restoreWelcome();
-cleanHomeNumbers();
-ensureFooterVisible();
   loadData().then(restoreRoute);
-
-
-
-function cleanHomeNumbers(){
-  const home=document.getElementById("home");
-  if(!home) return;
-
-  const heads=home.querySelectorAll("h2");
-  heads.forEach(function(h){
-    if((h.textContent||"").trim().toLowerCase()==="available numbers"){
-      let block=h.closest("section");
-      if(!block) block=h.parentElement?.parentElement;
-      if(block) block.remove();
-    }
-  });
-}
-
-function ensureFooterVisible(){
-  const f=document.querySelector("footer");
-  if(f){
-    f.style.display="block";
-    f.style.visibility="visible";
-    f.style.opacity="1";
-    f.style.position="relative";
-    f.style.zIndex="2";
-  }
-}
 
 </script>
 
