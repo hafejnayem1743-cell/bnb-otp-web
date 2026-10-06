@@ -1396,6 +1396,76 @@ section,
   overflow:visible !important;
 }
 </style>
+<style id="bnb-final-footer">
+.site-footer{
+  margin-top:80px;
+  padding:56px 0 24px;
+  border-top:1px solid var(--border,#e5e7eb);
+  background:linear-gradient(180deg,rgba(248,250,252,.8),rgba(255,255,255,1));
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:40px;
+}
+.footer-logo{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+.footer-brand p{
+  max-width:440px;
+  margin:14px 0 0;
+  line-height:1.7;
+  opacity:.72;
+}
+.footer-column{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.footer-column h3{
+  margin:0 0 6px;
+  font-size:14px;
+  font-weight:800;
+}
+.footer-column a,
+.footer-column span{
+  font-size:13px;
+  line-height:1.6;
+  text-decoration:none;
+  color:inherit;
+  opacity:.68;
+}
+.footer-column a:hover{opacity:1}
+.footer-bottom{
+  margin-top:42px;
+  padding-top:18px;
+  border-top:1px solid var(--border,#e5e7eb);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  font-size:12px;
+  opacity:.6;
+}
+@media(max-width:800px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:30px}
+  .footer-brand{grid-column:1/-1}
+}
+@media(max-width:520px){
+  .site-footer{margin-top:55px;padding-top:40px}
+  .footer-grid{grid-template-columns:1fr;gap:26px}
+  .footer-brand{grid-column:auto}
+  .footer-bottom{flex-direction:column;gap:6px}
+}
+</style>
+<style id="bnb-final-page-scroll">
+html,body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
+body{min-height:100vh}
+main{height:auto!important;min-height:100vh;overflow:visible!important}
+section{height:auto!important;overflow:visible!important}
+.site-footer{position:relative;display:block;clear:both}
+</style>
 </head>
 
 <body>
@@ -1433,7 +1503,7 @@ section,
 
 <header>
 <div class="container nav">
-<a class="brand" href="#" onclick="goHome();return false">BNB <span>OTP Web</span></a>
+<a class="brand" href="#" onclick="goHome();return false">BD NAYEM <span>BOSS</span></a>
 <div class="nav-actions">
 <button class="btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
 </div>
@@ -1528,10 +1598,47 @@ private, sensitive or important accounts.
 
 </main>
 
-<footer>
-<div class="container">
-BNB OTP Web · Controlled testing environment
-</div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-brand">
+      <div class="footer-logo">BD NAYEM BOSS</div>
+      <p>
+        A simple public web platform for controlled SMS and OTP testing.
+        Browse testing numbers, open an inbox and view controlled test messages.
+      </p>
+    </div>
+
+    <div class="footer-column">
+      <h3>OTP Testing</h3>
+      <a href="#" onclick="goHome();return false">Countries</a>
+      <a href="#" onclick="goHome();return false">Testing Numbers</a>
+      <a href="#" onclick="goHome();return false">SMS Inbox</a>
+      <a href="#" onclick="goHome();return false">OTP Messages</a>
+    </div>
+
+    <div class="footer-column">
+      <h3>Platform</h3>
+      <span>Mobile Friendly</span>
+      <span>Automatic Updates</span>
+      <span>One-Click Copy</span>
+      <span>Controlled Testing</span>
+    </div>
+
+    <div class="footer-column">
+      <h3>About</h3>
+      <span>Free Testing Access</span>
+      <span>No Public Signup</span>
+      <span>Privacy Focused</span>
+      <span>Built by BD NAYEM BOSS</span>
+    </div>
+
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© 2026 BD NAYEM BOSS</span>
+    <span>Controlled SMS &amp; OTP Testing Platform</span>
+  </div>
 </footer>
 
 <script>
