@@ -237,6 +237,7 @@ text-align:center;
 color:var(--muted);
 grid-column:1/-1;
 }
+#countryPage{display:none}
 #detail{display:none}
 #detail.show{display:block}
 #home.hide{display:none}
@@ -424,6 +425,162 @@ main{padding-top:10px}
 .update{margin-left:auto}
 .number-actions{grid-template-columns:1fr 1fr}
 }
+
+/* ===== BNB PREMIUM MOTION UI ===== */
+@keyframes pageIn{
+  from{opacity:0;transform:translateY(14px) scale(.985)}
+  to{opacity:1;transform:none}
+}
+@keyframes cardIn{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:none}
+}
+@keyframes softPulse{
+  0%,100%{box-shadow:var(--shadow)}
+  50%{box-shadow:0 10px 32px rgba(37,99,235,.12)}
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+body{transition:background .25s ease,color .25s ease}
+header,footer,.btn,.country-card,.number-card,.number-box,
+.message,.auto,.search input,.back,.update,.primary,.secondary{
+  transition:
+    background .25s ease,
+    color .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    transform .2s ease,
+    opacity .2s ease;
+}
+
+.hero{animation:pageIn .55s ease both}
+.country-card{animation:cardIn .45s ease both}
+.number-card{animation:cardIn .45s ease both}
+.message{animation:cardIn .4s ease both}
+
+.country-card:nth-child(2){animation-delay:.035s}
+.country-card:nth-child(3){animation-delay:.07s}
+.country-card:nth-child(4){animation-delay:.105s}
+.country-card:nth-child(5){animation-delay:.14s}
+.country-card:nth-child(6){animation-delay:.175s}
+.country-card:nth-child(7){animation-delay:.21s}
+.country-card:nth-child(8){animation-delay:.245s}
+
+.country-card:hover{
+  transform:translateY(-5px) scale(1.012);
+  border-color:var(--blue);
+  box-shadow:0 14px 32px rgba(37,99,235,.12);
+}
+.country-card:active,
+.number-card:active{
+  transform:scale(.985);
+}
+
+.primary:hover,.copy-big:hover,.copy-otp:hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 20px rgba(37,99,235,.2);
+}
+.primary:active,.copy-big:active,.copy-otp:active,
+.secondary:active,.btn:active,.back:active,.update:active{
+  transform:scale(.97);
+}
+
+#home,#countryPage,#detail{
+  animation:pageIn .38s ease both;
+}
+
+.country-page-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:8px 0 20px;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--card);
+  box-shadow:var(--shadow);
+}
+
+.country-page-icon{
+  width:58px;
+  height:58px;
+  flex:0 0 58px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  background:var(--soft);
+  font-size:31px;
+}
+
+.country-page-info{min-width:0;flex:1}
+.country-page-name{
+  font-size:21px;
+  font-weight:950;
+  letter-spacing:-.5px;
+}
+.country-page-dial{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+.country-page-actions{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.country-back{
+  border:1px solid var(--line);
+  background:var(--soft);
+  color:var(--text);
+  border-radius:10px;
+  padding:9px 12px;
+  font-weight:850;
+}
+
+.country-page-empty{
+  padding:45px 18px;
+  text-align:center;
+  border:1px dashed var(--line);
+  border-radius:18px;
+  color:var(--muted);
+  background:var(--card);
+}
+
+.loading{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  min-height:100px;
+  color:var(--muted);
+}
+.loading:before{
+  content:"";
+  width:18px;
+  height:18px;
+  border:2px solid var(--line);
+  border-top-color:var(--blue);
+  border-radius:50%;
+  animation:spin .7s linear infinite;
+}
+
+@media(max-width:620px){
+  .country-page-head{
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+  .country-page-info{
+    padding-top:3px;
+  }
+  .country-page-actions{
+    width:100%;
+  }
+  .country-page-actions button{
+    flex:1;
+  }
+}
 </style>
 </head>
 
@@ -470,6 +627,31 @@ oninput="renderCountries()">
 
 <div id="numbers" class="number-grid"></div>
 
+</section>
+
+
+<section id="countryPage" style="display:none">
+  <div class="country-page-head">
+    <button class="country-back" onclick="goHome()">← Back</button>
+
+    <div id="countryPageIcon" class="country-page-icon">🌐</div>
+
+    <div class="country-page-info">
+      <div id="countryPageName" class="country-page-name">Country</div>
+      <div id="countryPageDial" class="country-page-dial"></div>
+    </div>
+
+    <div class="country-page-actions">
+      <button class="update" onclick="refreshCountryPage()">↻ Update</button>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>Available Numbers</h2>
+    <span id="countryNumberCount" class="count"></span>
+  </div>
+
+  <div id="countryNumbers" class="number-grid"></div>
 </section>
 
 <section id="detail">
@@ -746,6 +928,7 @@ const response=await api("/numbers/"+id);
 activeNumber=response.number||response;
 
 $("home").classList.add("hide");
+$("countryPage").style.display="none";
 $("detail").classList.add("show");
 
 $("detailTitle").textContent=activeNumber.number||"";
@@ -864,6 +1047,7 @@ activeNumber=null;
 selectedCountry=null;
 
 $("detail").classList.remove("show");
+$("countryPage").style.display="none";
 $("home").classList.remove("hide");
 
 history.replaceState(null,"","#");
@@ -898,6 +1082,25 @@ document.documentElement.dataset.theme="dark";
 $("themeBtn").textContent="☀️";
 }
 })();
+
+
+window.addEventListener("popstate",()=>{
+  const hash=location.hash||"";
+
+  if(hash.startsWith("#country-")){
+    const id=Number(hash.replace("#country-",""));
+    if(id) selectCountry(id);
+    return;
+  }
+
+  if(hash.startsWith("#number-")){
+    const id=Number(hash.replace("#number-",""));
+    if(id) openNumber(id);
+    return;
+  }
+
+  goHome();
+});
 
 loadData();
 </script>
