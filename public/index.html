@@ -799,7 +799,7 @@ function selectCountry(id,push=true){
     renderCountryPage();
   }
 
-async async function openNumber(id,push=true){
+async function openNumber(id,push=true){
     try{
       const response=await api("/numbers/"+id);
       activeNumber=response.number||response;
