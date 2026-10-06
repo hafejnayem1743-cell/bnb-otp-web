@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>BNB OTP Web — Controlled SMS Testing Platform | Online SMS Inbox</title>
+<title>BNB OTP Web — Free OTP Testing & Online SMS Test Numbers</title>
 <meta name="theme-color" content="#ffffff">
 <style>
 :root{
@@ -1347,6 +1347,124 @@ button{
   }
 }
 
+
+<style id="bnb-final-seo">
+:root{
+  --gold:#c79218;
+  --gold2:#f1cf69;
+  --premium-shadow:0 20px 60px rgba(20,25,40,.08);
+}
+body{
+  font-family:"Inter",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,
+  "Segoe UI",Roboto,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:16px;
+  margin:34px 0 18px;
+}
+.eyebrow{
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.16em;
+  color:var(--gold);
+  margin-bottom:5px;
+}
+.muted{
+  color:#7b8190;
+  font-size:13px;
+  font-weight:600;
+}
+.number-grid{
+  animation:pageEnter .45s ease both;
+}
+.number-grid > *{
+  position:relative;
+  overflow:hidden;
+  transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;
+}
+.number-grid > *:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--premium-shadow);
+}
+.number-grid > *::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.35),transparent 65%);
+  transform:translateX(-120%);
+  transition:transform .7s ease;
+}
+.number-grid > *:hover::after{transform:translateX(120%)}
+.status-badge,.status{
+  border-radius:999px!important;
+}
+.detail-title{
+  font-weight:850;
+  letter-spacing:-.02em;
+}
+.back,.update,.copy-big{
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.back:hover,.update:hover,.copy-big:hover{
+  transform:translateY(-2px);
+}
+.back:active,.update:active,.copy-big:active{
+  transform:scale(.97);
+}
+.premium-info{
+  margin:38px 0 18px;
+  padding:28px;
+  border:1px solid rgba(199,146,24,.22);
+  border-radius:24px;
+  background:linear-gradient(145deg,#fff,#fffaf0);
+  box-shadow:var(--premium-shadow);
+}
+.premium-info h2{
+  margin:0 0 10px;
+  font-size:clamp(24px,4vw,34px);
+  letter-spacing:-.035em;
+}
+.premium-info p{
+  margin:8px 0;
+  color:#646b79;
+  line-height:1.75;
+}
+.premium-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:17px;
+}
+.premium-tag{
+  padding:8px 12px;
+  border-radius:999px;
+  background:#fff7dc;
+  border:1px solid #eed47e;
+  color:#785600;
+  font-size:11px;
+  font-weight:800;
+}
+[data-theme="dark"] .premium-info{
+  background:linear-gradient(145deg,#17191e,#121418);
+  border-color:#55451c;
+}
+[data-theme="dark"] .premium-info p{color:#abb1bd}
+[data-theme="dark"] .premium-tag{
+  background:#29230f;
+  border-color:#5d4d1d;
+  color:#f0d16a;
+}
+@media(max-width:700px){
+  .section-head{align-items:start;flex-direction:column;gap:7px}
+  .premium-info{padding:21px;border-radius:20px}
+}
+</style>
 </style>
 <!-- BNB OTP WEB SEO START -->
 <link rel="canonical" href="https://bnb-otp-web.hafejnayem1743.workers.dev/">
@@ -1682,6 +1800,32 @@ private, sensitive or important accounts.
   </section>
 </noscript>
 
+
+<section id="bnb-final-content" class="premium-info" aria-labelledby="bnb-content-title">
+  <div class="eyebrow">BNB OTP WEB</div>
+  <h2 id="bnb-content-title">Free OTP Testing & Online SMS Test Numbers</h2>
+  <p>
+    BNB OTP Web is a fast, mobile-friendly controlled testing platform for
+    developers, QA teams and website builders. Browse available test numbers,
+    open a public SMS inbox and inspect controlled OTP messages in seconds.
+  </p>
+  <p>
+    Looking for a free OTP test number, temporary test number, virtual test
+    number or online SMS inbox? BNB OTP Web provides a simple testing workflow
+    without requiring public signup. Messages and OTPs shown here are for
+    controlled development and QA testing only.
+  </p>
+  <div class="premium-tags">
+    <span class="premium-tag">Free OTP Testing</span>
+    <span class="premium-tag">Test Numbers</span>
+    <span class="premium-tag">Temporary Test Numbers</span>
+    <span class="premium-tag">Virtual Test Numbers</span>
+    <span class="premium-tag">Online SMS Inbox</span>
+    <span class="premium-tag">OTP Testing</span>
+    <span class="premium-tag">Developer QA</span>
+  </div>
+</section>
+
 <footer>
 <div class="container">
 BNB OTP Web · Controlled testing environment
@@ -1689,6 +1833,16 @@ BNB OTP Web · Controlled testing environment
 </footer>
 
 <script>
+
+function cleanPublicRoute(){
+  const path=location.pathname.replace(/\/+$/,"")||"/";
+  const m=path.match(/^\/country\/(\d+)$/);
+  if(m){ selectCountry(Number(m[1]),false); return true; }
+  const n=path.match(/^\/number\/(\d+)$/);
+  if(n){ openNumber(Number(n[1]),false); return true; }
+  return false;
+}
+
 
 function enterWebsite(){
   const screen=$("welcomeScreen");
@@ -1912,7 +2066,7 @@ $("numbers").innerHTML=list.map(n=>`
 <div class="number-head">
 <div class="number">${esc(n.number)}</div>
 <span class="status ${n.status==="received"?"received":""}">
-${esc(n.status||"waiting")}
+${esc(n.status==="received"?"SMS Received":"SMS Available")}
 </span>
 </div>
 
@@ -1963,7 +2117,7 @@ function selectCountry(id,push=true){
       <article class="number-card">
         <div class="number-head">
           <div class="number">${esc(n.number)}</div>
-          <span class="status ${n.status==="received"?"received":""}">${esc(n.status||"waiting")}</span>
+          <span class="status ${n.status==="received"?"received":""}">${esc(n.status==="received"?"SMS Received":"SMS Available")}</span>
         </div>
         <div class="number-label">${esc(n.label||"Public testing number")}</div>
         <div class="number-actions">
@@ -2160,6 +2314,7 @@ $("themeBtn").textContent="☀️";
 })();
 
   async function restoreRoute(){
+  if(cleanPublicRoute()) return;
     const hash=window.location.hash||"";
 
     if(hash.startsWith("#number-")){
