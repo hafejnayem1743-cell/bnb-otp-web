@@ -1845,26 +1845,53 @@ function cleanPublicRoute(){
 
 
 function enterWebsite(){
-  const screen=$("welcomeScreen");
-  if(!screen)return;
+  try{
+    localStorage.setItem("bnb_welcome_seen","1");
+  }catch(e){}
 
-  screen.classList.add("hide");
-  localStorage.setItem("bnb_welcome_seen","1");
+  const screen=document.getElementById("welcomeScreen");
+  if(screen){
+    screen.classList.add("hide");
+    screen.setAttribute("aria-hidden","true");
+    screen.style.pointerEvents="none";
+    screen.style.opacity="0";
+    screen.style.visibility="hidden";
+  }
 
-  setTimeout(()=>{
-    screen.style.display="none";
-    window.scrollTo(0,0);
-  },700);
+  document.body.classList.remove("welcome-active");
+  window.scrollTo({top:0,left:0,behavior:"instant"});
+
+  setTimeout(function(){
+    if(screen) screen.style.display="none";
+    const home=document.getElementById("home");
+    if(home){
+      home.style.display="";
+      home.removeAttribute("aria-hidden");
+    }
+  },750);
+
+  return false;
 }
 
 function restoreWelcome(){
-  const screen=$("welcomeScreen");
-  if(!screen)return;
+  const screen=document.getElementById("welcomeScreen");
+  if(!screen) return;
 
-  if(localStorage.getItem("bnb_welcome_seen")==="1"){
+  let seen=false;
+  try{
+    seen=localStorage.getItem("bnb_welcome_seen")==="1";
+  }catch(e){}
+
+  if(seen){
     screen.style.display="none";
+    screen.classList.add("hide");
+    screen.setAttribute("aria-hidden","true");
+    document.body.classList.remove("welcome-active");
   }else{
     screen.style.display="flex";
+    screen.classList.remove("hide");
+    screen.removeAttribute("aria-hidden");
+    document.body.classList.add("welcome-active");
   }
 }
 
