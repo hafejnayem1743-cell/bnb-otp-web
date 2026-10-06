@@ -237,7 +237,7 @@ text-align:center;
 color:var(--muted);
 grid-column:1/-1;
 }
-#countryPage{display:none}
+
 #detail{display:none}
 #detail.show{display:block}
 #home.hide{display:none}
@@ -581,6 +581,206 @@ header,footer,.btn,.country-card,.number-card,.number-box,
     flex:1;
   }
 }
+
+/* ===== PREMIUM PAGE NAVIGATION ===== */
+
+#countryPage{display:none}
+#countryPage.show{display:block}
+#detail{display:none}
+#detail.show{display:block}
+#home.hide{display:none}
+
+.page-backbar{
+  display:flex;
+  align-items:center;
+  min-height:48px;
+  margin:0 0 10px;
+  animation:pageEnter .35s ease both;
+}
+
+.unique-back{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-height:40px;
+  padding:8px 15px 8px 9px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--card);
+  color:var(--text);
+  font-weight:850;
+  box-shadow:var(--shadow);
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.unique-back:hover{
+  transform:translateX(-3px);
+  border-color:var(--blue);
+  box-shadow:0 8px 24px rgba(37,99,235,.13);
+}
+
+.unique-back:active{
+  transform:translateX(-1px) scale(.96);
+}
+
+.back-arrow{
+  width:27px;
+  height:27px;
+  display:grid;
+  place-items:center;
+  border-radius:9px;
+  background:var(--soft);
+  color:var(--blue);
+  font-size:25px;
+  line-height:1;
+}
+
+.country-page-head{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--card);
+  box-shadow:var(--shadow);
+  animation:pageEnter .4s ease both;
+}
+
+.country-page-icon{
+  width:56px;
+  height:56px;
+  flex:0 0 56px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  background:var(--soft);
+  font-size:30px;
+}
+
+.country-page-info{
+  min-width:0;
+  flex:1;
+}
+
+.country-page-name{
+  font-size:21px;
+  font-weight:950;
+  letter-spacing:-.5px;
+}
+
+.country-page-dial{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.country-page-head .update{
+  flex-shrink:0;
+}
+
+@keyframes pageEnter{
+  from{
+    opacity:0;
+    transform:translateY(12px) scale(.99);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes cardEnter{
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.country-card{
+  animation:cardEnter .35s ease both;
+}
+
+.country-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--blue);
+  box-shadow:0 13px 30px rgba(37,99,235,.13);
+}
+
+.number-card{
+  animation:cardEnter .35s ease both;
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease;
+}
+
+.number-card:hover{
+  transform:translateY(-3px);
+  border-color:var(--blue);
+  box-shadow:0 12px 28px rgba(37,99,235,.11);
+}
+
+.primary,.secondary,.copy-big,.copy-otp,.copy-message,.update,.btn{
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background .18s ease,
+    border-color .18s ease;
+}
+
+.primary:hover,
+.copy-big:hover,
+.copy-otp:hover{
+  transform:translateY(-1px);
+  box-shadow:0 7px 18px rgba(37,99,235,.2);
+}
+
+.primary:active,
+.secondary:active,
+.copy-big:active,
+.copy-otp:active,
+.copy-message:active,
+.update:active{
+  transform:scale(.96);
+}
+
+.message{
+  animation:cardEnter .3s ease both;
+}
+
+@media(max-width:620px){
+  .country-page-head{
+    flex-wrap:wrap;
+  }
+
+  .country-page-head .update{
+    width:100%;
+  }
+
+  .country-page-icon{
+    width:50px;
+    height:50px;
+    flex-basis:50px;
+  }
+
+  .country-page-name{
+    font-size:19px;
+  }
+
+  .unique-back{
+    min-height:42px;
+    padding-right:14px;
+  }
+}
 </style>
 </head>
 
@@ -630,20 +830,22 @@ oninput="renderCountries()">
 </section>
 
 
-<section id="countryPage" style="display:none">
+
+<section id="countryPage">
+  <div class="page-backbar">
+    <button class="unique-back" onclick="goBack()">
+      <span class="back-arrow">‹</span>
+      <span>Back</span>
+    </button>
+  </div>
+
   <div class="country-page-head">
-    <button class="country-back" onclick="goHome()">← Back</button>
-
     <div id="countryPageIcon" class="country-page-icon">🌐</div>
-
     <div class="country-page-info">
       <div id="countryPageName" class="country-page-name">Country</div>
       <div id="countryPageDial" class="country-page-dial"></div>
     </div>
-
-    <div class="country-page-actions">
-      <button class="update" onclick="refreshCountryPage()">↻ Update</button>
-    </div>
+    <button class="update" id="countryUpdateBtn" onclick="refreshCountryPage()">↻ Update</button>
   </div>
 
   <div class="section-title">
@@ -657,7 +859,7 @@ oninput="renderCountries()">
 <section id="detail">
 
 <div class="detail-top">
-<button class="back" onclick="goHome()">← Back</button>
+<button class="back" onclick="goBack()">← Back</button>
 <div id="detailTitle" class="detail-title"></div>
 <button class="update" id="updateBtn" onclick="manualUpdate()">↻ Update</button>
 </div>
@@ -911,14 +1113,131 @@ Open Inbox
 '<div class="empty">No numbers available.</div>';
 }
 
-function selectCountry(id){
-selectedCountry=Number(id);
-renderNumbers();
+);
+}
 
-$("numbers").scrollIntoView({
-behavior:"smooth",
-block:"start"
-});
+
+function selectCountry(id){
+  const country=countries.find(c=>Number(c.id)===Number(id));
+  if(!country)return;
+
+  stopAutoRefresh();
+  activeNumber=null;
+  selectedCountry=Number(id);
+
+  $("home").classList.add("hide");
+  $("detail").classList.remove("show");
+  $("countryPage").classList.add("show");
+
+  $("countryPageIcon").textContent=countryFlag(country);
+  $("countryPageName").textContent=country.name||"Country";
+  $("countryPageDial").textContent=country.dial_code||"";
+
+  renderCountryNumbers();
+
+  history.pushState(
+    {view:"country",id:selectedCountry},
+    "",
+    "#country-"+selectedCountry
+  );
+
+  window.scrollTo(0,0);
+}
+
+function renderCountryNumbers(){
+  const list=numbersForCountry(selectedCountry);
+
+  $("countryNumberCount").textContent=
+    list.length+" "+(list.length===1?"number":"numbers");
+
+  $("countryNumbers").innerHTML=list.length
+    ? list.map((n,i)=>`
+      <article class="number-card" style="animation-delay:${Math.min(i,8)*.035}s">
+        <div class="number-head">
+          <div class="number">${esc(n.number)}</div>
+          <span class="status ${n.status==="received"?"received":""}">
+            ${esc(n.status||"waiting")}
+          </span>
+        </div>
+
+        <div class="number-label">
+          ${esc(n.label||"Public testing number")}
+        </div>
+
+        <div class="number-actions">
+          <button class="secondary"
+            onclick='copyText(${JSON.stringify(String(n.number))},this)'>
+            Copy Number
+          </button>
+
+          <button class="primary"
+            onclick="openNumber(${Number(n.id)})">
+            Open Inbox
+          </button>
+        </div>
+      </article>
+    `).join("")
+    : '<div class="empty">No numbers available for this country.</div>';
+}
+
+async function refreshCountryPage(){
+  const button=$("countryUpdateBtn");
+
+  button.disabled=true;
+  button.classList.add("busy");
+  button.textContent="↻ Updating...";
+
+  try{
+    const response=await api("/numbers");
+    numbers=response.numbers||response||[];
+    renderCountryNumbers();
+    button.textContent="✓ Updated";
+  }catch(error){
+    button.textContent="Update failed";
+  }
+
+  setTimeout(()=>{
+    button.disabled=false;
+    button.classList.remove("busy");
+    button.textContent="↻ Update";
+  },900);
+}
+
+function goBack(){
+  const hash=location.hash||"";
+
+  if(hash.startsWith("#number-")){
+    stopAutoRefresh();
+    activeNumber=null;
+
+    $("detail").classList.remove("show");
+
+    if(selectedCountry!==null){
+      $("home").classList.add("hide");
+      $("countryPage").classList.add("show");
+
+      renderCountryNumbers();
+
+      history.replaceState(
+        {view:"country",id:selectedCountry},
+        "",
+        "#country-"+selectedCountry
+      );
+
+      window.scrollTo(0,0);
+    }else{
+      goHome();
+    }
+
+    return;
+  }
+
+  if(hash.startsWith("#country-")){
+    goHome();
+    return;
+  }
+
+  goHome();
 }
 
 async function openNumber(id){
@@ -934,7 +1253,11 @@ $("detail").classList.add("show");
 $("detailTitle").textContent=activeNumber.number||"";
 $("bigNumber").textContent=activeNumber.number||"";
 
-history.replaceState(null,"","#number-"+id);
+history.pushState(
+  {view:"number",id:Number(id),country:selectedCountry},
+  "",
+  "#number-"+id
+);
 
 await loadInbox();
 
@@ -1041,23 +1364,21 @@ button.textContent="↻ Update";
 }
 
 function goHome(){
-stopAutoRefresh();
+  stopAutoRefresh();
 
-activeNumber=null;
-selectedCountry=null;
+  activeNumber=null;
+  selectedCountry=null;
 
-$("detail").classList.remove("show");
-$("countryPage").style.display="none";
-$("home").classList.remove("hide");
+  $("detail").classList.remove("show");
+  $("countryPage").classList.remove("show");
+  $("home").classList.remove("hide");
 
-history.replaceState(null,"","#");
+  history.replaceState({view:"home"},"","#");
 
-renderCountries();
-renderNumbers();
+  renderCountries();
+  renderNumbers();
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
+  window.scrollTo(0,0);
 });
 }
 
