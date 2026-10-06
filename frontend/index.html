@@ -842,10 +842,546 @@ footer{
   }
 }
 
+
+/* ===== BNB OTP WEB — FULL PREMIUM EXPERIENCE ===== */
+
+body{
+  overflow-x:hidden;
+}
+
+button{
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+.welcome-screen{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(245,158,11,.16),transparent 32%),
+    radial-gradient(circle at 80% 75%,rgba(37,99,235,.15),transparent 35%),
+    var(--bg);
+  transition:
+    opacity .65s cubic-bezier(.22,1,.36,1),
+    visibility .65s;
+}
+
+.welcome-screen.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.welcome-glow{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(10px);
+  pointer-events:none;
+  animation:welcomeFloat 6s ease-in-out infinite;
+}
+
+.welcome-glow-a{
+  width:280px;
+  height:280px;
+  background:rgba(245,158,11,.10);
+  top:-90px;
+  left:-80px;
+}
+
+.welcome-glow-b{
+  width:340px;
+  height:340px;
+  background:rgba(37,99,235,.08);
+  right:-110px;
+  bottom:-120px;
+  animation-delay:-3s;
+}
+
+.welcome-card{
+  position:relative;
+  width:min(560px,100%);
+  padding:46px 34px 34px;
+  text-align:center;
+  border:1px solid color-mix(in srgb,var(--line) 85%,transparent);
+  border-radius:30px;
+  background:color-mix(in srgb,var(--card) 91%,transparent);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.12),
+    0 0 0 1px rgba(255,255,255,.04);
+  animation:welcomeCardIn .8s cubic-bezier(.22,1,.36,1) both;
+}
+
+.welcome-logo{
+  font-size:21px;
+  font-weight:950;
+  letter-spacing:-.7px;
+  margin-bottom:18px;
+}
+
+.welcome-logo span{
+  color:#d99a08;
+}
+
+.welcome-badge{
+  display:inline-flex;
+  padding:7px 11px;
+  border:1px solid rgba(217,154,8,.28);
+  border-radius:999px;
+  background:rgba(217,154,8,.08);
+  color:#b77900;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  animation:badgePulse 2.4s ease-in-out infinite;
+}
+
+[data-theme="dark"] .welcome-badge{
+  color:#f5c451;
+}
+
+.welcome-card h1{
+  margin:23px 0 13px;
+  font-size:clamp(42px,9vw,68px);
+  line-height:.94;
+  letter-spacing:-3.5px;
+  font-weight:950;
+}
+
+.welcome-card h1 span{
+  background:linear-gradient(
+    100deg,
+    #a96d00,
+    #f5c451,
+    #c98a08,
+    #ffe39a,
+    #a96d00
+  );
+  background-size:250% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:goldText 3.2s linear infinite;
+}
+
+.welcome-card p{
+  max-width:430px;
+  margin:0 auto 27px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.get-started{
+  position:relative;
+  width:min(330px,100%);
+  height:58px;
+  overflow:hidden;
+  border:1px solid #d39a12;
+  border-radius:16px;
+  background:
+    linear-gradient(
+      105deg,
+      #9b6500,
+      #d49a0b 25%,
+      #ffe08a 50%,
+      #d49a0b 75%,
+      #9b6500
+    );
+  background-size:220% auto;
+  color:#fff;
+  font-weight:950;
+  font-size:15px;
+  letter-spacing:.2px;
+  box-shadow:
+    0 12px 35px rgba(217,154,8,.27),
+    inset 0 1px rgba(255,255,255,.45);
+  animation:
+    goldButton 3s linear infinite,
+    getStartedFloat 2.8s ease-in-out infinite;
+  transition:
+    transform .22s cubic-bezier(.22,1,.36,1),
+    box-shadow .22s ease;
+}
+
+.get-started span:not(.get-started-shine){
+  position:relative;
+  z-index:2;
+}
+
+.get-started b{
+  position:absolute;
+  right:20px;
+  z-index:2;
+  font-size:22px;
+  transition:transform .25s ease;
+}
+
+.get-started-shine{
+  position:absolute;
+  inset:-50%;
+  background:linear-gradient(
+    110deg,
+    transparent 42%,
+    rgba(255,255,255,.65) 50%,
+    transparent 58%
+  );
+  transform:translateX(-70%) rotate(10deg);
+  animation:getStartedShine 2.7s ease-in-out infinite;
+}
+
+.get-started:hover{
+  transform:translateY(-4px) scale(1.015);
+  box-shadow:
+    0 18px 45px rgba(217,154,8,.38),
+    inset 0 1px rgba(255,255,255,.55);
+}
+
+.get-started:hover b{
+  transform:translateX(5px);
+}
+
+.get-started:active{
+  transform:translateY(1px) scale(.975);
+}
+
+.welcome-note{
+  margin-top:18px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.hero h1,
+.hero p,
+.search,
+.section-title{
+  animation:premiumUp .65s cubic-bezier(.22,1,.36,1) both;
+}
+
+.hero p{animation-delay:.06s}
+.search{animation-delay:.12s}
+.section-title{animation-delay:.18s}
+
+.country-card,
+.number-card,
+.message{
+  animation:premiumCard .5s cubic-bezier(.22,1,.36,1) both;
+}
+
+.country-card:nth-child(2),
+.number-card:nth-child(2),
+.message:nth-child(2){animation-delay:.04s}
+.country-card:nth-child(3),
+.number-card:nth-child(3),
+.message:nth-child(3){animation-delay:.08s}
+.country-card:nth-child(4),
+.number-card:nth-child(4),
+.message:nth-child(4){animation-delay:.12s}
+.country-card:nth-child(5),
+.number-card:nth-child(5),
+.message:nth-child(5){animation-delay:.16s}
+.country-card:nth-child(6),
+.number-card:nth-child(6),
+.message:nth-child(6){animation-delay:.20s}
+
+.country-card,
+.number-card,
+.message,
+.number-box,
+.auto{
+  will-change:transform;
+}
+
+.country-card{
+  transition:
+    transform .28s cubic-bezier(.22,1,.36,1),
+    box-shadow .28s ease,
+    border-color .25s ease;
+}
+
+.country-card:hover{
+  transform:translateY(-6px) scale(1.012);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.09),
+    0 0 0 1px color-mix(in srgb,var(--blue) 10%,transparent);
+}
+
+.number-card{
+  transition:
+    transform .28s cubic-bezier(.22,1,.36,1),
+    box-shadow .28s ease,
+    border-color .25s ease;
+}
+
+.number-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 17px 38px rgba(0,0,0,.09);
+}
+
+.message{
+  transition:
+    transform .28s cubic-bezier(.22,1,.36,1),
+    box-shadow .28s ease,
+    border-color .25s ease;
+}
+
+.message:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 36px rgba(0,0,0,.085);
+}
+
+.btn,
+.back,
+.update,
+.primary,
+.secondary,
+.copy-big,
+.copy-message,
+.copy-otp{
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .2s cubic-bezier(.22,1,.36,1),
+    box-shadow .2s ease,
+    background-color .2s ease,
+    border-color .2s ease;
+}
+
+.btn::after,
+.back::after,
+.update::after,
+.primary::after,
+.secondary::after,
+.copy-big::after,
+.copy-message::after,
+.copy-otp::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255,255,255,.24) 50%,
+    transparent 70%
+  );
+  transform:translateX(-130%);
+  transition:transform .55s ease;
+  pointer-events:none;
+}
+
+.btn:hover::after,
+.back:hover::after,
+.update:hover::after,
+.primary:hover::after,
+.secondary:hover::after,
+.copy-big:hover::after,
+.copy-message:hover::after,
+.copy-otp:hover::after{
+  transform:translateX(130%);
+}
+
+.btn:hover,
+.back:hover,
+.update:hover,
+.primary:hover,
+.secondary:hover,
+.copy-big:hover,
+.copy-message:hover,
+.copy-otp:hover{
+  transform:translateY(-2px);
+  box-shadow:0 9px 24px rgba(37,99,235,.14);
+}
+
+.btn:active,
+.back:active,
+.update:active,
+.primary:active,
+.secondary:active,
+.copy-big:active,
+.copy-message:active,
+.copy-otp:active{
+  transform:translateY(1px) scale(.97);
+}
+
+.copy-big{
+  box-shadow:0 9px 25px rgba(37,99,235,.17);
+}
+
+.otp-code{
+  transition:
+    transform .22s ease,
+    color .22s ease;
+  text-shadow:
+    0 0 24px color-mix(in srgb,var(--blue) 17%,transparent);
+}
+
+.message:hover .otp-code{
+  transform:scale(1.035);
+  color:var(--blue);
+}
+
+.update.busy{
+  animation:updateSpin .75s linear infinite;
+}
+
+.dot{
+  animation:onlinePulse 1.8s ease-in-out infinite;
+}
+
+#countryPage,
+#detail{
+  animation:pageSlide .45s cubic-bezier(.22,1,.36,1) both;
+}
+
+.search input{
+  transition:
+    transform .22s ease,
+    box-shadow .25s ease,
+    border-color .22s ease;
+}
+
+.search input:focus{
+  transform:translateY(-1px);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb,var(--blue) 11%,transparent),
+    0 12px 30px rgba(0,0,0,.055);
+}
+
+@keyframes welcomeCardIn{
+  from{opacity:0;transform:translateY(28px) scale(.94)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@keyframes welcomeFloat{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(18px,-14px,0) scale(1.08)}
+}
+
+@keyframes badgePulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(217,154,8,0)}
+  50%{box-shadow:0 0 0 7px rgba(217,154,8,.05)}
+}
+
+@keyframes goldText{
+  to{background-position:250% center}
+}
+
+@keyframes goldButton{
+  to{background-position:220% center}
+}
+
+@keyframes getStartedFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-2px)}
+}
+
+@keyframes getStartedShine{
+  0%,45%{transform:translateX(-80%) rotate(10deg)}
+  70%,100%{transform:translateX(80%) rotate(10deg)}
+}
+
+@keyframes premiumUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes premiumCard{
+  from{opacity:0;transform:translateY(14px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@keyframes pageSlide{
+  from{opacity:0;transform:translateX(12px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+@keyframes onlinePulse{
+  0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 9%,transparent)}
+  50%{box-shadow:0 0 0 8px color-mix(in srgb,var(--green) 2%,transparent)}
+}
+
+@keyframes updateSpin{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
+}
+
+@media(max-width:620px){
+  .welcome-card{
+    padding:38px 22px 27px;
+    border-radius:25px;
+  }
+
+  .welcome-card h1{
+    font-size:43px;
+    letter-spacing:-2.5px;
+  }
+
+  .get-started{
+    height:56px;
+  }
+
+  .country-card:hover{
+    transform:translateY(-3px);
+  }
+
+  .number-card:hover,
+  .message:hover{
+    transform:translateY(-3px);
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+}
+
 </style>
 </head>
 
 <body>
+
+<div id="welcomeScreen" class="welcome-screen">
+  <div class="welcome-glow welcome-glow-a"></div>
+  <div class="welcome-glow welcome-glow-b"></div>
+
+  <div class="welcome-card">
+    <div class="welcome-logo">
+      <span>BNB</span> OTP Web
+    </div>
+
+    <div class="welcome-badge">✦ CONTROLLED TESTING PLATFORM</div>
+
+    <h1>Receive SMS<br><span>Online</span></h1>
+
+    <p>
+      Choose a country, open a testing number and view its
+      controlled public inbox in real time.
+    </p>
+
+    <button class="get-started" onclick="enterWebsite()">
+      <span class="get-started-shine"></span>
+      <span>Get Started</span>
+      <b>→</b>
+    </button>
+
+    <div class="welcome-note">
+      🔒 Controlled testing environment · No signup required
+    </div>
+  </div>
+</div>
+
 
 <header>
 <div class="container nav">
@@ -954,6 +1490,32 @@ BNB OTP Web · Controlled testing environment
 </footer>
 
 <script>
+
+function enterWebsite(){
+  const screen=$("welcomeScreen");
+  if(!screen)return;
+
+  screen.classList.add("hide");
+  localStorage.setItem("bnb_welcome_seen","1");
+
+  setTimeout(()=>{
+    screen.style.display="none";
+    window.scrollTo(0,0);
+  },700);
+}
+
+function restoreWelcome(){
+  const screen=$("welcomeScreen");
+  if(!screen)return;
+
+  if(localStorage.getItem("bnb_welcome_seen")==="1"){
+    screen.style.display="none";
+  }else{
+    screen.style.display="flex";
+  }
+}
+
+
 const API="https://bnb-otp-web.hafejnayem1743.workers.dev/api";
 
 let countries=[];
@@ -1217,7 +1779,7 @@ function selectCountry(id,push=true){
     renderCountryPage();
   }
 
-async async function openNumber(id,push=true){
+async function openNumber(id,push=true){
     try{
       const response=await api("/numbers/"+id);
       activeNumber=response.number||response;
@@ -1429,6 +1991,7 @@ $("themeBtn").textContent="☀️";
   }
 
   window.addEventListener("popstate",restoreRoute);
+  restoreWelcome();
   loadData().then(restoreRoute);
 
 </script>
