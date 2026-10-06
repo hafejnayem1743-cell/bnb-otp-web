@@ -1362,6 +1362,40 @@ section{height:auto;overflow:visible}
 #home,#countryPage,#detail{height:auto;min-height:100vh;overflow:visible}
 .number-grid{max-height:none;overflow:visible}
 </style>
+<style id="bnb-final-layout-fix">
+html,body{
+  min-height:100%;
+  height:auto;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+body{
+  min-height:100vh;
+}
+main,
+.app-main,
+.page,
+.page-shell,
+.content,
+.container,
+section,
+#home,
+#countryPage,
+#detail{
+  height:auto !important;
+  min-height:0;
+  overflow:visible !important;
+}
+#home,
+#countryPage,
+#detail{
+  min-height:100vh;
+}
+.number-grid{
+  max-height:none !important;
+  overflow:visible !important;
+}
+</style>
 </head>
 
 <body>
@@ -1648,11 +1682,9 @@ numbers=result[1].numbers||result[1]||[];
 renderCountries();
 renderNumbers();
 }catch(error){
-$("countries").innerHTML=
-'<div class="empty">Countries could not be loaded.</div>';
-
-$("numbers").innerHTML=
-'<div class="empty">Numbers could not be loaded.</div>';
+$("countries").innerHTML="";
+$("numbers").innerHTML="";
+console.warn("Public data could not be loaded:", error);
 }
 }
 
