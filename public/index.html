@@ -33,7 +33,7 @@
 --shadow:0 8px 28px rgba(0,0,0,.25);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{
 margin:0;
 background:var(--bg);
@@ -356,7 +356,7 @@ background:var(--soft);
 border-radius:11px;
 }
 .otp-code{
-font-size:25px;
+font-size:34px;
 font-weight:950;
 letter-spacing:3px;
 word-break:break-all;
@@ -472,10 +472,26 @@ oninput="renderCountries()">
 
 </section>
 
+<section id="countryPage" style="display:none">
+  <div class="detail-top">
+    <button class="back" onclick="goBack()">← Back</button>
+    <div id="countryPageTitle" class="detail-title"></div>
+    <button class="update" onclick="refreshCountry()">↻ Update</button>
+  </div>
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">COUNTRY</div>
+      <h2 id="countryPageHeading">Available Numbers</h2>
+    </div>
+    <div id="countryPageCount" class="muted"></div>
+  </div>
+  <div id="countryNumbers" class="number-grid"></div>
+</section>
+
 <section id="detail">
 
 <div class="detail-top">
-<button class="back" onclick="goHome()">← Back</button>
+<button class="back" onclick="goBack()">← Back</button>
 <div id="detailTitle" class="detail-title"></div>
 <button class="update" id="updateBtn" onclick="manualUpdate()">↻ Update</button>
 </div>
@@ -607,14 +623,26 @@ copyText(message,button);
 }
 
 function formatTime(value){
-if(!value)return "Unknown time";
-const n=Number(value);
-const date=new Date(
-Number.isFinite(n)&&n<100000000000?n*1000:n
-);
-if(isNaN(date.getTime()))return String(value);
-return date.toLocaleString();
-}
+    if(!value)return "Unknown time";
+    const n=Number(value);
+    const date=new Date(Number.isFinite(n)&&n<100000000000?n*1000:n);
+    if(isNaN(date.getTime()))return String(value);
+
+    const seconds=Math.max(0,Math.floor((Date.now()-date.getTime())/1000));
+    if(seconds<10)return "just now";
+    if(seconds<60)return seconds+" seconds ago";
+
+    const minutes=Math.floor(seconds/60);
+    if(minutes<60)return minutes+" minute"+(minutes===1?"":"s")+" ago";
+
+    const hours=Math.floor(minutes/60);
+    if(hours<24)return hours+" hour"+(hours===1?"":"s")+" ago";
+
+    const days=Math.floor(hours/24);
+    if(days<7)return days+" day"+(days===1?"":"s")+" ago";
+
+    return date.toLocaleString();
+  }
 
 async function loadData(){
 try{
@@ -729,39 +757,71 @@ Open Inbox
 '<div class="empty">No numbers available.</div>';
 }
 
-function selectCountry(id){
-selectedCountry=Number(id);
-renderNumbers();
+function selectCountry(id,push=true){
+    selectedCountry=Number(id);
+    renderCountryPage();
+    $("home").classList.add("hide");
+    $("countryPage").style.display="block";
+    $("detail").classList.remove("show");
 
-$("numbers").scrollIntoView({
-behavior:"smooth",
-block:"start"
-});
-}
+    if(push){
+      history.pushState({view:"country",id:selectedCountry},"","#country-"+selectedCountry);
+    }
+    window.scrollTo(0,0);
+  }
 
-async function openNumber(id){
-try{
-const response=await api("/numbers/"+id);
+  function renderCountryPage(){
+    const country=countries.find(c=>Number(c.id)===Number(selectedCountry));
+    if(!country){ goHome(); return; }
 
-activeNumber=response.number||response;
+    const list=numbersForCountry(selectedCountry);
 
-$("home").classList.add("hide");
-$("detail").classList.add("show");
+    $("countryPageTitle").textContent=countryFlag(country)+" "+(country.name||"Country");
+    $("countryPageHeading").textContent=(country.name||"Country")+" Numbers";
+    $("countryPageCount").textContent=list.length+" "+(list.length===1?"number":"numbers");
 
-$("detailTitle").textContent=activeNumber.number||"";
-$("bigNumber").textContent=activeNumber.number||"";
+    $("countryNumbers").innerHTML=list.map(n=>`
+      <article class="number-card">
+        <div class="number-head">
+          <div class="number">${esc(n.number)}</div>
+          <span class="status ${n.status==="received"?"received":""}">${esc(n.status||"waiting")}</span>
+        </div>
+        <div class="number-label">${esc(n.label||"Public testing number")}</div>
+        <div class="number-actions">
+          <button class="secondary" onclick="copyText('${esc(String(n.number).replace(/'/g,"&#039;"))}',this)">Copy Number</button>
+          <button class="primary" onclick="openNumber(${Number(n.id)})">Open Inbox</button>
+        </div>
+      </article>
+    `).join("") || '<div class="empty">No numbers available for this country.</div>';
+  }
 
-history.replaceState(null,"","#number-"+id);
+  function refreshCountry(){
+    renderCountryPage();
+  }
 
-await loadInbox();
+async async function openNumber(id,push=true){
+    try{
+      const response=await api("/numbers/"+id);
+      activeNumber=response.number||response;
 
-startAutoRefresh();
+      $("home").classList.add("hide");
+      $("countryPage").style.display="none";
+      $("detail").classList.add("show");
 
-window.scrollTo({top:0,behavior:"smooth"});
-}catch(error){
-alert("Unable to open inbox.");
-}
-}
+      $("detailTitle").textContent=activeNumber.number||"";
+      $("bigNumber").textContent=activeNumber.number||"";
+
+      if(push){
+        history.pushState({view:"number",id:Number(id)},"","#number-"+id);
+      }
+
+      await loadInbox();
+      startAutoRefresh();
+      window.scrollTo(0,0);
+    }catch(error){
+      alert("Unable to open inbox.");
+    }
+  }
 
 async function loadInbox(){
 if(!activeNumber)return;
@@ -858,24 +918,45 @@ button.textContent="↻ Update";
 }
 
 function goHome(){
-stopAutoRefresh();
+    stopAutoRefresh();
+    activeNumber=null;
+    selectedCountry=null;
 
-activeNumber=null;
-selectedCountry=null;
+    $("detail").classList.remove("show");
+    $("countryPage").style.display="none";
+    $("home").classList.remove("hide");
 
-$("detail").classList.remove("show");
-$("home").classList.remove("hide");
+    history.pushState({view:"home"},"","#");
+    renderCountries();
+    renderNumbers();
+    window.scrollTo(0,0);
+  }
 
-history.replaceState(null,"","#");
+  function goBack(){
+    stopAutoRefresh();
 
-renderCountries();
-renderNumbers();
+    if(activeNumber){
+      activeNumber=null;
+      if(selectedCountry!==null){
+        $("detail").classList.remove("show");
+        $("home").classList.add("hide");
+        $("countryPage").style.display="block";
+        renderCountryPage();
+        history.pushState({view:"country",id:selectedCountry},"","#country-"+selectedCountry);
+      }else{
+        goHome();
+      }
+      window.scrollTo(0,0);
+      return;
+    }
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-}
+    if(selectedCountry!==null){
+      goHome();
+      return;
+    }
+
+    goHome();
+  }
 
 function toggleTheme(){
 const dark=document.documentElement.dataset.theme==="dark";
@@ -899,7 +980,39 @@ $("themeBtn").textContent="☀️";
 }
 })();
 
-loadData();
+  async function restoreRoute(){
+    const hash=window.location.hash||"";
+
+    if(hash.startsWith("#number-")){
+      const id=Number(hash.slice(8));
+      if(Number.isFinite(id)&&id>0){
+        await openNumber(id,false);
+        return;
+      }
+    }
+
+    if(hash.startsWith("#country-")){
+      const id=Number(hash.slice(9));
+      if(Number.isFinite(id)&&id>0){
+        selectCountry(id,false);
+        return;
+      }
+    }
+
+    stopAutoRefresh();
+    activeNumber=null;
+    selectedCountry=null;
+    $("detail").classList.remove("show");
+    $("countryPage").style.display="none";
+    $("home").classList.remove("hide");
+    renderCountries();
+    renderNumbers();
+    window.scrollTo(0,0);
+  }
+
+  window.addEventListener("popstate",restoreRoute);
+  loadData().then(restoreRoute);
+
 </script>
 
 </body>
