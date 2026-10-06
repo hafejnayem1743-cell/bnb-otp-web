@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bnb-otp-web",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-02",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "bnb-otp-db",
+      "database_id": "4f263351-455a-4add-9e1e-ae02b638a36b"
+    }
+  ]
+}

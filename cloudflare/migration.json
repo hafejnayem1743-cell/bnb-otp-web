@@ -1,0 +1,873 @@
+{
+  "countries": [
+    {
+      "id": 1,
+      "code": "BD",
+      "name": "Bangladesh",
+      "flag": "🇧🇩",
+      "dial_code": "+880",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 2,
+      "code": "IN",
+      "name": "India",
+      "flag": "🇮🇳",
+      "dial_code": "+91",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 3,
+      "code": "PK",
+      "name": "Pakistan",
+      "flag": "🇵🇰",
+      "dial_code": "+92",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 4,
+      "code": "TG",
+      "name": "Togo",
+      "flag": "🇹🇬",
+      "dial_code": "+228",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 5,
+      "code": "MG",
+      "name": "Madagascar",
+      "flag": "🇲🇬",
+      "dial_code": "+261",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 6,
+      "code": "US",
+      "name": "United States",
+      "flag": "🇺🇸",
+      "dial_code": "+1",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 7,
+      "code": "CA",
+      "name": "Canada",
+      "flag": "🇨🇦",
+      "dial_code": "+1",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 8,
+      "code": "GB",
+      "name": "United Kingdom",
+      "flag": "🇬🇧",
+      "dial_code": "+44",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 9,
+      "code": "AE",
+      "name": "United Arab Emirates",
+      "flag": "🇦🇪",
+      "dial_code": "+971",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 10,
+      "code": "SA",
+      "name": "Saudi Arabia",
+      "flag": "🇸🇦",
+      "dial_code": "+966",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 11,
+      "code": "QA",
+      "name": "Qatar",
+      "flag": "🇶🇦",
+      "dial_code": "+974",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 12,
+      "code": "KW",
+      "name": "Kuwait",
+      "flag": "🇰🇼",
+      "dial_code": "+965",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 13,
+      "code": "OM",
+      "name": "Oman",
+      "flag": "🇴🇲",
+      "dial_code": "+968",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 14,
+      "code": "BH",
+      "name": "Bahrain",
+      "flag": "🇧🇭",
+      "dial_code": "+973",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 15,
+      "code": "MY",
+      "name": "Malaysia",
+      "flag": "🇲🇾",
+      "dial_code": "+60",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 16,
+      "code": "SG",
+      "name": "Singapore",
+      "flag": "🇸🇬",
+      "dial_code": "+65",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 17,
+      "code": "ID",
+      "name": "Indonesia",
+      "flag": "🇮🇩",
+      "dial_code": "+62",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 18,
+      "code": "TH",
+      "name": "Thailand",
+      "flag": "🇹🇭",
+      "dial_code": "+66",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 19,
+      "code": "PH",
+      "name": "Philippines",
+      "flag": "🇵🇭",
+      "dial_code": "+63",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 20,
+      "code": "VN",
+      "name": "Vietnam",
+      "flag": "🇻🇳",
+      "dial_code": "+84",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 21,
+      "code": "CN",
+      "name": "China",
+      "flag": "🇨🇳",
+      "dial_code": "+86",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 22,
+      "code": "JP",
+      "name": "Japan",
+      "flag": "🇯🇵",
+      "dial_code": "+81",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 23,
+      "code": "KR",
+      "name": "South Korea",
+      "flag": "🇰🇷",
+      "dial_code": "+82",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 24,
+      "code": "TR",
+      "name": "Turkey",
+      "flag": "🇹🇷",
+      "dial_code": "+90",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 25,
+      "code": "DE",
+      "name": "Germany",
+      "flag": "🇩🇪",
+      "dial_code": "+49",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 26,
+      "code": "FR",
+      "name": "France",
+      "flag": "🇫🇷",
+      "dial_code": "+33",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 27,
+      "code": "IT",
+      "name": "Italy",
+      "flag": "🇮🇹",
+      "dial_code": "+39",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 28,
+      "code": "ES",
+      "name": "Spain",
+      "flag": "🇪🇸",
+      "dial_code": "+34",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 29,
+      "code": "NL",
+      "name": "Netherlands",
+      "flag": "🇳🇱",
+      "dial_code": "+31",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 30,
+      "code": "BE",
+      "name": "Belgium",
+      "flag": "🇧🇪",
+      "dial_code": "+32",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 31,
+      "code": "SE",
+      "name": "Sweden",
+      "flag": "🇸🇪",
+      "dial_code": "+46",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 32,
+      "code": "NO",
+      "name": "Norway",
+      "flag": "🇳🇴",
+      "dial_code": "+47",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 33,
+      "code": "DK",
+      "name": "Denmark",
+      "flag": "🇩🇰",
+      "dial_code": "+45",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 34,
+      "code": "FI",
+      "name": "Finland",
+      "flag": "🇫🇮",
+      "dial_code": "+358",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 35,
+      "code": "AU",
+      "name": "Australia",
+      "flag": "🇦🇺",
+      "dial_code": "+61",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 36,
+      "code": "NZ",
+      "name": "New Zealand",
+      "flag": "🇳🇿",
+      "dial_code": "+64",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 37,
+      "code": "ZA",
+      "name": "South Africa",
+      "flag": "🇿🇦",
+      "dial_code": "+27",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 38,
+      "code": "NG",
+      "name": "Nigeria",
+      "flag": "🇳🇬",
+      "dial_code": "+234",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 39,
+      "code": "GH",
+      "name": "Ghana",
+      "flag": "🇬🇭",
+      "dial_code": "+233",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 40,
+      "code": "KE",
+      "name": "Kenya",
+      "flag": "🇰🇪",
+      "dial_code": "+254",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 41,
+      "code": "TZ",
+      "name": "Tanzania",
+      "flag": "🇹🇿",
+      "dial_code": "+255",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 42,
+      "code": "UG",
+      "name": "Uganda",
+      "flag": "🇺🇬",
+      "dial_code": "+256",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 43,
+      "code": "RW",
+      "name": "Rwanda",
+      "flag": "🇷🇼",
+      "dial_code": "+250",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 44,
+      "code": "ET",
+      "name": "Ethiopia",
+      "flag": "🇪🇹",
+      "dial_code": "+251",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 45,
+      "code": "EG",
+      "name": "Egypt",
+      "flag": "🇪🇬",
+      "dial_code": "+20",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 46,
+      "code": "MA",
+      "name": "Morocco",
+      "flag": "🇲🇦",
+      "dial_code": "+212",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 47,
+      "code": "DZ",
+      "name": "Algeria",
+      "flag": "🇩🇿",
+      "dial_code": "+213",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 48,
+      "code": "TN",
+      "name": "Tunisia",
+      "flag": "🇹🇳",
+      "dial_code": "+216",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 49,
+      "code": "BR",
+      "name": "Brazil",
+      "flag": "🇧🇷",
+      "dial_code": "+55",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 50,
+      "code": "AR",
+      "name": "Argentina",
+      "flag": "🇦🇷",
+      "dial_code": "+54",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 51,
+      "code": "MX",
+      "name": "Mexico",
+      "flag": "🇲🇽",
+      "dial_code": "+52",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 52,
+      "code": "CO",
+      "name": "Colombia",
+      "flag": "🇨🇴",
+      "dial_code": "+57",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 53,
+      "code": "CL",
+      "name": "Chile",
+      "flag": "🇨🇱",
+      "dial_code": "+56",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 54,
+      "code": "PE",
+      "name": "Peru",
+      "flag": "🇵🇪",
+      "dial_code": "+51",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 55,
+      "code": "RU",
+      "name": "Russia",
+      "flag": "🇷🇺",
+      "dial_code": "+7",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 56,
+      "code": "UA",
+      "name": "Ukraine",
+      "flag": "🇺🇦",
+      "dial_code": "+380",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 57,
+      "code": "PL",
+      "name": "Poland",
+      "flag": "🇵🇱",
+      "dial_code": "+48",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 58,
+      "code": "RO",
+      "name": "Romania",
+      "flag": "🇷🇴",
+      "dial_code": "+40",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 59,
+      "code": "GR",
+      "name": "Greece",
+      "flag": "🇬🇷",
+      "dial_code": "+30",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 60,
+      "code": "PT",
+      "name": "Portugal",
+      "flag": "🇵🇹",
+      "dial_code": "+351",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 61,
+      "code": "CZ",
+      "name": "Czech Republic",
+      "flag": "🇨🇿",
+      "dial_code": "+420",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 62,
+      "code": "HU",
+      "name": "Hungary",
+      "flag": "🇭🇺",
+      "dial_code": "+36",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 63,
+      "code": "AT",
+      "name": "Austria",
+      "flag": "🇦🇹",
+      "dial_code": "+43",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 64,
+      "code": "CH",
+      "name": "Switzerland",
+      "flag": "🇨🇭",
+      "dial_code": "+41",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 65,
+      "code": "IL",
+      "name": "Israel",
+      "flag": "🇮🇱",
+      "dial_code": "+972",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 66,
+      "code": "JO",
+      "name": "Jordan",
+      "flag": "🇯🇴",
+      "dial_code": "+962",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 67,
+      "code": "LB",
+      "name": "Lebanon",
+      "flag": "🇱🇧",
+      "dial_code": "+961",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 68,
+      "code": "IQ",
+      "name": "Iraq",
+      "flag": "🇮🇶",
+      "dial_code": "+964",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 69,
+      "code": "IR",
+      "name": "Iran",
+      "flag": "🇮🇷",
+      "dial_code": "+98",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 70,
+      "code": "AF",
+      "name": "Afghanistan",
+      "flag": "🇦🇫",
+      "dial_code": "+93",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 71,
+      "code": "NP",
+      "name": "Nepal",
+      "flag": "🇳🇵",
+      "dial_code": "+977",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 72,
+      "code": "LK",
+      "name": "Sri Lanka",
+      "flag": "🇱🇰",
+      "dial_code": "+94",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 73,
+      "code": "MM",
+      "name": "Myanmar",
+      "flag": "🇲🇲",
+      "dial_code": "+95",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 74,
+      "code": "KH",
+      "name": "Cambodia",
+      "flag": "🇰🇭",
+      "dial_code": "+855",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 75,
+      "code": "LA",
+      "name": "Laos",
+      "flag": "🇱🇦",
+      "dial_code": "+856",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 76,
+      "code": "MN",
+      "name": "Mongolia",
+      "flag": "🇲🇳",
+      "dial_code": "+976",
+      "enabled": 1,
+      "created_at": 1791190105,
+      "updated_at": 1791190105
+    },
+    {
+      "id": 101,
+      "code": "IE",
+      "name": "Ireland",
+      "flag": "🇮🇪",
+      "dial_code": "+353",
+      "enabled": 1,
+      "created_at": 1791203412,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 124,
+      "code": "HK",
+      "name": "Hong Kong",
+      "flag": "🇭🇰",
+      "dial_code": "+852",
+      "enabled": 1,
+      "created_at": 1791203412,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 135,
+      "code": "SN",
+      "name": "Senegal",
+      "flag": "🇸🇳",
+      "dial_code": "+221",
+      "enabled": 1,
+      "created_at": 1791203412,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 136,
+      "code": "CI",
+      "name": "Ivory Coast",
+      "flag": "🇨🇮",
+      "dial_code": "+225",
+      "enabled": 1,
+      "created_at": 1791203412,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 137,
+      "code": "CM",
+      "name": "Cameroon",
+      "flag": "🇨🇲",
+      "dial_code": "+237",
+      "enabled": 1,
+      "created_at": 1791203412,
+      "updated_at": 1791215630
+    },
+    {
+      "id": 146,
+      "code": "VE",
+      "name": "Venezuela",
+      "flag": "🇻🇪",
+      "dial_code": "+58",
+      "enabled": 1,
+      "created_at": 1791203412,
+      "updated_at": 1791215630
+    }
+  ],
+  "numbers": [
+    {
+      "id": 1,
+      "number": "+8801700000000",
+      "status": "assigned",
+      "label": "Demo Test",
+      "created_at": 1791181219,
+      "updated_at": "2026-10-05T15:07:02.276600+00:00",
+      "country_id": 1
+    },
+    {
+      "id": 2,
+      "number": "8801306721743",
+      "status": "received",
+      "label": "nayem test",
+      "created_at": 1791213953,
+      "updated_at": 1791260926,
+      "country_id": null
+    }
+  ],
+  "otps": [
+    {
+      "id": 1,
+      "number_id": 1,
+      "code": "583214",
+      "source": "controlled-test",
+      "status": "expired",
+      "created_at": 1791181228,
+      "expires_at": 1791181528
+    },
+    {
+      "id": 2,
+      "number_id": 2,
+      "code": "482731",
+      "source": "CONTROLLED_TEST:BNB controlled test OTP",
+      "status": "received",
+      "created_at": 1791260926,
+      "expires_at": 1791261526
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password_hash": "41e5653fc7aeb894026d6bb7b2db7f65902b454945fa8fd65a6327047b5277fb",
+      "role": "admin",
+      "created_at": 1791179690
+    }
+  ]
+}
