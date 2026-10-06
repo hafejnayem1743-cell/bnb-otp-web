@@ -1632,7 +1632,7 @@ html,body{
       controlled public inbox in real time.
     </p>
 
-    <button class="get-started" onclick="enterWebsite()">
+    <button class="get-started" onclick="return window.enterWebsite();">
       <span class="get-started-shine"></span>
       <span>Get Started</span>
       <b>→</b>
@@ -1844,34 +1844,40 @@ function cleanPublicRoute(){
 }
 
 
-function enterWebsite(){
+window.enterWebsite=function(){
   try{
     localStorage.setItem("bnb_welcome_seen","1");
   }catch(e){}
 
   const screen=document.getElementById("welcomeScreen");
+
   if(screen){
     screen.classList.add("hide");
     screen.setAttribute("aria-hidden","true");
     screen.style.pointerEvents="none";
     screen.style.opacity="0";
     screen.style.visibility="hidden";
+    screen.style.transform="translateY(-12px)";
   }
 
   document.body.classList.remove("welcome-active");
-  window.scrollTo({top:0,left:0,behavior:"instant"});
+  document.body.style.overflow="";
+
+  const home=document.getElementById("home");
+  if(home){
+    home.style.display="";
+    home.style.visibility="visible";
+    home.removeAttribute("aria-hidden");
+  }
+
+  window.scrollTo(0,0);
 
   setTimeout(function(){
     if(screen) screen.style.display="none";
-    const home=document.getElementById("home");
-    if(home){
-      home.style.display="";
-      home.removeAttribute("aria-hidden");
-    }
   },750);
 
   return false;
-}
+};
 
 function restoreWelcome(){
   const screen=document.getElementById("welcomeScreen");
@@ -2379,3 +2385,15 @@ $("themeBtn").textContent="☀️";
 
 </body>
 </html>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  const b=document.querySelector(".get-started");
+  if(b){
+    b.onclick=function(e){
+      e.preventDefault();
+      return window.enterWebsite();
+    };
+  }
+});
+</script>
