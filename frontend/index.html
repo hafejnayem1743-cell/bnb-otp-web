@@ -424,6 +424,424 @@ main{padding-top:10px}
 .update{margin-left:auto}
 .number-actions{grid-template-columns:1fr 1fr}
 }
+
+/* ===== PREMIUM MOTION & MICRO-INTERACTIONS ===== */
+
+html{
+  scroll-behavior:auto;
+}
+
+body{
+  transition:
+    background-color .28s ease,
+    color .28s ease;
+}
+
+header{
+  backdrop-filter:saturate(150%) blur(14px);
+  -webkit-backdrop-filter:saturate(150%) blur(14px);
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  transition:
+    background-color .28s ease,
+    border-color .28s ease,
+    box-shadow .28s ease;
+}
+
+header:hover{
+  box-shadow:0 8px 30px rgba(0,0,0,.045);
+}
+
+.brand{
+  transition:transform .22s ease,opacity .22s ease;
+}
+
+.brand:hover{
+  transform:translateY(-1px);
+  opacity:.88;
+}
+
+.btn,
+.back,
+.update,
+.copy-big,
+.primary,
+.secondary,
+.copy-message,
+.copy-otp{
+  position:relative;
+  overflow:hidden;
+  transform:translateZ(0);
+  transition:
+    transform .18s cubic-bezier(.22,1,.36,1),
+    box-shadow .22s ease,
+    background-color .22s ease,
+    border-color .22s ease,
+    opacity .22s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.btn::after,
+.back::after,
+.update::after,
+.copy-big::after,
+.primary::after,
+.secondary::after,
+.copy-message::after,
+.copy-otp::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255,255,255,.20) 48%,
+    transparent 76%
+  );
+  transform:translateX(-130%);
+  transition:transform .55s ease;
+  pointer-events:none;
+}
+
+.btn:hover::after,
+.back:hover::after,
+.update:hover::after,
+.copy-big:hover::after,
+.primary:hover::after,
+.secondary:hover::after,
+.copy-message:hover::after,
+.copy-otp:hover::after{
+  transform:translateX(130%);
+}
+
+.btn:hover,
+.back:hover,
+.update:hover,
+.copy-big:hover,
+.primary:hover,
+.secondary:hover,
+.copy-message:hover,
+.copy-otp:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(37,99,235,.12);
+}
+
+.btn:active,
+.back:active,
+.update:active,
+.copy-big:active,
+.primary:active,
+.secondary:active,
+.copy-message:active,
+.copy-otp:active{
+  transform:translateY(1px) scale(.975);
+  box-shadow:0 3px 10px rgba(0,0,0,.10);
+}
+
+.search input{
+  transition:
+    border-color .22s ease,
+    box-shadow .25s ease,
+    transform .22s ease,
+    background-color .28s ease;
+}
+
+.search input:focus{
+  transform:translateY(-1px);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb,var(--blue) 12%,transparent),
+    0 10px 28px rgba(0,0,0,.055);
+}
+
+.hero h1{
+  animation:premiumFadeUp .65s cubic-bezier(.22,1,.36,1) both;
+}
+
+.hero p{
+  animation:premiumFadeUp .65s .08s cubic-bezier(.22,1,.36,1) both;
+}
+
+.search{
+  animation:premiumFadeUp .65s .15s cubic-bezier(.22,1,.36,1) both;
+}
+
+.country-card{
+  position:relative;
+  overflow:hidden;
+  transform:translateZ(0);
+  transition:
+    transform .25s cubic-bezier(.22,1,.36,1),
+    border-color .25s ease,
+    box-shadow .25s ease,
+    background-color .28s ease;
+  animation:cardReveal .48s cubic-bezier(.22,1,.36,1) both;
+}
+
+.country-card::before{
+  content:"";
+  position:absolute;
+  width:90px;
+  height:90px;
+  right:-45px;
+  top:-45px;
+  border-radius:50%;
+  background:color-mix(in srgb,var(--blue) 9%,transparent);
+  transition:transform .35s ease;
+}
+
+.country-card:hover{
+  transform:translateY(-5px) scale(1.012);
+  border-color:color-mix(in srgb,var(--blue) 65%,var(--line));
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.075),
+    0 0 0 1px color-mix(in srgb,var(--blue) 7%,transparent);
+}
+
+.country-card:hover::before{
+  transform:scale(2.2);
+}
+
+.flag{
+  transition:transform .3s cubic-bezier(.22,1,.36,1);
+}
+
+.country-card:hover .flag{
+  transform:scale(1.14) rotate(-3deg);
+}
+
+.number-card{
+  position:relative;
+  overflow:hidden;
+  transform:translateZ(0);
+  transition:
+    transform .25s cubic-bezier(.22,1,.36,1),
+    border-color .25s ease,
+    box-shadow .25s ease,
+    background-color .28s ease;
+  animation:cardReveal .5s cubic-bezier(.22,1,.36,1) both;
+}
+
+.number-card:hover{
+  transform:translateY(-4px);
+  border-color:color-mix(in srgb,var(--blue) 42%,var(--line));
+  box-shadow:
+    0 14px 32px rgba(0,0,0,.07),
+    0 0 0 1px color-mix(in srgb,var(--blue) 5%,transparent);
+}
+
+.number{
+  transition:color .2s ease,transform .2s ease;
+}
+
+.number-card:hover .number{
+  color:var(--blue);
+}
+
+.status{
+  transition:
+    transform .2s ease,
+    background-color .2s ease;
+}
+
+.number-card:hover .status{
+  transform:scale(1.04);
+}
+
+.message{
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .24s cubic-bezier(.22,1,.36,1),
+    border-color .24s ease,
+    box-shadow .24s ease;
+  animation:cardReveal .5s cubic-bezier(.22,1,.36,1) both;
+}
+
+.message:hover{
+  transform:translateY(-3px);
+  border-color:color-mix(in srgb,var(--blue) 32%,var(--line));
+  box-shadow:0 13px 32px rgba(0,0,0,.07);
+}
+
+.message::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:var(--blue);
+  opacity:.65;
+  transform:scaleY(0);
+  transform-origin:center;
+  transition:transform .3s ease;
+}
+
+.message:hover::before{
+  transform:scaleY(1);
+}
+
+.otp-row{
+  transition:
+    transform .22s ease,
+    box-shadow .25s ease,
+    background-color .25s ease;
+}
+
+.message:hover .otp-row{
+  transform:translateY(-1px);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--blue) 10%,transparent);
+}
+
+.otp-code{
+  text-shadow:0 0 22px color-mix(in srgb,var(--blue) 18%,transparent);
+  transition:
+    transform .22s ease,
+    color .22s ease,
+    letter-spacing .22s ease;
+}
+
+.message:hover .otp-code{
+  transform:scale(1.025);
+  color:var(--blue);
+}
+
+.big-number{
+  transition:
+    transform .25s ease,
+    color .25s ease;
+}
+
+.number-box:hover .big-number{
+  transform:translateX(2px);
+  color:var(--blue);
+}
+
+.dot{
+  animation:pulseDot 1.8s ease-in-out infinite;
+}
+
+.update.busy{
+  opacity:.6;
+}
+
+.update.busy{
+  animation:spinButton .9s linear infinite;
+}
+
+.auto{
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease;
+}
+
+.auto:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(0,0,0,.05);
+}
+
+.empty{
+  animation:premiumFadeUp .4s ease both;
+}
+
+footer{
+  transition:border-color .28s ease;
+}
+
+#countryPage,
+#detail{
+  animation:pageEnter .42s cubic-bezier(.22,1,.36,1) both;
+}
+
+.copy-big:hover{
+  box-shadow:0 10px 28px rgba(37,99,235,.20);
+}
+
+@keyframes premiumFadeUp{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes cardReveal{
+  from{
+    opacity:0;
+    transform:translateY(12px) scale(.985);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+@keyframes pageEnter{
+  from{
+    opacity:0;
+    transform:translateX(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+@keyframes pulseDot{
+  0%,100%{
+    box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 10%,transparent);
+  }
+  50%{
+    box-shadow:0 0 0 7px color-mix(in srgb,var(--green) 3%,transparent);
+  }
+}
+
+@keyframes spinButton{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+@media(max-width:620px){
+  .country-card:hover{
+    transform:translateY(-3px);
+  }
+
+  .number-card:hover,
+  .message:hover{
+    transform:translateY(-2px);
+  }
+
+  .btn:hover,
+  .back:hover,
+  .update:hover,
+  .copy-big:hover,
+  .primary:hover,
+  .secondary:hover,
+  .copy-message:hover,
+  .copy-otp:hover{
+    transform:translateY(-1px);
+  }
+
+  .otp-code{
+    font-size:32px;
+    letter-spacing:2.5px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+    transition-duration:.01ms !important;
+  }
+}
+
 </style>
 </head>
 
