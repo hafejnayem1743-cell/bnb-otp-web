@@ -1,294 +1,434 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>BNB OTP Web — Receive SMS Online</title>
-<meta name="description" content="Public controlled OTP testing inbox.">
+<title>BNB OTP Web</title>
+<meta name="description" content="BNB OTP Web controlled testing inbox">
 <style>
 :root{
- --bg:#fff;--surface:#fff;--soft:#f6f7f9;--text:#111827;--muted:#6b7280;
- --border:#e5e7eb;--accent:#2563eb;--accent2:#1d4ed8;--good:#16a34a;
- --shadow:0 8px 30px rgba(15,23,42,.07);--radius:18px
+--bg:#fff;--surface:#fff;--soft:#f7f8fa;--text:#111827;--muted:#6b7280;
+--border:#e5e7eb;--primary:#2563eb;--primary2:#1d4ed8;--success:#16a34a;
+--shadow:0 6px 24px rgba(15,23,42,.06);--radius:18px
 }
-[data-theme=dark]{
- --bg:#0b0d10;--surface:#11151a;--soft:#181d24;--text:#f3f4f6;--muted:#9ca3af;
- --border:#28303a;--accent:#60a5fa;--accent2:#3b82f6;--good:#4ade80;
- --shadow:0 8px 30px rgba(0,0,0,.25)
+[data-theme="dark"]{
+--bg:#0b0d10;--surface:#11151a;--soft:#181d24;--text:#f3f4f6;
+--muted:#9ca3af;--border:#28303a;--primary:#60a5fa;--primary2:#3b82f6;
+--success:#4ade80;--shadow:0 8px 28px rgba(0,0,0,.25)
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{
+margin:0;background:var(--bg);color:var(--text);
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
 button,input{font:inherit}
 button{cursor:pointer}
-a{text-decoration:none;color:inherit}
 .wrap{max-width:1120px;margin:auto;padding:0 18px}
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-.nav{height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-size:20px;font-weight:850;letter-spacing:-.5px}
-.logo span{color:var(--accent)}
-.nav-right{display:flex;align-items:center;gap:8px}
-.icon-btn,.back-btn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:12px;padding:9px 12px}
+header{
+position:sticky;top:0;z-index:20;
+background:color-mix(in srgb,var(--bg) 94%,transparent);
+backdrop-filter:blur(14px);border-bottom:1px solid var(--border)
+}
+.nav{height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:900;letter-spacing:-.5px}
+.logo span{color:var(--primary)}
+.nav-right{display:flex;gap:8px}
+.icon{
+border:1px solid var(--border);background:var(--surface);
+color:var(--text);border-radius:12px;padding:9px 12px
+}
 main{padding:24px 0 60px}
-.hero{padding:28px 0 20px;text-align:center}
-.hero h1{font-size:clamp(30px,7vw,48px);line-height:1.05;margin:0 0 12px;letter-spacing:-1.5px}
-.hero p{max-width:650px;margin:0 auto;color:var(--muted);font-size:15px;line-height:1.6}
-.search{max-width:680px;margin:22px auto 0;display:flex;gap:8px}
-.search input{width:100%;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:14px;padding:13px 15px;outline:none}
-.search input:focus{border-color:var(--accent)}
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:25px 0 13px}
-.section-head h2{font-size:20px;margin:0}
+.hero{text-align:center;padding:30px 0 20px}
+.hero h1{
+font-size:clamp(32px,7vw,50px);line-height:1.05;
+margin:0 0 12px;letter-spacing:-1.7px
+}
+.hero p{
+max-width:680px;margin:auto;color:var(--muted);
+font-size:15px;line-height:1.65
+}
+.search{
+max-width:680px;margin:22px auto 0
+}
+.search input{
+width:100%;padding:14px 16px;border-radius:14px;
+border:1px solid var(--border);background:var(--surface);
+color:var(--text);outline:none
+}
+.search input:focus{border-color:var(--primary)}
+.section{
+display:flex;justify-content:space-between;align-items:center;
+gap:10px;margin:25px 0 13px
+}
+.section h2{margin:0;font-size:20px}
 .muted{color:var(--muted);font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
-.country{padding:16px;text-align:left;transition:.15s}
-.country:hover,.number:hover{transform:translateY(-2px);border-color:var(--accent)}
+.grid{
+display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px
+}
+.card{
+background:var(--surface);border:1px solid var(--border);
+border-radius:var(--radius);box-shadow:var(--shadow)
+}
+.country{
+padding:16px;text-align:left;transition:.15s;width:100%;
+color:var(--text)
+}
+.country:hover,.number:hover{
+transform:translateY(-2px);border-color:var(--primary)
+}
 .country-top{display:flex;align-items:center;gap:10px}
 .flag{font-size:28px}
-.country-name{font-weight:750}
+.country-name{font-weight:800}
 .dial{color:var(--muted);font-size:13px;margin-top:4px}
-.number-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.number-grid{
+display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px
+}
 .number{padding:17px;transition:.15s}
-.number-top{display:flex;justify-content:space-between;gap:8px;align-items:center}
-.phone{font-size:17px;font-weight:800;word-break:break-all}
-.badge{font-size:11px;border-radius:999px;padding:5px 8px;background:var(--soft);color:var(--muted);white-space:nowrap}
-.badge.good{color:var(--good)}
-.number-meta{margin-top:10px;color:var(--muted);font-size:13px}
-.open{margin-top:14px;width:100%;border:0;background:var(--accent);color:white;padding:11px;border-radius:12px;font-weight:750}
-.open:hover{background:var(--accent2)}
-.empty{padding:35px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:var(--radius)}
-.detail{display:none}
-.detail.active{display:block}
-.home.hidden{display:none}
-.detail-head{display:flex;align-items:center;gap:10px;margin:12px 0 18px}
-.detail-head h1{font-size:25px;margin:0;word-break:break-all}
-.refresh{margin-left:auto;border:1px solid var(--border);background:var(--surface);color:var(--text);padding:9px 12px;border-radius:12px}
+.number-top{
+display:flex;align-items:center;justify-content:space-between;gap:8px
+}
+.phone{font-size:17px;font-weight:850;word-break:break-all}
+.badge{
+font-size:11px;border-radius:999px;padding:5px 8px;
+background:var(--soft);color:var(--muted);white-space:nowrap
+}
+.badge.good{color:var(--success)}
+.meta{margin-top:10px;color:var(--muted);font-size:13px}
+.open{
+margin-top:14px;width:100%;border:0;border-radius:12px;
+padding:11px;background:var(--primary);color:#fff;font-weight:800
+}
+.open:hover{background:var(--primary2)}
+.empty{
+padding:34px;text-align:center;color:var(--muted);
+border:1px dashed var(--border);border-radius:var(--radius)
+}
+.hidden{display:none!important}
+.detail-head{
+display:flex;align-items:center;gap:10px;margin:10px 0 18px
+}
+.back,.refresh{
+border:1px solid var(--border);background:var(--surface);
+color:var(--text);border-radius:12px;padding:9px 12px
+}
+.detail-head h1{
+margin:0;font-size:24px;word-break:break-all;flex:1
+}
 .phone-box{padding:20px;margin-bottom:15px}
-.phone-label{font-size:12px;color:var(--muted);margin-bottom:6px}
-.big-number{font-size:clamp(24px,7vw,36px);font-weight:900;letter-spacing:.5px;word-break:break-all}
+.label{font-size:11px;color:var(--muted);margin-bottom:7px}
+.big-number{
+font-size:clamp(25px,7vw,38px);font-weight:950;
+letter-spacing:.4px;word-break:break-all
+}
 .otp-list{display:grid;gap:12px}
 .otp{padding:18px}
-.otp-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.code{font-size:28px;font-weight:900;letter-spacing:4px}
-.copy{border:1px solid var(--border);background:var(--soft);color:var(--text);padding:9px 12px;border-radius:10px;font-weight:700}
-.message{margin-top:12px;color:var(--muted);line-height:1.5;font-size:14px;white-space:pre-wrap}
-.otp-meta{margin-top:12px;font-size:12px;color:var(--muted)}
-footer{border-top:1px solid var(--border);padding:25px 0;color:var(--muted);font-size:12px;text-align:center}
-@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}.number-grid{grid-template-columns:repeat(2,1fr)}}
+.otp-row{
+display:flex;align-items:center;justify-content:space-between;gap:12px
+}
+.code{font-size:29px;font-weight:950;letter-spacing:4px}
+.copy{
+border:1px solid var(--border);background:var(--soft);
+color:var(--text);padding:9px 12px;border-radius:10px;font-weight:750
+}
+.message{
+margin-top:12px;color:var(--muted);font-size:14px;
+line-height:1.55;white-space:pre-wrap
+}
+.otp-meta{margin-top:12px;color:var(--muted);font-size:12px}
+footer{
+border-top:1px solid var(--border);padding:25px 0;
+color:var(--muted);font-size:12px;text-align:center
+}
+@media(max-width:900px){
+.grid{grid-template-columns:repeat(3,1fr)}
+.number-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:620px){
- .wrap{padding:0 14px}.nav{height:58px}.logo{font-size:18px}
- main{padding-top:12px}.hero{padding:22px 0 12px}.hero h1{font-size:34px}
- .grid{grid-template-columns:repeat(2,1fr);gap:9px}.country{padding:13px}
- .number-grid{grid-template-columns:1fr;gap:10px}
- .section-head{margin-top:22px}.search{margin-top:18px}
- .detail-head{align-items:flex-start;flex-wrap:wrap}.refresh{margin-left:0}
- .detail-head h1{width:100%;order:2}.back-btn{order:1}.refresh{order:1}
- .otp-row{align-items:flex-start}.code{font-size:24px}
+.wrap{padding:0 14px}
+.nav{height:58px}
+.logo{font-size:18px}
+main{padding-top:10px}
+.hero{padding:24px 0 12px}
+.hero h1{font-size:34px}
+.grid{grid-template-columns:repeat(2,1fr);gap:9px}
+.country{padding:13px}
+.number-grid{grid-template-columns:1fr}
+.detail-head{flex-wrap:wrap}
+.detail-head h1{order:3;flex-basis:100%}
+.refresh{margin-left:auto}
+.code{font-size:24px}
 }
 </style>
 </head>
+
 <body>
 <header>
- <div class="wrap nav">
-  <a class="logo" href="#" onclick="goHome();return false">BNB <span>OTP Web</span></a>
-  <div class="nav-right">
-   <button class="icon-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
-  </div>
- </div>
+<div class="wrap nav">
+<a class="logo" href="#" onclick="home();return false">BNB <span>OTP Web</span></a>
+<div class="nav-right">
+<button class="icon" id="theme" onclick="toggleTheme()">🌙</button>
+</div>
+</div>
 </header>
 
 <main class="wrap">
- <section id="homeView" class="home">
-  <div class="hero">
-   <h1>Receive SMS Online</h1>
-   <p>Browse available testing numbers, open an inbox and view controlled test SMS/OTP messages instantly.</p>
-   <div class="search">
-    <input id="search" placeholder="Search country or dial code..." oninput="renderCountries()">
-   </div>
-  </div>
 
-  <div class="section-head">
-   <h2>Countries</h2><span id="countryCount" class="muted"></span>
-  </div>
-  <div id="countries" class="grid"></div>
+<section id="home">
+<div class="hero">
+<h1>Receive SMS Online</h1>
+<p>
+Browse available testing numbers, open an inbox and view controlled
+test SMS/OTP messages instantly.
+</p>
 
-  <div class="section-head">
-   <h2 id="numbersTitle">Available Numbers</h2><span id="numberCount" class="muted"></span>
-  </div>
-  <div id="numbers" class="number-grid"></div>
- </section>
+<div class="search">
+<input id="search" placeholder="Search country or dial code..." oninput="renderCountries()">
+</div>
+</div>
 
- <section id="detailView" class="detail">
-  <div class="detail-head">
-   <button class="back-btn" onclick="goHome()">← Back</button>
-   <button class="refresh" onclick="refreshInbox()">↻ Refresh</button>
-   <h1 id="detailNumber"></h1>
-  </div>
+<div class="section">
+<h2>Countries</h2>
+<span id="countryCount" class="muted"></span>
+</div>
 
-  <div class="card phone-box">
-   <div class="phone-label">PUBLIC TEST NUMBER</div>
-   <div id="bigNumber" class="big-number"></div>
-  </div>
+<div id="countries" class="grid"></div>
 
-  <div class="section-head">
-   <h2>SMS / OTP Inbox</h2><span id="otpCount" class="muted"></span>
-  </div>
-  <div id="otps" class="otp-list"></div>
- </section>
+<div class="section">
+<h2 id="numbersTitle">Available Numbers</h2>
+<span id="numberCount" class="muted"></span>
+</div>
+
+<div id="numbers" class="number-grid"></div>
+</section>
+
+<section id="detail" class="hidden">
+
+<div class="detail-head">
+<button class="back" onclick="home()">← Back</button>
+<h1 id="detailTitle"></h1>
+<button class="refresh" id="refresh" onclick="refreshInbox()">↻ Refresh</button>
+</div>
+
+<div class="card phone-box">
+<div class="label">PUBLIC TEST NUMBER</div>
+<div id="bigNumber" class="big-number"></div>
+</div>
+
+<div class="section">
+<h2>SMS / OTP Inbox</h2>
+<span id="otpCount" class="muted"></span>
+</div>
+
+<div id="otps" class="otp-list"></div>
+</section>
+
 </main>
 
 <footer>
- <div class="wrap">BNB OTP Web · Controlled testing environment</div>
+<div class="wrap">BNB OTP Web · Controlled testing environment</div>
 </footer>
 
 <script>
 const API="https://bnb-otp-web.hafejnayem1743.workers.dev/api";
-let countries=[],numbers=[],activeCountry=null,activeNumber=null;
+
+let countries=[];
+let numbers=[];
+let activeCountry=null;
+let activeNumber=null;
 
 const $=id=>document.getElementById(id);
 
-async function get(path){
- const r=await fetch(API+path,{cache:"no-store"});
- if(!r.ok) throw new Error("API "+r.status);
- return r.json();
+async function api(path){
+const r=await fetch(API+path,{cache:"no-store"});
+if(!r.ok)throw new Error("HTTP "+r.status);
+return r.json();
 }
 
 function esc(v){
- return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+return String(v??"").replace(/[&<>"']/g,m=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+}[m]));
+}
+
+function time(v){
+if(!v)return "";
+const d=new Date(Number(v)*1000);
+return isNaN(d)?String(v):d.toLocaleString();
 }
 
 async function load(){
- try{
-  const [c,n]=await Promise.all([get("/countries"),get("/numbers")]);
-  countries=c.countries||c||[];
-  numbers=n.numbers||n||[];
-  renderCountries();
-  renderNumbers();
- }catch(e){
-  $("countries").innerHTML='<div class="empty">Unable to load countries.</div>';
-  $("numbers").innerHTML='<div class="empty">Unable to load numbers.</div>';
- }
+try{
+const [c,n]=await Promise.all([
+api("/countries"),
+api("/numbers")
+]);
+
+countries=c.countries||c||[];
+numbers=n.numbers||n||[];
+
+renderCountries();
+renderNumbers();
+}catch(e){
+$("countries").innerHTML='<div class="empty">Unable to load countries.</div>';
+$("numbers").innerHTML='<div class="empty">Unable to load numbers.</div>';
+}
 }
 
 function renderCountries(){
- const q=$("search").value.trim().toLowerCase();
- const list=countries.filter(c=>
-  !q ||
-  String(c.name||"").toLowerCase().includes(q) ||
-  String(c.code||"").toLowerCase().includes(q) ||
-  String(c.dial_code||"").toLowerCase().includes(q)
- );
- $("countryCount").textContent=list.length+" countries";
- $("countries").innerHTML=list.map(c=>`
-  <button class="card country" onclick="selectCountry(${Number(c.id)})">
-   <div class="country-top">
-    <span class="flag">${esc(c.flag||"🌐")}</span>
-    <div><div class="country-name">${esc(c.name)}</div><div class="dial">${esc(c.dial_code||"")}</div></div>
-   </div>
-  </button>`).join("")||'<div class="empty">No countries found.</div>';
+const q=$("search").value.trim().toLowerCase();
+
+const list=countries.filter(c=>
+!q ||
+String(c.name||"").toLowerCase().includes(q) ||
+String(c.code||"").toLowerCase().includes(q) ||
+String(c.dial_code||"").toLowerCase().includes(q)
+);
+
+$("countryCount").textContent=list.length+" countries";
+
+$("countries").innerHTML=list.map(c=>`
+<button class="card country" onclick="country(${Number(c.id)})">
+<div class="country-top">
+<span class="flag">${esc(c.flag||"🌐")}</span>
+<div>
+<div class="country-name">${esc(c.name)}</div>
+<div class="dial">${esc(c.dial_code||"")}</div>
+</div>
+</div>
+</button>
+`).join("")||'<div class="empty">No countries found.</div>';
 }
 
 function renderNumbers(){
- let list=numbers;
- if(activeCountry!==null) list=list.filter(n=>Number(n.country_id)===Number(activeCountry));
- $("numberCount").textContent=list.length+" numbers";
- $("numbersTitle").textContent=activeCountry===null?"Available Numbers":"Numbers in selected country";
- $("numbers").innerHTML=list.map(n=>`
-  <article class="card number">
-   <div class="number-top">
-    <div class="phone">${esc(n.number)}</div>
-    <span class="badge ${n.status==="received"?"good":""}">${esc(n.status||"waiting")}</span>
-   </div>
-   <div class="number-meta">${esc(n.label||"Public testing number")}</div>
-   <button class="open" onclick="openNumber(${Number(n.id)})">Open inbox</button>
-  </article>`).join("")||'<div class="empty">No numbers available for this country.</div>';
+let list=numbers;
+
+if(activeCountry!==null){
+list=list.filter(n=>Number(n.country_id)===Number(activeCountry));
 }
 
-function selectCountry(id){
- activeCountry=id;
- renderNumbers();
- $("numbers").scrollIntoView({behavior:"smooth",block:"start"});
+$("numberCount").textContent=list.length+" numbers";
+
+$("numbersTitle").textContent=
+activeCountry===null?"Available Numbers":"Numbers in selected country";
+
+$("numbers").innerHTML=list.map(n=>`
+<article class="card number">
+<div class="number-top">
+<div class="phone">${esc(n.number)}</div>
+<span class="badge ${n.status==="received"?"good":""}">
+${esc(n.status||"waiting")}
+</span>
+</div>
+
+<div class="meta">
+${esc(n.label||"Public testing number")}
+</div>
+
+<button class="open" onclick="openNumber(${Number(n.id)})">
+Open inbox
+</button>
+</article>
+`).join("")||'<div class="empty">No numbers available.</div>';
+}
+
+function country(id){
+activeCountry=id;
+renderNumbers();
+$("numbers").scrollIntoView({behavior:"smooth"});
 }
 
 async function openNumber(id){
- try{
-  const data=await get("/numbers/"+id);
-  activeNumber=data.number||data;
-  $("homeView").classList.add("hidden");
-  $("detailView").classList.add("active");
-  $("detailNumber").textContent=activeNumber.number||"";
-  $("bigNumber").textContent=activeNumber.number||"";
-  await renderOtps();
-  location.hash="number-"+id;
-  window.scrollTo({top:0,behavior:"smooth"});
- }catch(e){
-  alert("Unable to open this number.");
- }
+try{
+const response=await api("/numbers/"+id);
+activeNumber=response.number||response;
+
+$("home").classList.add("hidden");
+$("detail").classList.remove("hidden");
+
+$("detailTitle").textContent=activeNumber.number||"";
+$("bigNumber").textContent=activeNumber.number||"";
+
+history.replaceState(null,"","#number-"+id);
+
+await renderOtps();
+
+window.scrollTo({top:0,behavior:"smooth"});
+}catch(e){
+alert("Unable to open this number.");
+}
 }
 
 async function renderOtps(){
- if(!activeNumber)return;
- try{
-  const data=await get("/numbers/"+activeNumber.id+"/otps");
-  const list=data.otps||data||[];
-  $("otpCount").textContent=list.length+" messages";
-  $("otps").innerHTML=list.length?list.map(o=>`
-   <article class="card otp">
-    <div class="otp-row">
-     <div class="code">${esc(o.code)}</div>
-     <button class="copy" onclick="copyCode('${esc(o.code)}',this)">Copy</button>
-    </div>
-    <div class="message">${esc(o.message||"Controlled test OTP message")}</div>
-    <div class="otp-meta">${esc(o.source||"CONTROLLED_TEST")} · ${formatTime(o.created_at)}</div>
-   </article>`).join(""):'<div class="empty">No SMS/OTP messages yet.</div>';
- }catch(e){
-  $("otps").innerHTML='<div class="empty">Unable to load inbox.</div>';
- }
+if(!activeNumber)return;
+
+try{
+const response=await api("/numbers/"+activeNumber.id+"/otps");
+const list=response.otps||response||[];
+
+$("otpCount").textContent=list.length+" messages";
+
+$("otps").innerHTML=list.length?
+list.map(o=>`
+<article class="card otp">
+<div class="otp-row">
+<div class="code">${esc(o.code)}</div>
+<button class="copy" onclick="copyCode('${esc(o.code)}',this)">Copy</button>
+</div>
+
+<div class="message">
+${esc(o.message||"Controlled test OTP message")}
+</div>
+
+<div class="otp-meta">
+${esc(o.source||"CONTROLLED_TEST")} · ${time(o.created_at)}
+</div>
+</article>
+`).join("")
+:
+'<div class="empty">No SMS/OTP messages yet.</div>';
+
+}catch(e){
+$("otps").innerHTML='<div class="empty">Unable to load inbox.</div>';
+}
 }
 
 async function refreshInbox(){
- const b=document.querySelector(".refresh");
- b.textContent="↻ Updating...";
- await renderOtps();
- b.textContent="↻ Refresh";
+const b=$("refresh");
+b.textContent="↻ Updating...";
+await renderOtps();
+b.textContent="↻ Refresh";
 }
 
-function copyCode(code,btn){
- navigator.clipboard?.writeText(code);
- const old=btn.textContent;
- btn.textContent="Copied";
- setTimeout(()=>btn.textContent=old,1200);
+function copyCode(code,b){
+navigator.clipboard?.writeText(code);
+const old=b.textContent;
+b.textContent="Copied";
+setTimeout(()=>b.textContent=old,1200);
 }
 
-function formatTime(v){
- if(!v)return "";
- const d=new Date(Number(v)*1000);
- return isNaN(d)?String(v):d.toLocaleString();
-}
-
-function goHome(){
- activeNumber=null;
- $("detailView").classList.remove("active");
- $("homeView").classList.remove("hidden");
- activeCountry=null;
- renderNumbers();
- history.replaceState(null,"","#");
- window.scrollTo({top:0,behavior:"smooth"});
+function home(){
+activeCountry=null;
+activeNumber=null;
+$("detail").classList.add("hidden");
+$("home").classList.remove("hidden");
+renderNumbers();
+history.replaceState(null,"","#");
+window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function toggleTheme(){
- const dark=document.documentElement.dataset.theme==="dark";
- document.documentElement.dataset.theme=dark?"":"dark";
- localStorage.setItem("bnb_theme",dark?"light":"dark");
- $("themeBtn").textContent=dark?"🌙":"☀️";
+const dark=document.documentElement.dataset.theme==="dark";
+document.documentElement.dataset.theme=dark?"":"dark";
+localStorage.setItem("bnb_theme",dark?"light":"dark");
+$("theme").textContent=dark?"🌙":"☀️";
 }
 
 (function(){
- const t=localStorage.getItem("bnb_theme");
- if(t==="dark"){
-  document.documentElement.dataset.theme="dark";
-  $("themeBtn").textContent="☀️";
- }
+if(localStorage.getItem("bnb_theme")==="dark"){
+document.documentElement.dataset.theme="dark";
+$("theme").textContent="☀️";
+}
 })();
 
 load();
