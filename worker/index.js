@@ -241,6 +241,57 @@ async function adminApi(request, env, path) {
     return json({ok:true});
   }
 
+  if (path === "/api/admin/numbers/bulk" && request.method==="POST") {
+    const d=await request.json();
+    const country_id=Number(d.country_id||0);
+    const numbers=Array.isArray(d.numbers)?d.numbers.map(x=>String(x).trim()).filter(Boolean):[];
+
+    if(!country_id) return json({error:"Country is required"},400);
+    if(!numbers.length) return json({error:"No numbers supplied"},400);
+    if(numbers.length>1000) return json({error:"Maximum 1000 numbers per batch"},400);
+
+    const country=await env.DB.prepare(
+      "SELECT id,name FROM countries WHERE id=? AND enabled=1"
+    ).bind(country_id).first();
+
+    if(!country) return json({error:"Country not found or disabled"},404);
+
+    const clean=[...new Set(numbers)];
+    let added=0, skipped=0;
+    const t=Math.floor(Date.now()/1000);
+
+    for(const number of clean){
+      try{
+        const exists=await env.DB.prepare(
+          "SELECT id FROM numbers WHERE number=?"
+        ).bind(number).first();
+
+        if(exists){
+          skipped++;
+          continue;
+        }
+
+        await env.DB.prepare(
+          "INSERT INTO numbers(number,status,label,created_at,updated_at,country_id) VALUES(?,?,?,?,?,?)"
+        ).bind(number,"waiting","",""+t,t,country_id).run();
+
+        added++;
+      }catch(e){
+        skipped++;
+      }
+    }
+
+    return json({
+      ok:true,
+      country_id,
+      country_name:country.name,
+      requested:numbers.length,
+      unique:clean.length,
+      added,
+      skipped
+    });
+  }
+
   if (path === "/api/admin/otp" && request.method==="POST") {
     const b=await request.json();
     const numberId=Number(b.number_id);
