@@ -124,7 +124,7 @@ function countries(){
   <td>${esc(c.code)}</td>
   <td>${esc(c.dial_code)}</td>
   <td>${c.enabled?'<span class="pill on">ACTIVE</span>':'<span class="pill off">OFF</span>'}</td>
-  <td><button class="small" onclick="toggle(${c.id})">Toggle</button></td>
+  <td><button class="small" onclick="toggle(${c.id},${c.enabled?1:0})">Toggle</button></td>
  </tr>`).join("")}</tbody></table></div>`;
 }
 
@@ -151,12 +151,23 @@ async function saveC(){
  await load();countries();
 }
 
-async function toggle(id){
- await api("/api/admin/countries/toggle",{
-  method:"POST",headers:{"Content-Type":"application/json"},
-  body:JSON.stringify({id})
- });
- await load();countries();
+async function toggle(id, currentEnabled){
+ try{
+  const next = Number(currentEnabled) ? 0 : 1;
+
+  const result = await api("/api/admin/countries/toggle",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({id,enabled:next})
+  });
+
+  const c = S.c.find(x=>Number(x.id)===Number(id));
+  if(c) c.enabled = Number(result.enabled);
+
+  countries();
+ }catch(e){
+  alert(e.message || "Country toggle failed");
+ }
 }
 
 function numbers(){

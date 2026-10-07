@@ -17,11 +17,11 @@ function route(path) {
 async function publicApi(request, env, path) {
   if (path === "/api/countries") {
     const r = await env.DB.prepare(
-      "SELECT c.id,c.code,c.name,c.flag,c.dial_code,c.enabled,
+      `SELECT c.id,c.code,c.name,c.flag,c.dial_code,c.enabled,
               (SELECT COUNT(*) FROM numbers n WHERE n.country_id=c.id) number_count
        FROM countries c
        WHERE c.enabled=1
-       ORDER BY c.name"
+       ORDER BY c.name`
     ).all();
     return json({countries:r.results||[]});
   }
