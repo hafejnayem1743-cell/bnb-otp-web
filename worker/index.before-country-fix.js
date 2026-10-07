@@ -17,11 +17,7 @@ function route(path) {
 async function publicApi(request, env, path) {
   if (path === "/api/countries") {
     const r = await env.DB.prepare(
-      "SELECT c.id,c.code,c.name,c.flag,c.dial_code,c.enabled,
-              (SELECT COUNT(*) FROM numbers n WHERE n.country_id=c.id) number_count
-       FROM countries c
-       WHERE c.enabled=1
-       ORDER BY c.name"
+      "SELECT id,code,name,flag,dial_code,enabled FROM countries WHERE enabled=1 ORDER BY name"
     ).all();
     return json({countries:r.results||[]});
   }
@@ -31,7 +27,7 @@ async function publicApi(request, env, path) {
       `SELECT n.id,n.number,n.status,n.label,n.country_id,
               c.code country_code,c.name country_name,c.flag country_flag,c.dial_code
        FROM numbers n
-       INNER JOIN countries c ON c.id=n.country_id AND c.enabled=1
+       LEFT JOIN countries c ON c.id=n.country_id
        ORDER BY n.id DESC`
     ).all();
     return json({numbers:r.results||[]});
@@ -179,26 +175,10 @@ async function adminApi(request, env, path) {
 
   if (path === "/api/admin/countries/toggle" && request.method==="POST") {
     const b=await request.json();
-    const id=Number(b.id||0);
-
-    if(!id) return json({error:"Country id required"},400);
-
-    const current=await env.DB.prepare(
-      "SELECT id,enabled FROM countries WHERE id=?"
-    ).bind(id).first();
-
-    if(!current) return json({error:"Country not found"},404);
-
-    const enabled =
-      b.enabled===undefined
-        ? (current.enabled ? 0 : 1)
-        : (Number(b.enabled)?1:0);
-
     await env.DB.prepare(
       "UPDATE countries SET enabled=?,updated_at=? WHERE id=?"
-    ).bind(enabled,now(),id).run();
-
-    return json({ok:true,id,enabled});
+    ).bind(Number(b.enabled)?1:0,now(),Number(b.id)).run();
+    return json({ok:true});
   }
 
   if (path === "/api/admin/countries/save" && request.method==="POST") {

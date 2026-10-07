@@ -1,0 +1,2045 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BD NAYEM BOSS OTP Web — Free OTP Testing & Online SMS Test Numbers</title>
+<meta name="theme-color" content="#ffffff">
+<style>
+:root{
+--bg:#fff;
+--card:#fff;
+--soft:#f6f7f9;
+--text:#111827;
+--muted:#6b7280;
+--line:#e5e7eb;
+--blue:#2563eb;
+--blue2:#1d4ed8;
+--green:#16a34a;
+--red:#dc2626;
+--shadow:0 5px 20px rgba(0,0,0,.055);
+}
+[data-theme="dark"]{
+--bg:#0b0d10;
+--card:#11151a;
+--soft:#181d24;
+--text:#f3f4f6;
+--muted:#9ca3af;
+--line:#29313b;
+--blue:#60a5fa;
+--blue2:#3b82f6;
+--green:#4ade80;
+--red:#f87171;
+--shadow:0 8px 28px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+-webkit-font-smoothing:antialiased;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,100%);margin:auto;padding:0 16px}
+header{
+position:sticky;
+top:0;
+z-index:100;
+background:var(--bg);
+border-bottom:1px solid var(--line);
+}
+.nav{
+height:62px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+}
+.brand{
+font-size:20px;
+font-weight:900;
+letter-spacing:-.6px;
+}
+.brand span{color:var(--blue)}
+.nav-actions{display:flex;gap:7px}
+.btn{
+border:1px solid var(--line);
+background:var(--card);
+color:var(--text);
+border-radius:10px;
+padding:9px 12px;
+font-weight:700;
+}
+.btn:hover{border-color:var(--blue)}
+main{padding:20px 0 60px}
+.hero{
+text-align:center;
+padding:28px 0 18px;
+}
+.hero h1{
+margin:0 0 10px;
+font-size:clamp(30px,6vw,48px);
+line-height:1.05;
+letter-spacing:-1.8px;
+}
+.hero p{
+margin:auto;
+max-width:700px;
+color:var(--muted);
+font-size:14px;
+line-height:1.65;
+}
+.search{
+max-width:680px;
+margin:20px auto 0;
+position:relative;
+}
+.search input{
+width:100%;
+height:48px;
+border:1px solid var(--line);
+background:var(--card);
+color:var(--text);
+border-radius:13px;
+padding:0 15px;
+outline:0;
+}
+.search input:focus{border-color:var(--blue)}
+.section-title{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin:26px 0 12px;
+}
+.section-title h2{
+margin:0;
+font-size:19px;
+letter-spacing:-.3px;
+}
+.count{
+color:var(--muted);
+font-size:12px;
+}
+.country-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+}
+.country-card{
+width:100%;
+border:1px solid var(--line);
+background:var(--card);
+color:var(--text);
+border-radius:15px;
+padding:14px;
+text-align:left;
+box-shadow:var(--shadow);
+transition:.15s;
+}
+.country-card:hover{
+transform:translateY(-2px);
+border-color:var(--blue);
+}
+.country-row{
+display:flex;
+align-items:center;
+gap:10px;
+}
+.flag{
+font-size:28px;
+width:35px;
+text-align:center;
+}
+.country-name{
+font-weight:800;
+font-size:14px;
+}
+.country-dial{
+font-size:12px;
+color:var(--muted);
+margin-top:3px;
+}
+.country-numbers{
+font-size:11px;
+color:var(--blue);
+margin-top:8px;
+}
+.number-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:11px;
+}
+.number-card{
+border:1px solid var(--line);
+background:var(--card);
+border-radius:16px;
+padding:15px;
+box-shadow:var(--shadow);
+}
+.number-head{
+display:flex;
+align-items:flex-start;
+justify-content:space-between;
+gap:8px;
+}
+.number{
+font-size:17px;
+font-weight:900;
+letter-spacing:.1px;
+word-break:break-all;
+}
+.status{
+font-size:10px;
+padding:4px 7px;
+border-radius:999px;
+background:var(--soft);
+color:var(--muted);
+white-space:nowrap;
+}
+.status.received{color:var(--green)}
+.number-label{
+font-size:12px;
+color:var(--muted);
+margin-top:7px;
+}
+.number-actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:7px;
+margin-top:13px;
+}
+.primary,.secondary{
+border-radius:10px;
+padding:10px 8px;
+font-weight:800;
+border:1px solid var(--line);
+}
+.primary{
+background:var(--blue);
+border-color:var(--blue);
+color:#fff;
+}
+.primary:hover{background:var(--blue2)}
+.secondary{
+background:var(--soft);
+color:var(--text);
+}
+.empty{
+padding:34px 18px;
+border:1px dashed var(--line);
+border-radius:15px;
+text-align:center;
+color:var(--muted);
+grid-column:1/-1;
+}
+#detail{display:none}
+#detail.show{display:block}
+#home.hide{display:none}
+.detail-top{
+display:flex;
+align-items:center;
+gap:8px;
+margin:7px 0 18px;
+}
+.detail-title{
+flex:1;
+min-width:0;
+font-size:22px;
+font-weight:900;
+word-break:break-all;
+}
+.back{
+border:1px solid var(--line);
+background:var(--card);
+color:var(--text);
+border-radius:10px;
+padding:9px 12px;
+font-weight:750;
+}
+.update{
+border:1px solid var(--line);
+background:var(--card);
+color:var(--text);
+border-radius:10px;
+padding:9px 12px;
+font-weight:800;
+}
+.update.busy{opacity:.6}
+.number-box{
+border:1px solid var(--line);
+background:var(--card);
+border-radius:18px;
+padding:20px;
+box-shadow:var(--shadow);
+}
+.small-label{
+font-size:10px;
+color:var(--muted);
+font-weight:800;
+letter-spacing:.8px;
+}
+.big-number{
+font-size:clamp(25px,6vw,39px);
+font-weight:950;
+margin:7px 0 15px;
+word-break:break-all;
+}
+.copy-big{
+width:100%;
+border:0;
+background:var(--blue);
+color:#fff;
+border-radius:11px;
+padding:12px;
+font-weight:850;
+}
+.copy-big:hover{background:var(--blue2)}
+.notice{
+margin-top:12px;
+padding:12px 14px;
+background:var(--soft);
+border-radius:12px;
+color:var(--muted);
+font-size:12px;
+line-height:1.55;
+}
+.messages{
+display:grid;
+gap:11px;
+}
+.message{
+border:1px solid var(--line);
+background:var(--card);
+border-radius:16px;
+padding:16px;
+box-shadow:var(--shadow);
+}
+.message-top{
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:center;
+}
+.message-title{
+font-size:12px;
+font-weight:800;
+color:var(--muted);
+}
+.copy-message{
+border:1px solid var(--line);
+background:var(--soft);
+color:var(--text);
+border-radius:9px;
+padding:7px 9px;
+font-size:11px;
+font-weight:800;
+}
+.message-text{
+font-size:15px;
+line-height:1.55;
+margin:11px 0;
+white-space:pre-wrap;
+overflow-wrap:anywhere;
+}
+.otp-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+padding:10px 12px;
+background:var(--soft);
+border-radius:11px;
+}
+.otp-code{
+font-size:34px;
+font-weight:950;
+letter-spacing:3px;
+word-break:break-all;
+}
+.copy-otp{
+border:0;
+background:var(--blue);
+color:#fff;
+border-radius:9px;
+padding:8px 10px;
+font-weight:850;
+}
+.message-meta{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:11px;
+font-size:11px;
+color:var(--muted);
+}
+.auto{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin:13px 0;
+padding:11px 13px;
+border:1px solid var(--line);
+background:var(--card);
+border-radius:12px;
+font-size:12px;
+color:var(--muted);
+}
+.auto-left{display:flex;align-items:center;gap:7px}
+.dot{
+width:8px;
+height:8px;
+border-radius:50%;
+background:var(--green);
+box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 12%,transparent);
+}
+footer{
+border-top:1px solid var(--line);
+padding:24px 0;
+text-align:center;
+font-size:11px;
+color:var(--muted);
+}
+@media(max-width:900px){
+.country-grid{grid-template-columns:repeat(3,1fr)}
+.number-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:620px){
+.container{padding:0 13px}
+.nav{height:57px}
+.brand{font-size:18px}
+main{padding-top:10px}
+.hero{padding:22px 0 12px}
+.hero h1{font-size:33px}
+.country-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+.country-card{padding:12px}
+.number-grid{grid-template-columns:1fr}
+.detail-top{flex-wrap:wrap}
+.detail-title{order:3;flex-basis:100%;font-size:21px}
+.update{margin-left:auto}
+.number-actions{grid-template-columns:1fr 1fr}
+}
+
+/* ===== PREMIUM MOTION & MICRO-INTERACTIONS ===== */
+
+html{
+  scroll-behavior:auto;
+}
+
+body{
+  transition:
+    background-color .28s ease,
+    color .28s ease;
+}
+
+header{
+  backdrop-filter:saturate(150%) blur(14px);
+  -webkit-backdrop-filter:saturate(150%) blur(14px);
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  transition:
+    background-color .28s ease,
+    border-color .28s ease,
+    box-shadow .28s ease;
+}
+
+header:hover{
+  box-shadow:0 8px 30px rgba(0,0,0,.045);
+}
+
+.brand{
+  transition:transform .22s ease,opacity .22s ease;
+}
+
+.brand:hover{
+  transform:translateY(-1px);
+  opacity:.88;
+}
+
+.btn,
+.back,
+.update,
+.copy-big,
+.primary,
+.secondary,
+.copy-message,
+.copy-otp{
+  position:relative;
+  overflow:hidden;
+  transform:translateZ(0);
+  transition:
+    transform .18s cubic-bezier(.22,1,.36,1),
+    box-shadow .22s ease,
+    background-color .22s ease,
+    border-color .22s ease,
+    opacity .22s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.btn::after,
+.back::after,
+.update::after,
+.copy-big::after,
+.primary::after,
+.secondary::after,
+.copy-message::after,
+.copy-otp::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255,255,255,.20) 48%,
+    transparent 76%
+  );
+  transform:translateX(-130%);
+  transition:transform .55s ease;
+  pointer-events:none;
+}
+
+.btn:hover::after,
+.back:hover::after,
+.update:hover::after,
+.copy-big:hover::after,
+.primary:hover::after,
+.secondary:hover::after,
+.copy-message:hover::after,
+.copy-otp:hover::after{
+  transform:translateX(130%);
+}
+
+.btn:hover,
+.back:hover,
+.update:hover,
+.copy-big:hover,
+.primary:hover,
+.secondary:hover,
+.copy-message:hover,
+.copy-otp:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(37,99,235,.12);
+}
+
+.btn:active,
+.back:active,
+.update:active,
+.copy-big:active,
+.primary:active,
+.secondary:active,
+.copy-message:active,
+.copy-otp:active{
+  transform:translateY(1px) scale(.975);
+  box-shadow:0 3px 10px rgba(0,0,0,.10);
+}
+
+.search input{
+  transition:
+    border-color .22s ease,
+    box-shadow .25s ease,
+    transform .22s ease,
+    background-color .28s ease;
+}
+
+.search input:focus{
+  transform:translateY(-1px);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb,var(--blue) 12%,transparent),
+    0 10px 28px rgba(0,0,0,.055);
+}
+
+.hero h1{
+  animation:premiumFadeUp .65s cubic-bezier(.22,1,.36,1) both;
+}
+
+.hero p{
+  animation:premiumFadeUp .65s .08s cubic-bezier(.22,1,.36,1) both;
+}
+
+.search{
+  animation:premiumFadeUp .65s .15s cubic-bezier(.22,1,.36,1) both;
+}
+
+.country-card{
+  position:relative;
+  overflow:hidden;
+  transform:translateZ(0);
+  transition:
+    transform .25s cubic-bezier(.22,1,.36,1),
+    border-color .25s ease,
+    box-shadow .25s ease,
+    background-color .28s ease;
+  animation:cardReveal .48s cubic-bezier(.22,1,.36,1) both;
+}
+
+.country-card::before{
+  content:"";
+  position:absolute;
+  width:90px;
+  height:90px;
+  right:-45px;
+  top:-45px;
+  border-radius:50%;
+  background:color-mix(in srgb,var(--blue) 9%,transparent);
+  transition:transform .35s ease;
+}
+
+.country-card:hover{
+  transform:translateY(-5px) scale(1.012);
+  border-color:color-mix(in srgb,var(--blue) 65%,var(--line));
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.075),
+    0 0 0 1px color-mix(in srgb,var(--blue) 7%,transparent);
+}
+
+.country-card:hover::before{
+  transform:scale(2.2);
+}
+
+.flag{
+  transition:transform .3s cubic-bezier(.22,1,.36,1);
+}
+
+.country-card:hover .flag{
+  transform:scale(1.14) rotate(-3deg);
+}
+
+.number-card{
+  position:relative;
+  overflow:hidden;
+  transform:translateZ(0);
+  transition:
+    transform .25s cubic-bezier(.22,1,.36,1),
+    border-color .25s ease,
+    box-shadow .25s ease,
+    background-color .28s ease;
+  animation:cardReveal .5s cubic-bezier(.22,1,.36,1) both;
+}
+
+.number-card:hover{
+  transform:translateY(-4px);
+  border-color:color-mix(in srgb,var(--blue) 42%,var(--line));
+  box-shadow:
+    0 14px 32px rgba(0,0,0,.07),
+    0 0 0 1px color-mix(in srgb,var(--blue) 5%,transparent);
+}
+
+.number{
+  transition:color .2s ease,transform .2s ease;
+}
+
+.number-card:hover .number{
+  color:var(--blue);
+}
+
+.status{
+  transition:
+    transform .2s ease,
+    background-color .2s ease;
+}
+
+.number-card:hover .status{
+  transform:scale(1.04);
+}
+
+.message{
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .24s cubic-bezier(.22,1,.36,1),
+    border-color .24s ease,
+    box-shadow .24s ease;
+  animation:cardReveal .5s cubic-bezier(.22,1,.36,1) both;
+}
+
+.message:hover{
+  transform:translateY(-3px);
+  border-color:color-mix(in srgb,var(--blue) 32%,var(--line));
+  box-shadow:0 13px 32px rgba(0,0,0,.07);
+}
+
+.message::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:var(--blue);
+  opacity:.65;
+  transform:scaleY(0);
+  transform-origin:center;
+  transition:transform .3s ease;
+}
+
+.message:hover::before{
+  transform:scaleY(1);
+}
+
+.otp-row{
+  transition:
+    transform .22s ease,
+    box-shadow .25s ease,
+    background-color .25s ease;
+}
+
+.message:hover .otp-row{
+  transform:translateY(-1px);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--blue) 10%,transparent);
+}
+
+.otp-code{
+  text-shadow:0 0 22px color-mix(in srgb,var(--blue) 18%,transparent);
+  transition:
+    transform .22s ease,
+    color .22s ease,
+    letter-spacing .22s ease;
+}
+
+.message:hover .otp-code{
+  transform:scale(1.025);
+  color:var(--blue);
+}
+
+.big-number{
+  transition:
+    transform .25s ease,
+    color .25s ease;
+}
+
+.number-box:hover .big-number{
+  transform:translateX(2px);
+  color:var(--blue);
+}
+
+.dot{
+  animation:pulseDot 1.8s ease-in-out infinite;
+}
+
+.update.busy{
+  opacity:.6;
+}
+
+.update.busy{
+  animation:spinButton .9s linear infinite;
+}
+
+.auto{
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease;
+}
+
+.auto:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(0,0,0,.05);
+}
+
+.empty{
+  animation:premiumFadeUp .4s ease both;
+}
+
+footer{
+  transition:border-color .28s ease;
+}
+
+#countryPage,
+#detail{
+  animation:pageEnter .42s cubic-bezier(.22,1,.36,1) both;
+}
+
+.copy-big:hover{
+  box-shadow:0 10px 28px rgba(37,99,235,.20);
+}
+
+@keyframes premiumFadeUp{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes cardReveal{
+  from{
+    opacity:0;
+    transform:translateY(12px) scale(.985);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+@keyframes pageEnter{
+  from{
+    opacity:0;
+    transform:translateX(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+@keyframes pulseDot{
+  0%,100%{
+    box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 10%,transparent);
+  }
+  50%{
+    box-shadow:0 0 0 7px color-mix(in srgb,var(--green) 3%,transparent);
+  }
+}
+
+@keyframes spinButton{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+@media(max-width:620px){
+  .country-card:hover{
+    transform:translateY(-3px);
+  }
+
+  .number-card:hover,
+  .message:hover{
+    transform:translateY(-2px);
+  }
+
+  .btn:hover,
+  .back:hover,
+  .update:hover,
+  .copy-big:hover,
+  .primary:hover,
+  .secondary:hover,
+  .copy-message:hover,
+  .copy-otp:hover{
+    transform:translateY(-1px);
+  }
+
+  .otp-code{
+    font-size:32px;
+    letter-spacing:2.5px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+    transition-duration:.01ms !important;
+  }
+}
+
+
+/* ===== BNB OTP WEB — FULL PREMIUM EXPERIENCE ===== */
+
+body{
+  overflow-x:hidden;
+}
+
+button{
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+.welcome-screen{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(245,158,11,.16),transparent 32%),
+    radial-gradient(circle at 80% 75%,rgba(37,99,235,.15),transparent 35%),
+    var(--bg);
+  transition:
+    opacity .65s cubic-bezier(.22,1,.36,1),
+    visibility .65s;
+}
+
+.welcome-screen.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.welcome-glow{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(10px);
+  pointer-events:none;
+  animation:welcomeFloat 6s ease-in-out infinite;
+}
+
+.welcome-glow-a{
+  width:280px;
+  height:280px;
+  background:rgba(245,158,11,.10);
+  top:-90px;
+  left:-80px;
+}
+
+.welcome-glow-b{
+  width:340px;
+  height:340px;
+  background:rgba(37,99,235,.08);
+  right:-110px;
+  bottom:-120px;
+  animation-delay:-3s;
+}
+
+.welcome-card{
+  position:relative;
+  width:min(560px,100%);
+  padding:46px 34px 34px;
+  text-align:center;
+  border:1px solid color-mix(in srgb,var(--line) 85%,transparent);
+  border-radius:30px;
+  background:color-mix(in srgb,var(--card) 91%,transparent);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.12),
+    0 0 0 1px rgba(255,255,255,.04);
+  animation:welcomeCardIn .8s cubic-bezier(.22,1,.36,1) both;
+}
+
+.welcome-logo{
+  font-size:21px;
+  font-weight:950;
+  letter-spacing:-.7px;
+  margin-bottom:18px;
+}
+
+.welcome-logo span{
+  color:#d99a08;
+}
+
+.welcome-badge{
+  display:inline-flex;
+  padding:7px 11px;
+  border:1px solid rgba(217,154,8,.28);
+  border-radius:999px;
+  background:rgba(217,154,8,.08);
+  color:#b77900;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  animation:badgePulse 2.4s ease-in-out infinite;
+}
+
+[data-theme="dark"] .welcome-badge{
+  color:#f5c451;
+}
+
+.welcome-card h1{
+  margin:23px 0 13px;
+  font-size:clamp(42px,9vw,68px);
+  line-height:.94;
+  letter-spacing:-3.5px;
+  font-weight:950;
+}
+
+.welcome-card h1 span{
+  background:linear-gradient(
+    100deg,
+    #a96d00,
+    #f5c451,
+    #c98a08,
+    #ffe39a,
+    #a96d00
+  );
+  background-size:250% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:goldText 3.2s linear infinite;
+}
+
+.welcome-card p{
+  max-width:430px;
+  margin:0 auto 27px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.get-started{
+  position:relative;
+  width:min(330px,100%);
+  height:58px;
+  overflow:hidden;
+  border:1px solid #d39a12;
+  border-radius:16px;
+  background:
+    linear-gradient(
+      105deg,
+      #9b6500,
+      #d49a0b 25%,
+      #ffe08a 50%,
+      #d49a0b 75%,
+      #9b6500
+    );
+  background-size:220% auto;
+  color:#fff;
+  font-weight:950;
+  font-size:15px;
+  letter-spacing:.2px;
+  box-shadow:
+    0 12px 35px rgba(217,154,8,.27),
+    inset 0 1px rgba(255,255,255,.45);
+  animation:
+    goldButton 3s linear infinite,
+    getStartedFloat 2.8s ease-in-out infinite;
+  transition:
+    transform .22s cubic-bezier(.22,1,.36,1),
+    box-shadow .22s ease;
+}
+
+.get-started span:not(.get-started-shine){
+  position:relative;
+  z-index:2;
+}
+
+.get-started b{
+  position:absolute;
+  right:20px;
+  z-index:2;
+  font-size:22px;
+  transition:transform .25s ease;
+}
+
+.get-started-shine{
+  position:absolute;
+  inset:-50%;
+  background:linear-gradient(
+    110deg,
+    transparent 42%,
+    rgba(255,255,255,.65) 50%,
+    transparent 58%
+  );
+  transform:translateX(-70%) rotate(10deg);
+  animation:getStartedShine 2.7s ease-in-out infinite;
+}
+
+.get-started:hover{
+  transform:translateY(-4px) scale(1.015);
+  box-shadow:
+    0 18px 45px rgba(217,154,8,.38),
+    inset 0 1px rgba(255,255,255,.55);
+}
+
+.get-started:hover b{
+  transform:translateX(5px);
+}
+
+.get-started:active{
+  transform:translateY(1px) scale(.975);
+}
+
+.welcome-note{
+  margin-top:18px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.hero h1,
+.hero p,
+.search,
+.section-title{
+  animation:premiumUp .65s cubic-bezier(.22,1,.36,1) both;
+}
+
+.hero p{animation-delay:.06s}
+.search{animation-delay:.12s}
+.section-title{animation-delay:.18s}
+
+.country-card,
+.number-card,
+.message{
+  animation:premiumCard .5s cubic-bezier(.22,1,.36,1) both;
+}
+
+.country-card:nth-child(2),
+.number-card:nth-child(2),
+.message:nth-child(2){animation-delay:.04s}
+.country-card:nth-child(3),
+.number-card:nth-child(3),
+.message:nth-child(3){animation-delay:.08s}
+.country-card:nth-child(4),
+.number-card:nth-child(4),
+.message:nth-child(4){animation-delay:.12s}
+.country-card:nth-child(5),
+.number-card:nth-child(5),
+.message:nth-child(5){animation-delay:.16s}
+.country-card:nth-child(6),
+.number-card:nth-child(6),
+.message:nth-child(6){animation-delay:.20s}
+
+.country-card,
+.number-card,
+.message,
+.number-box,
+.auto{
+  will-change:transform;
+}
+
+.country-card{
+  transition:
+    transform .28s cubic-bezier(.22,1,.36,1),
+    box-shadow .28s ease,
+    border-color .25s ease;
+}
+
+.country-card:hover{
+  transform:translateY(-6px) scale(1.012);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.09),
+    0 0 0 1px color-mix(in srgb,var(--blue) 10%,transparent);
+}
+
+.number-card{
+  transition:
+    transform .28s cubic-bezier(.22,1,.36,1),
+    box-shadow .28s ease,
+    border-color .25s ease;
+}
+
+.number-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 17px 38px rgba(0,0,0,.09);
+}
+
+.message{
+  transition:
+    transform .28s cubic-bezier(.22,1,.36,1),
+    box-shadow .28s ease,
+    border-color .25s ease;
+}
+
+.message:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 36px rgba(0,0,0,.085);
+}
+
+.btn,
+.back,
+.update,
+.primary,
+.secondary,
+.copy-big,
+.copy-message,
+.copy-otp{
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .2s cubic-bezier(.22,1,.36,1),
+    box-shadow .2s ease,
+    background-color .2s ease,
+    border-color .2s ease;
+}
+
+.btn::after,
+.back::after,
+.update::after,
+.primary::after,
+.secondary::after,
+.copy-big::after,
+.copy-message::after,
+.copy-otp::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255,255,255,.24) 50%,
+    transparent 70%
+  );
+  transform:translateX(-130%);
+  transition:transform .55s ease;
+  pointer-events:none;
+}
+
+.btn:hover::after,
+.back:hover::after,
+.update:hover::after,
+.primary:hover::after,
+.secondary:hover::after,
+.copy-big:hover::after,
+.copy-message:hover::after,
+.copy-otp:hover::after{
+  transform:translateX(130%);
+}
+
+.btn:hover,
+.back:hover,
+.update:hover,
+.primary:hover,
+.secondary:hover,
+.copy-big:hover,
+.copy-message:hover,
+.copy-otp:hover{
+  transform:translateY(-2px);
+  box-shadow:0 9px 24px rgba(37,99,235,.14);
+}
+
+.btn:active,
+.back:active,
+.update:active,
+.primary:active,
+.secondary:active,
+.copy-big:active,
+.copy-message:active,
+.copy-otp:active{
+  transform:translateY(1px) scale(.97);
+}
+
+.copy-big{
+  box-shadow:0 9px 25px rgba(37,99,235,.17);
+}
+
+.otp-code{
+  transition:
+    transform .22s ease,
+    color .22s ease;
+  text-shadow:
+    0 0 24px color-mix(in srgb,var(--blue) 17%,transparent);
+}
+
+.message:hover .otp-code{
+  transform:scale(1.035);
+  color:var(--blue);
+}
+
+.update.busy{
+  animation:updateSpin .75s linear infinite;
+}
+
+.dot{
+  animation:onlinePulse 1.8s ease-in-out infinite;
+}
+
+#countryPage,
+#detail{
+  animation:pageSlide .45s cubic-bezier(.22,1,.36,1) both;
+}
+
+.search input{
+  transition:
+    transform .22s ease,
+    box-shadow .25s ease,
+    border-color .22s ease;
+}
+
+.search input:focus{
+  transform:translateY(-1px);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb,var(--blue) 11%,transparent),
+    0 12px 30px rgba(0,0,0,.055);
+}
+
+@keyframes welcomeCardIn{
+  from{opacity:0;transform:translateY(28px) scale(.94)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@keyframes welcomeFloat{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(18px,-14px,0) scale(1.08)}
+}
+
+@keyframes badgePulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(217,154,8,0)}
+  50%{box-shadow:0 0 0 7px rgba(217,154,8,.05)}
+}
+
+@keyframes goldText{
+  to{background-position:250% center}
+}
+
+@keyframes goldButton{
+  to{background-position:220% center}
+}
+
+@keyframes getStartedFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-2px)}
+}
+
+@keyframes getStartedShine{
+  0%,45%{transform:translateX(-80%) rotate(10deg)}
+  70%,100%{transform:translateX(80%) rotate(10deg)}
+}
+
+@keyframes premiumUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes premiumCard{
+  from{opacity:0;transform:translateY(14px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@keyframes pageSlide{
+  from{opacity:0;transform:translateX(12px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+@keyframes onlinePulse{
+  0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 9%,transparent)}
+  50%{box-shadow:0 0 0 8px color-mix(in srgb,var(--green) 2%,transparent)}
+}
+
+@keyframes updateSpin{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
+}
+
+@media(max-width:620px){
+  .welcome-card{
+    padding:38px 22px 27px;
+    border-radius:25px;
+  }
+
+  .welcome-card h1{
+    font-size:43px;
+    letter-spacing:-2.5px;
+  }
+
+  .get-started{
+    height:56px;
+  }
+
+  .country-card:hover{
+    transform:translateY(-3px);
+  }
+
+  .number-card:hover,
+  .message:hover{
+    transform:translateY(-3px);
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+}
+
+</style>
+
+<style id="final-footer-fix">
+footer{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  z-index:2!important;
+  margin-top:40px!important;
+  padding:28px 16px 34px!important;
+  text-align:center!important;
+}
+#home{
+  min-height:calc(100vh - 120px);
+}
+</style>
+</head>
+
+<body>
+
+<div id="welcomeScreen" class="welcome-screen">
+  <div class="welcome-glow welcome-glow-a"></div>
+  <div class="welcome-glow welcome-glow-b"></div>
+
+  <div class="welcome-card">
+    <div class="welcome-logo">
+      <span>BNB</span> OTP Web
+    </div>
+
+    <div class="welcome-badge">✦ CONTROLLED TESTING PLATFORM</div>
+
+    <h1>Receive SMS<br><span>Online</span></h1>
+
+    <p>
+      Choose a country, open a testing number and view its
+      controlled public inbox in real time.
+    </p>
+
+    <button class="get-started" onclick="enterWebsite()">
+      <span class="get-started-shine"></span>
+      <span>Get Started</span>
+      <b>→</b>
+    </button>
+
+    <div class="welcome-note">
+      🔒 Controlled testing environment · No signup required
+    </div>
+  </div>
+</div>
+
+
+<header>
+<div class="container nav">
+<a class="brand" href="#" onclick="goHome();return false">BNB <span>OTP Web</span></a>
+<div class="nav-actions">
+<button class="btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+</div>
+</div>
+</header>
+
+<main class="container">
+
+<section id="home">
+
+<div class="hero">
+<h1>Receive SMS Online</h1>
+<p>
+Choose a country, select an available testing number and open its
+public inbox. Messages update automatically while the page is open.
+</p>
+
+<div class="search">
+<input id="search" autocomplete="off"
+placeholder="Search country, code or dial code..."
+oninput="renderCountries()">
+</div>
+</div>
+
+<div class="section-title">
+<h2>Countries</h2>
+<span id="countryCount" class="count"></span>
+</div>
+
+<div id="countries" class="country-grid"></div>
+
+<div class="section-title">
+<h2 id="numbersHeading">Available Numbers</h2>
+<span id="numberCount" class="count"></span>
+</div>
+
+<div id="numbers" class="number-grid"></div>
+
+</section>
+
+<section id="countryPage" style="display:none">
+  <div class="detail-top">
+    <button class="back" onclick="goBack()">← Back</button>
+    <div id="countryPageTitle" class="detail-title"></div>
+    <button class="update" onclick="refreshCountry()">↻ Update</button>
+  </div>
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">COUNTRY</div>
+      <h2 id="countryPageHeading">Available Numbers</h2>
+    </div>
+    <div id="countryPageCount" class="muted"></div>
+  </div>
+  <div id="countryNumbers" class="number-grid"></div>
+</section>
+
+<section id="detail">
+
+<div class="detail-top">
+<button class="back" onclick="goBack()">← Back</button>
+<div id="detailTitle" class="detail-title"></div>
+<button class="update" id="updateBtn" onclick="manualUpdate()">↻ Update</button>
+</div>
+
+<div class="number-box">
+<div class="small-label">PHONE NUMBER</div>
+<div id="bigNumber" class="big-number"></div>
+
+<button class="copy-big" onclick="copyNumber()">
+Copy Number
+</button>
+
+<div class="notice">
+This is a public controlled-testing inbox. Do not use it for
+private, sensitive or important accounts.
+</div>
+</div>
+
+<div class="auto">
+<div class="auto-left">
+<span class="dot"></span>
+<span>Automatic updates enabled</span>
+</div>
+<span id="lastUpdate">Updating...</span>
+</div>
+
+<div class="section-title">
+<h2>Latest Messages</h2>
+<span id="messageCount" class="count"></span>
+</div>
+
+<div id="messages" class="messages"></div>
+
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+BNB OTP Web · Controlled testing environment
+</div>
+</footer>
+
+<script>
+
+function enterWebsite(){
+  const screen=$("welcomeScreen");
+  if(!screen)return;
+
+  screen.classList.add("hide");
+  localStorage.setItem("bnb_welcome_seen","1");
+
+  setTimeout(()=>{
+    screen.style.display="none";
+    window.scrollTo(0,0);
+  },700);
+}
+
+function restoreWelcome(){
+  const screen=$("welcomeScreen");
+  if(!screen)return;
+
+  if(localStorage.getItem("bnb_welcome_seen")==="1"){
+    screen.style.display="none";
+  }else{
+    screen.style.display="flex";
+  }
+}
+
+
+const API="https://bnb-otp-web.hafejnayem1743.workers.dev/api";
+
+let countries=[];
+let numbers=[];
+let selectedCountry=null;
+let activeNumber=null;
+let refreshTimer=null;
+
+const $=id=>document.getElementById(id);
+
+async function api(path){
+const response=await fetch(API+path,{
+cache:"no-store",
+headers:{Accept:"application/json"}
+});
+if(!response.ok)throw new Error("HTTP "+response.status);
+return response.json();
+}
+
+function esc(value){
+return String(value??"").replace(/[&<>"']/g,char=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[char]));
+}
+
+function countryFlag(country){
+if(country.flag)return country.flag;
+
+const code=String(country.code||"").toUpperCase();
+
+if(code.length===2){
+return String.fromCodePoint(
+...code.split("").map(c=>127397+c.charCodeAt(0))
+);
+}
+
+return "🌐";
+}
+
+function copyText(text,button){
+if(navigator.clipboard&&window.isSecureContext){
+navigator.clipboard.writeText(String(text)).then(()=>{
+copied(button);
+});
+return;
+}
+
+const area=document.createElement("textarea");
+area.value=String(text);
+area.style.position="fixed";
+area.style.opacity="0";
+document.body.appendChild(area);
+area.focus();
+area.select();
+
+try{
+document.execCommand("copy");
+copied(button);
+}catch(e){}
+
+area.remove();
+}
+
+function copied(button){
+if(!button)return;
+const old=button.textContent;
+button.textContent="Copied ✓";
+setTimeout(()=>button.textContent=old,1300);
+}
+
+function copyNumber(){
+if(activeNumber)copyText(activeNumber.number,$(".copy-big"));
+}
+
+function copyOtp(code,button){
+copyText(code,button);
+}
+
+function copyMessage(message,button){
+copyText(message,button);
+}
+
+function formatTime(value){
+    if(!value)return "Unknown time";
+    const n=Number(value);
+    const date=new Date(Number.isFinite(n)&&n<100000000000?n*1000:n);
+    if(isNaN(date.getTime()))return String(value);
+
+    const seconds=Math.max(0,Math.floor((Date.now()-date.getTime())/1000));
+    if(seconds<10)return "just now";
+    if(seconds<60)return seconds+" seconds ago";
+
+    const minutes=Math.floor(seconds/60);
+    if(minutes<60)return minutes+" minute"+(minutes===1?"":"s")+" ago";
+
+    const hours=Math.floor(minutes/60);
+    if(hours<24)return hours+" hour"+(hours===1?"":"s")+" ago";
+
+    const days=Math.floor(hours/24);
+    if(days<7)return days+" day"+(days===1?"":"s")+" ago";
+
+    return date.toLocaleString();
+  }
+
+async function loadData(){
+try{
+const result=await Promise.all([
+api("/countries"),
+api("/numbers")
+]);
+
+countries=result[0].countries||result[0]||[];
+numbers=result[1].numbers||result[1]||[];
+
+renderCountries();
+renderNumbers();
+}catch(error){
+$("countries").innerHTML=
+'<div class="empty">Countries could not be loaded.</div>';
+
+$("numbers").innerHTML=
+'<div class="empty">Numbers could not be loaded.</div>';
+}
+}
+
+function numberCountryId(number){
+if(number.country_id!==null&&number.country_id!==undefined){
+return Number(number.country_id);
+}
+
+const raw=String(number.number||"").replace(/\D/g,"");
+
+for(const country of countries){
+const dial=String(country.dial_code||"").replace(/\D/g,"");
+if(dial&&raw.startsWith(dial))return Number(country.id);
+}
+
+return null;
+}
+
+function numbersForCountry(id){
+return numbers.filter(n=>numberCountryId(n)===Number(id));
+}
+
+function renderCountries(){
+const query=$("search").value.trim().toLowerCase();
+
+const list=countries.filter(c=>
+!query||
+String(c.name||"").toLowerCase().includes(query)||
+String(c.code||"").toLowerCase().includes(query)||
+String(c.dial_code||"").toLowerCase().includes(query)
+);
+
+$("countryCount").textContent=list.length+" countries";
+
+$("countries").innerHTML=list.map(c=>{
+const total=numbersForCountry(c.id).length;
+
+return `
+<button class="country-card" onclick="selectCountry(${Number(c.id)})">
+<div class="country-row">
+<div class="flag">${esc(countryFlag(c))}</div>
+<div>
+<div class="country-name">${esc(c.name)}</div>
+<div class="country-dial">${esc(c.dial_code||"")}</div>
+</div>
+</div>
+<div class="country-numbers">
+${total} ${total===1?"number":"numbers"} available
+</div>
+</button>`;
+}).join("")||
+'<div class="empty">No countries found.</div>';
+}
+
+function renderNumbers(){
+let list=numbers;
+
+if(selectedCountry!==null){
+list=numbersForCountry(selectedCountry);
+}
+
+$("numbersHeading").textContent=
+selectedCountry===null?"Available Numbers":"Numbers in Selected Country";
+
+$("numberCount").textContent=list.length+" numbers";
+
+$("numbers").innerHTML=list.map(n=>`
+<article class="number-card">
+<div class="number-head">
+<div class="number">${esc(n.number)}</div>
+<span class="status ${n.status==="received"?"received":""}">
+${esc(n.status||"waiting")}
+</span>
+</div>
+
+<div class="number-label">
+${esc(n.label||"Public testing number")}
+</div>
+
+<div class="number-actions">
+<button class="secondary"
+onclick="copyText('${esc(String(n.number).replace(/'/g,"&#039;"))}',this)">
+Copy Number
+</button>
+
+<button class="primary"
+onclick="openNumber(${Number(n.id)})">
+Open Inbox
+</button>
+</div>
+</article>
+`).join("")||
+'<div class="empty">No numbers available.</div>';
+}
+
+function selectCountry(id,push=true){
+    selectedCountry=Number(id);
+    renderCountryPage();
+    $("home").classList.add("hide");
+    $("countryPage").style.display="block";
+    $("detail").classList.remove("show");
+
+    if(push){
+      history.pushState({view:"country",id:selectedCountry},"","#country-"+selectedCountry);
+    }
+    window.scrollTo(0,0);
+  }
+
+  function renderCountryPage(){
+    const country=countries.find(c=>Number(c.id)===Number(selectedCountry));
+    if(!country){ goHome(); return; }
+
+    const list=numbersForCountry(selectedCountry);
+
+    $("countryPageTitle").textContent=countryFlag(country)+" "+(country.name||"Country");
+    $("countryPageHeading").textContent=(country.name||"Country")+" Numbers";
+    $("countryPageCount").textContent=list.length+" "+(list.length===1?"number":"numbers");
+
+    $("countryNumbers").innerHTML=list.map(n=>`
+      <article class="number-card">
+        <div class="number-head">
+          <div class="number">${esc(n.number)}</div>
+          <span class="status ${n.status==="received"?"received":""}">${esc(n.status||"waiting")}</span>
+        </div>
+        <div class="number-label">${esc(n.label||"Public testing number")}</div>
+        <div class="number-actions">
+          <button class="secondary" onclick="copyText('${esc(String(n.number).replace(/'/g,"&#039;"))}',this)">Copy Number</button>
+          <button class="primary" onclick="openNumber(${Number(n.id)})">Open Inbox</button>
+        </div>
+      </article>
+    `).join("") || '<div class="empty">No numbers available for this country.</div>';
+  }
+
+  function refreshCountry(){
+    renderCountryPage();
+  }
+
+async function openNumber(id,push=true){
+    try{
+      const response=await api("/numbers/"+id);
+      activeNumber=response.number||response;
+
+      $("home").classList.add("hide");
+      $("countryPage").style.display="none";
+      $("detail").classList.add("show");
+
+      $("detailTitle").textContent=activeNumber.number||"";
+      $("bigNumber").textContent=activeNumber.number||"";
+
+      if(push){
+        history.pushState({view:"number",id:Number(id)},"","#number-"+id);
+      }
+
+      await loadInbox();
+      startAutoRefresh();
+      window.scrollTo(0,0);
+    }catch(error){
+      alert("Unable to open inbox.");
+    }
+  }
+
+async function loadInbox(){
+if(!activeNumber)return;
+
+try{
+const response=await api(
+"/numbers/"+activeNumber.id+"/otps"
+);
+
+const list=response.otps||response||[];
+
+$("messageCount").textContent=
+list.length+" "+(list.length===1?"message":"messages");
+
+$("messages").innerHTML=list.length?
+list.map(message=>{
+const code=String(message.code||"").trim();
+const body=String(
+message.message||"Controlled test OTP message"
+);
+
+return `
+<article class="message">
+
+<div class="message-top">
+<div class="message-title">Message</div>
+
+<button class="copy-message"
+onclick='copyMessage(${JSON.stringify(body)},this)'>
+Copy Message
+</button>
+</div>
+
+<div class="message-text">${esc(body)}</div>
+
+${code?`
+<div class="otp-row">
+<div class="otp-code">${esc(code)}</div>
+<button class="copy-otp"
+onclick='copyOtp(${JSON.stringify(code)},this)'>
+Copy OTP
+</button>
+</div>
+`:""}
+
+<div class="message-meta">
+<span>Sender: ${esc(message.source||"CONTROLLED_TEST")}</span>
+<span>Time: ${esc(formatTime(message.created_at))}</span>
+</div>
+
+</article>`;
+}).join("")
+:
+'<div class="empty">No messages yet.</div>';
+
+$("lastUpdate").textContent=
+"Updated "+new Date().toLocaleTimeString();
+
+}catch(error){
+$("messages").innerHTML=
+'<div class="empty">Unable to update messages.</div>';
+}
+}
+
+function startAutoRefresh(){
+stopAutoRefresh();
+refreshTimer=setInterval(()=>{
+if(activeNumber)loadInbox();
+},10000);
+}
+
+function stopAutoRefresh(){
+if(refreshTimer){
+clearInterval(refreshTimer);
+refreshTimer=null;
+}
+}
+
+async function manualUpdate(){
+const button=$("updateBtn");
+button.disabled=true;
+button.classList.add("busy");
+button.textContent="↻ Updating...";
+
+await loadInbox();
+
+button.textContent="✓ Updated";
+
+setTimeout(()=>{
+button.disabled=false;
+button.classList.remove("busy");
+button.textContent="↻ Update";
+},900);
+}
+
+function goHome(){
+    stopAutoRefresh();
+    activeNumber=null;
+    selectedCountry=null;
+
+    $("detail").classList.remove("show");
+    $("countryPage").style.display="none";
+    $("home").classList.remove("hide");
+
+    history.pushState({view:"home"},"","#");
+    renderCountries();
+    renderNumbers();
+    window.scrollTo(0,0);
+  }
+
+  function goBack(){
+    stopAutoRefresh();
+
+    if(activeNumber){
+      activeNumber=null;
+      if(selectedCountry!==null){
+        $("detail").classList.remove("show");
+        $("home").classList.add("hide");
+        $("countryPage").style.display="block";
+        renderCountryPage();
+        history.pushState({view:"country",id:selectedCountry},"","#country-"+selectedCountry);
+      }else{
+        goHome();
+      }
+      window.scrollTo(0,0);
+      return;
+    }
+
+    if(selectedCountry!==null){
+      goHome();
+      return;
+    }
+
+    goHome();
+  }
+
+function toggleTheme(){
+const dark=document.documentElement.dataset.theme==="dark";
+
+document.documentElement.dataset.theme=
+dark?"":"dark";
+
+localStorage.setItem(
+"bnb_theme",
+dark?"light":"dark"
+);
+
+$("themeBtn").textContent=
+dark?"🌙":"☀️";
+}
+
+(function(){
+if(localStorage.getItem("bnb_theme")==="dark"){
+document.documentElement.dataset.theme="dark";
+$("themeBtn").textContent="☀️";
+}
+})();
+
+  async function restoreRoute(){
+    const hash=window.location.hash||"";
+
+    if(hash.startsWith("#number-")){
+      const id=Number(hash.slice(8));
+      if(Number.isFinite(id)&&id>0){
+        await openNumber(id,false);
+        return;
+      }
+    }
+
+    if(hash.startsWith("#country-")){
+      const id=Number(hash.slice(9));
+      if(Number.isFinite(id)&&id>0){
+        selectCountry(id,false);
+        return;
+      }
+    }
+
+    stopAutoRefresh();
+    activeNumber=null;
+    selectedCountry=null;
+    $("detail").classList.remove("show");
+    $("countryPage").style.display="none";
+    $("home").classList.remove("hide");
+    renderCountries();
+    renderNumbers();
+    window.scrollTo(0,0);
+  }
+
+  window.addEventListener("popstate",restoreRoute);
+  restoreWelcome();
+cleanHomeNumbers();
+ensureFooterVisible();
+  loadData().then(restoreRoute);
+
+
+
+function cleanHomeNumbers(){
+  const home=document.getElementById("home");
+  if(!home) return;
+
+  const heads=home.querySelectorAll("h2");
+  heads.forEach(function(h){
+    if((h.textContent||"").trim().toLowerCase()==="available numbers"){
+      let block=h.closest("section");
+      if(!block) block=h.parentElement?.parentElement;
+      if(block) block.remove();
+    }
+  });
+}
+
+function ensureFooterVisible(){
+  const f=document.querySelector("footer");
+  if(f){
+    f.style.display="block";
+    f.style.visibility="visible";
+    f.style.opacity="1";
+    f.style.position="relative";
+    f.style.zIndex="2";
+  }
+}
+
+</script>
+
+</body>
+</html>
