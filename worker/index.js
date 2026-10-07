@@ -232,6 +232,45 @@ async function adminApi(request, env, path) {
     return json({ok:true});
   }
 
+  if (path === "/api/admin/numbers/delete" && request.method==="POST") {
+    const d=await request.json();
+    const raw=Array.isArray(d.ids)?d.ids:[];
+    const ids=[...new Set(
+      raw.map(x=>Number(x)).filter(x=>Number.isInteger(x)&&x>0)
+    )];
+
+    if(!ids.length) return json({error:"No numbers selected"},400);
+    if(ids.length>1000) return json({error:"Maximum 1000 numbers per delete"},400);
+
+    const placeholders=ids.map(()=>"?").join(",");
+
+    const found=await env.DB.prepare(
+      `SELECT id FROM numbers WHERE id IN (${placeholders})`
+    ).bind(...ids).all();
+
+    const valid=[...(found.results||[])].map(x=>Number(x.id));
+
+    if(!valid.length)
+      return json({ok:true,requested:ids.length,deleted:0});
+
+    const vp=valid.map(()=>"?").join(",");
+
+    await env.DB.batch([
+      env.DB.prepare(
+        `DELETE FROM otps WHERE number_id IN (${vp})`
+      ).bind(...valid),
+      env.DB.prepare(
+        `DELETE FROM numbers WHERE id IN (${vp})`
+      ).bind(...valid)
+    ]);
+
+    return json({
+      ok:true,
+      requested:ids.length,
+      deleted:valid.length
+    });
+  }
+
   if (path === "/api/admin/numbers/save" && request.method==="POST") {
     const b=await request.json();
     const id=Number(b.id||0);

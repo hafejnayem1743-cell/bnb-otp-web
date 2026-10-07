@@ -172,9 +172,17 @@ async function toggle(id, currentEnabled){
 
 function numbers(){
  panel.innerHTML=`
- <div class="section-title"><div><div class="eyebrow">MANAGEMENT</div><h2>Testing Numbers</h2></div>
- <button class="primary" onclick="addNumber()">＋ Add Numbers</button></div>
- <div class="toolbar"><input id="nsearch" placeholder="Search numbers..." oninput="filterNumbers()"><select id="ncountry" onchange="filterNumbers()"><option value="">All countries</option>${S.c.map(c=>`<option value="${c.id}">${esc(c.flag)} ${esc(c.name)}</option>`).join("")}</select></div>
+ <div class="section-title">
+  <div><div class="eyebrow">MANAGEMENT</div><h2>Testing Numbers</h2></div>
+  <button class="primary" onclick="addNumber()">＋ Add Numbers</button>
+ </div>
+ <div class="toolbar">
+  <input id="nsearch" placeholder="Search numbers..." oninput="filterNumbers()">
+  <select id="ncountry" onchange="filterNumbers()">
+   <option value="">All countries</option>
+   ${S.c.map(c=>`<option value="${c.id}">${esc(c.flag)} ${esc(c.name)}</option>`).join("")}
+  </select>
+ </div>
  <div id="numberTable"></div>`;
  renderNumberTable(S.n);
 }
@@ -188,18 +196,133 @@ function filterNumbers(){
  ));
 }
 
+const selectedNumbers=new Set();
+
 function renderNumberTable(list){
+ const ids=list.map(n=>Number(n.id));
+ const selectedVisible=ids.filter(id=>selectedNumbers.has(id)).length;
+ const allVisible=ids.length>0 && selectedVisible===ids.length;
+
  numberTable.innerHTML=`
+ <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
+  <button class="secondary" onclick='toggleSelectVisible(${JSON.stringify(ids)})'>
+   ${allVisible?"☐ Clear Visible":"☑ Select Visible"}
+  </button>
+  <button class="primary" onclick="deleteSelectedNumbers()" ${selectedNumbers.size?"":"disabled"}>
+   🗑 Delete Selected (${selectedNumbers.size})
+  </button>
+  <span class="muted">${selectedNumbers.size} selected · Maximum 1000 per delete</span>
+ </div>
+
  <div class="table-wrap"><table>
- <thead><tr><th>Number</th><th>Country</th><th>Status</th><th>Label</th></tr></thead>
- <tbody>${list.map(n=>`
- <tr>
-  <td><b>${esc(n.number)}</b></td>
-  <td>${esc(n.country_flag||"🌍")} ${esc(n.country_name||"-")}</td>
-  <td><span class="pill">${esc(n.status)}</span></td>
-  <td>${esc(n.label||"-")}</td>
- </tr>`).join("")||'<tr><td colspan="4" class="empty">No numbers found</td></tr>'}</tbody>
+ <thead><tr>
+  <th style="width:45px">
+   <input type="checkbox" ${allVisible?"checked":""}
+    onchange='toggleSelectVisible(${JSON.stringify(ids)})'>
+  </th>
+  <th>Number</th>
+  <th>Country</th>
+  <th>Status</th>
+  <th>Label</th>
+  <th>Action</th>
+ </tr></thead>
+
+ <tbody>
+ ${list.map(n=>`
+  <tr>
+   <td>
+    <input type="checkbox"
+     ${selectedNumbers.has(Number(n.id))?"checked":""}
+     onchange="toggleNumberSelection(${Number(n.id)},this.checked)">
+   </td>
+   <td><b>${esc(n.number)}</b></td>
+   <td>${esc(n.country_flag||"🌍")} ${esc(n.country_name||"-")}</td>
+   <td><span class="pill">${esc(n.status)}</span></td>
+   <td>${esc(n.label||"-")}</td>
+   <td>
+    <button class="small" onclick="deleteOneNumber(${Number(n.id)})">
+     🗑 Delete
+    </button>
+   </td>
+  </tr>`).join("") ||
+  '<tr><td colspan="6" class="empty">No numbers found</td></tr>'}
+ </tbody>
  </table></div>`;
+}
+
+function toggleNumberSelection(id,checked){
+ id=Number(id);
+ if(checked) selectedNumbers.add(id);
+ else selectedNumbers.delete(id);
+ filterNumbers();
+}
+
+function toggleSelectVisible(ids){
+ const nums=ids.map(Number);
+ const allSelected=nums.length>0 && nums.every(id=>selectedNumbers.has(id));
+
+ nums.forEach(id=>{
+  if(allSelected) selectedNumbers.delete(id);
+  else selectedNumbers.add(id);
+ });
+
+ filterNumbers();
+}
+
+async function deleteOneNumber(id){
+ id=Number(id);
+ const n=S.n.find(x=>Number(x.id)===id);
+ const label=n?.number||("ID "+id);
+
+ if(!confirm(
+   `Delete number ${label}?\n\n`+
+   `Its OTP records will also be deleted.`
+ )) return;
+
+ await deleteNumbers([id]);
+}
+
+async function deleteSelectedNumbers(){
+ const ids=[...selectedNumbers].map(Number).filter(Boolean);
+
+ if(!ids.length){
+  alert("Select at least one number.");
+  return;
+ }
+
+ if(ids.length>1000){
+  alert("Maximum 1000 numbers can be deleted at once.");
+  return;
+ }
+
+ if(!confirm(
+   `Delete ${ids.length} selected number${ids.length===1?"":"s"}?\n\n`+
+   `Their OTP records will also be deleted.\n\n`+
+   `This action cannot be undone.`
+ )) return;
+
+ await deleteNumbers(ids);
+}
+
+async function deleteNumbers(ids){
+ try{
+  const r=await api("/api/admin/numbers/delete",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({ids})
+  });
+
+  ids.forEach(id=>selectedNumbers.delete(Number(id)));
+
+  alert(
+   `✓ Deleted ${r.deleted||0} number${Number(r.deleted||0)===1?"":"s"}.`
+  );
+
+  await load();
+  numbers();
+ }catch(x){
+  alert(x.message||"Number deletion failed");
+ }
 }
 
 function addNumber(){
@@ -321,7 +444,7 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:#f
 .welcome-panel{margin-top:20px;background:linear-gradient(135deg,#111827,#1e3a8a);color:#fff;border-radius:22px;padding:30px;display:flex;justify-content:space-between;align-items:center;gap:25px}.welcome-panel h2{margin:5px 0;font-size:26px}.welcome-panel p{opacity:.75;max-width:650px}
 .quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}.quick-grid button{border:1px solid #e5e7eb;background:#fff;border-radius:18px;padding:24px;text-align:left;cursor:pointer;font-size:28px}.quick-grid b,.quick-grid small{display:block}.quick-grid b{font-size:16px;margin-top:12px}.quick-grid small{font-size:12px;color:#64748b;margin-top:5px}
 .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.section-title h2{margin:4px 0 0}
-.primary,.secondary,.small,.back{border:0;border-radius:10px;padding:11px 17px;cursor:pointer;font-weight:700}.primary{background:#2563eb;color:#fff}.secondary{background:#e2e8f0;color:#0f172a}.small{padding:7px 11px;background:#e2e8f0}.back{background:transparent;padding-left:0}
+.primary,.secondary,.small,.back{border:0;border-radius:10px;padding:11px 17px;cursor:pointer;font-weight:700}.primary{background:#2563eb;color:#fff}.primary:disabled{opacity:.45;cursor:not-allowed}.secondary{background:#e2e8f0;color:#0f172a}.small{padding:7px 11px;background:#e2e8f0}.back{background:transparent;padding-left:0}
 .table-wrap{overflow:auto;background:#fff;border:1px solid #e5e7eb;border-radius:16px}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:left;padding:14px 16px;border-bottom:1px solid #eef2f7;font-size:13px}th{font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:.06em}
 .pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#eef2ff;font-size:10px;font-weight:800}.pill.on{background:#dcfce7;color:#166534}.pill.off{background:#fee2e2;color:#991b1b}
 .form-card{max-width:850px;background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:28px}.form-card h2{margin:8px 0}.form-card label{display:block;margin:18px 0 7px;font-size:12px;font-weight:800;color:#475569}
