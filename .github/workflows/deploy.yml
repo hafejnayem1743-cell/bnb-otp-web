@@ -16,13 +16,13 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Set SMS webhook secret
-        uses: cloudflare/wrangler-action@v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: secret put SMS_WEBHOOK_SECRET
+        shell: bash
         env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           SMS_WEBHOOK_SECRET: ${{ secrets.SMS_WEBHOOK_SECRET }}
+        run: |
+          printf '%s' "$SMS_WEBHOOK_SECRET" | npx --yes wrangler secret put SMS_WEBHOOK_SECRET
 
       - name: Deploy Worker
         uses: cloudflare/wrangler-action@v4
