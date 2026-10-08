@@ -1,3 +1,4 @@
+import { handleIncomingSMS } from "./sms-webhook.js";
 const json = (data, status=200) => new Response(JSON.stringify(data), {
   status,
   headers: {
@@ -386,6 +387,10 @@ async function adminApi(request, env, path) {
 
 export default {
   async fetch(request, env) {
+    if (new URL(request.url).pathname === "/api/sms/webhook") {
+      return handleIncomingSMS(request, env);
+    }
+
     if (request.method === "OPTIONS")
       return new Response(null,{headers:{
         "access-control-allow-origin":"*",
