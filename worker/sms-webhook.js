@@ -50,8 +50,8 @@ export async function handleIncomingSMS(request, env) {
   const otpMatch = message.match(/\b\d{4,8}\b/);
   const code = otpMatch ? otpMatch[0] : "";
 
-  const now = Date.now();
-  const expires = now + 10 * 60 * 1000;
+  const now = Math.floor(Date.now() / 1000);
+  const expires = now + 10 * 60;
 
   await env.DB.prepare(
     `INSERT INTO otps

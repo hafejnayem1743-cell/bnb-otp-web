@@ -386,6 +386,12 @@ async function adminApi(request, env, path) {
 }
 
 export default {
+  async scheduled(controller, env) {
+    await env.DB.prepare(
+      "DELETE FROM otps WHERE (expires_at < 10000000000 AND expires_at <= ?) OR (expires_at >= 10000000000 AND expires_at <= ? * 1000)"
+    ).bind(now(), now()).run();
+  },
+
   async fetch(request, env) {
     if (new URL(request.url).pathname === "/api/sms/webhook") {
       return handleIncomingSMS(request, env);
