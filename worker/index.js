@@ -53,6 +53,8 @@ async function publicApi(request, env, path) {
 
   const o = path.match(/^\/api\/numbers\/(\d+)\/otps$/);
   if (o) {
+    const auth = await adminUser(request, env);
+    if (auth instanceof Response) return auth;
     const id = Number(o[1]);
     const r = await env.DB.prepare(
       `SELECT id,number_id,code,source,status,message,created_at,expires_at
