@@ -1,6 +1,13 @@
 const API="http://127.0.0.1:8080",A=document.getElementById("app");let countries=[],cid;
 const esc=x=>String(x??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-async function api(p){let r=await fetch(API+p),j=await r.json();if(!r.ok)throw Error(j.error||"Request failed");return j}
+async function api(p){
+ const token=localStorage.getItem("otp_admin")||"";
+ const headers=token?{Authorization:"Bearer "+token}:{};
+ const r=await fetch(API+p,{cache:"no-store",headers});
+ const j=await r.json().catch(()=>({}));
+ if(!r.ok)throw Error(j.error||("HTTP "+r.status));
+ return j
+}
 function home(){A.innerHTML='<section class="hero"><b>📱</b><h1>BNB OTP</h1><p>Fast • Free • Simple</p><p>Browse public test numbers and view controlled SMS verification events.</p><button class="primary" onclick="countriesPage()">🚀 GET STARTED</button></section>'}
 async function countriesPage(){let j=await api("/api/countries");countries=j.countries;A.innerHTML='<div class="wrap"><div class="title"><h2>🌍 Select a Country</h2><button onclick="countriesPage()">🔄 Refresh</button></div><input class="search" id="q" placeholder="Search country"><div id="list" class="grid"></div></div>';draw();q.oninput=draw}
 function draw(){let qv=(q.value||"").toLowerCase();list.innerHTML=countries.filter(c=>(c.name+c.code+c.dial_code).toLowerCase().includes(qv)).map(c=>`<button class="card" onclick="numbersPage(${c.id})"><div class="flag">${esc(c.flag)}</div><b>${esc(c.name)}</b><div class="muted">${esc(c.dial_code)}</div></button>`).join("")||'<div class="empty">No countries found</div>'}

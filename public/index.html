@@ -1722,12 +1722,13 @@ let refreshTimer=null;
 const $=id=>document.getElementById(id);
 
 async function api(path){
-const response=await fetch(API+path,{
-cache:"no-store",
-headers:{Accept:"application/json"}
-});
-if(!response.ok)throw new Error("HTTP "+response.status);
-return response.json();
+const headers={Accept:"application/json"};
+const token=localStorage.getItem("otp_admin")||"";
+if(token)headers.Authorization="Bearer "+token;
+const response=await fetch(API+path,{cache:"no-store",headers});
+const data=await response.json().catch(()=>({}));
+if(!response.ok)throw new Error(data.error||("HTTP "+response.status));
+return data;
 }
 
 function esc(value){
@@ -2055,7 +2056,8 @@ $("lastUpdate").textContent=
 
 }catch(error){
 $("messages").innerHTML=
-'<div class="empty">Unable to update messages.</div>';
+'<div class="empty">'+esc(error.message||"Unable to update messages.")+
+' — <a href="/admin.html">Admin Login</a></div>';
 }
 }
 

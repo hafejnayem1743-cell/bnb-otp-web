@@ -161,9 +161,7 @@ async function toggle(id, currentEnabled){
    body:JSON.stringify({id,enabled:next})
   });
 
-  const c = S.c.find(x=>Number(x.id)===Number(id));
-  if(c) c.enabled = Number(result.enabled);
-
+  await load();
   countries();
  }catch(e){
   alert(e.message || "Country toggle failed");

@@ -15,7 +15,7 @@ function route(path) {
   return path.replace(/\/+/g,"/").replace(/\/$/,"") || "/";
 }
 
-async function publicApi(request, env, path) {
+async function publicApi(request, env, path, searchParams) {
   if (path === "/api/countries") {
     const r = await env.DB.prepare(
       `SELECT c.id,c.code,c.name,c.flag,c.dial_code,c.enabled,
@@ -28,13 +28,17 @@ async function publicApi(request, env, path) {
   }
 
   if (path === "/api/numbers") {
-    const r = await env.DB.prepare(
-      `SELECT n.id,n.number,n.status,n.label,n.country_id,
-              c.code country_code,c.name country_name,c.flag country_flag,c.dial_code
-       FROM numbers n
-       INNER JOIN countries c ON c.id=n.country_id AND c.enabled=1
-       ORDER BY n.id DESC`
-    ).all();
+    const countryId = Number(searchParams.get("country_id") || 0);
+    const sql = `SELECT n.id,n.number,n.status,n.label,n.country_id,
+                        c.code country_code,c.name country_name,c.flag country_flag,c.dial_code
+                 FROM numbers n
+                 INNER JOIN countries c ON c.id=n.country_id AND c.enabled=1
+                 ${countryId > 0 ? "WHERE n.country_id=?" : ""}
+                 ORDER BY n.id DESC`;
+    const stmt = env.DB.prepare(sql);
+    const r = countryId > 0
+      ? await stmt.bind(countryId).all()
+      : await stmt.all();
     return json({numbers:r.results||[]});
   }
 
@@ -43,7 +47,7 @@ async function publicApi(request, env, path) {
     const r = await env.DB.prepare(
       `SELECT n.id,n.number,n.status,n.label,n.country_id,
               c.code country_code,c.name country_name,c.flag country_flag,c.dial_code
-       FROM numbers n LEFT JOIN countries c ON c.id=n.country_id
+       FROM numbers n INNER JOIN countries c ON c.id=n.country_id AND c.enabled=1
        WHERE n.id=?`
     ).bind(Number(m[1])).first();
 
@@ -410,7 +414,7 @@ export default {
     const path=route(url.pathname);
 
     try {
-      let r=await publicApi(request,env,path);
+      let r=await publicApi(request,env,path,url.searchParams);
       if(r) return r;
 
       r=await adminApi(request,env,path);
